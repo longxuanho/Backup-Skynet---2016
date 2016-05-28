@@ -1,0 +1,124 @@
+<div class="uk-width-medium-1-1">
+    <div class="uk-clearfix">
+        <div class="uk-float-right">
+            <i class="md-icon material-icons no-animate" ng-click="vm.utils.mainGrid.clearSelection()" ng-show="vm.pageOptions.mainGrid.config.selectedItem._id">&#xE033;</i>
+            <i class="md-icon material-icons no-animate" ng-click="vm.utils.mainGrid.expandAllGroups(vm.pageOptions.mainGrid.gridRef)" ng-show="!vm.pageOptions.mainGrid.config.isExpandedGroup">&#xE8F2;</i>
+            <i class="md-icon material-icons no-animate" ng-click="vm.utils.mainGrid.collapseAllGroups(vm.pageOptions.mainGrid.gridRef)" ng-show="vm.pageOptions.mainGrid.config.isExpandedGroup">&#xE8EE;</i>
+        </div>
+    </div>
+</div>
+<div class="uk-grid uk-margin-medium-top uk-margin-large-bottom" data-uk-grid-margin>
+    <div class="uk-width-1-1">
+        <!-- GRID -->
+        <div    id="myGrid" 
+                kendo-grid="vm.pageOptions.mainGrid.gridRef"
+                k-options="vm.pageOptions.mainGrid.gridOptions"
+        >
+        </div>
+    </div>
+</div>
+<br/>
+<div class="md-fab-wrapper">
+    <a class="md-fab md-fab-accent no-animate"  ng-click="vm.methods.showModal()">
+        <i class="material-icons" ng-show="vm.pageOptions.modal.config.mode==='createNew'">&#xE145;</i>
+        <i class="material-icons" ng-show="vm.pageOptions.modal.config.mode==='update'">&#xE880;</i>
+    </a>
+</div>
+
+<div class="uk-modal" id="modal_datahelpers_list">
+    <div class="uk-modal-dialog">
+        <div class="uk-modal-header">
+            <h3 class="uk-modal-title" ng-show="vm.pageOptions.modal.config.mode==='createNew'">Tạo mới</h3>
+            <h3 class="uk-modal-title" ng-show="vm.pageOptions.modal.config.mode==='update'">Cập nhật</h3>
+        </div>
+        <div class="uk-grid">
+            <div class="uk-width-medium-1-1">
+                <div class="uk-clearfix">
+                    <div class="uk-float-right">
+                        
+                        <!-- CREATE NEW MODE -->
+                        <span ng-show="vm.pageOptions.modal.config.mode==='createNew'">
+                            <i class="md-icon material-icons no-animate"  ng-click="vm.methods.create_new.insert()" >&#xE876;</i>
+                            <i class="md-icon material-icons no-animate" ng-click="vm.methods.create_new.init(vm.pageOptions.modal.source)">&#xE5D5;</i> 
+                        </span>
+                        
+
+                        <!-- UPDATE MODE -->
+                        <span ng-show="vm.pageOptions.modal.config.mode==='update' && !vm.pageOptions.modal.isRemoving">
+                            <i class="md-icon material-icons no-animate" ng-click="vm.methods.update.update()">&#xE161;</i>
+                            <i class="md-icon material-icons no-animate" ng-click="vm.methods.update.cancel()">&#xE5D5;</i>
+                            <i class="md-icon material-icons no-animate uk-text-warning" ng-click="vm.pageOptions.modal.isRemoving=true;">&#xE872;</i>
+                        </span>
+
+                        <!-- REMOVE MODE -->
+                        <span ng-show="vm.pageOptions.modal.config.mode==='update' && vm.pageOptions.modal.isRemoving">
+                            <i class="md-icon material-icons no-animate" ng-click="vm.methods.remove.remove(vm.pageOptions.mainGrid.config.selectedItem._id)">&#xE16C;</i>
+                            <i class="md-icon material-icons no-animate" ng-click="vm.pageOptions.modal.isRemoving=false;">&#xE5C9;</i>
+                        </span>
+                        
+                    </div>                
+                </div>
+            </div>
+            <div class="uk-width-medium-1-1">
+                <div class="uk-grid">                 
+                    <div class="uk-width-medium-1-3">
+                        <div class="uk-form-stacked uk-margin-medium-top">
+                            <label>Subject</label>
+                            <select kendo-drop-down-list style="width: 100%;" 
+                                k-data-source="vm.pageData.collections.subjects"
+                                k-ng-model="vm.pageOptions.modal.source.subject"
+                                k-value-primitive="true">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-3">
+                        <div class="uk-form-stacked uk-margin-medium-top">
+                            <label>Category</label>
+                            <select kendo-drop-down-list style="width: 100%;" 
+                                k-data-source="vm.pageData.collections.categories[vm.pageOptions.modal.source.subject]"
+                                k-ng-model="vm.pageOptions.modal.source.category"
+                                k-value-primitive="true">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-3">
+                        <div class="uk-form-stacked uk-margin-medium-top">
+                            <label>Container-ref</label>
+                            <input type="text" class="k-textbox" ng-model="vm.pageOptions.modal.source.container.ref" style="width:100%;"/>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-3">
+                        <div class="uk-form-stacked uk-margin-medium-top">
+                            <label>Container-text</label>
+                            <input type="text" class="k-textbox" ng-model="vm.pageOptions.modal.source.container.text" style="width:100%;"/>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-3">
+                        <div class="uk-form-stacked uk-margin-medium-top">
+                            <label>Container-group</label>
+                            <input type="text" class="k-textbox" ng-model="vm.pageOptions.modal.source.container.group" style="width:100%;"/>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-3">
+                        <div class="uk-form-stacked uk-margin-medium-top">
+                            <label>Container-value</label>
+                            <input kendo-numeric-text-box k-ng-model="vm.pageOptions.modal.source.container.value" style="width: 100%;" />
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-3">
+                        <div class="uk-form-stacked uk-margin-medium-top">
+                            <label>Container-order</label>
+                            <input kendo-numeric-text-box k-ng-model="vm.pageOptions.modal.source.container.order" style="width: 100%;" />
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button type="button" class="md-btn md-btn-flat" ng-click="vm.methods.closeModal()">Đóng</button>
+        </div>
+    </div>
+</div>
+
+
+

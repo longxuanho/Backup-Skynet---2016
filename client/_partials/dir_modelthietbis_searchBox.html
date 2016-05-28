@@ -1,0 +1,15 @@
+<!-- ModelThietBi - SearchBox Template-->
+<div>
+    <input type="search" ng-model="page_ui.search" placeholder="Search">
+    <select ng-model="page_ui.orderProperty">
+        <option value="1">Ascending</option>
+        <option value="-1">Descending</option>
+    </select>
+    Tìm theo:
+    <select ng-model="page_ui.searchBy">
+        <option ng-repeat="item in page_ui.searchFields" value="{{item.value}}">{{item.name}}</option>
+    </select>
+    perPage:
+    <input type="number" ng-model="page_ui.perPage" placeholder="Số mục mỗi trang">
+    <h3>Count: {{itemsCount.count}} / {{itemsTotalCount.count}}</h3>
+</div>

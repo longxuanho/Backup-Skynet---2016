@@ -1,0 +1,110 @@
+<div class="uk-modal" id="modal_cauhois_details">
+    <div class="uk-modal-dialog">
+        <ul class="uk-tab" data-uk-tab="{connect:'#tabs_anim6', animation:'scale'}">
+            <li class="uk-active"><a href="#">Câu hỏi</a></li>
+            <li><a href="#">Thông tin</a></li>
+            <li><a href="#" ng-show="source.noi_dung.url_hinh_anhs.length">Hình ảnh</a></li>
+            <li><a href="#" ng-show="source.mo_ta || source.ghi_chu">Ghi chú</a></li>
+        </ul>
+        <ul id="tabs_anim6" class="uk-switcher uk-margin">
+            <li>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-medium-1-1">
+                        <ul class="md-list">
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading">Nội dung</span>
+                                    <span class="uk-text-small uk-text-muted">{{source.noi_dung.tieu_de}}</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading">Các lựa chọn</span>
+                                    <span class="uk-text-small uk-text-muted" ng-repeat="item in source.noi_dung.lua_chons | orderBy:'order'" ng-class="{'color-primary': item.isCorrect}">{{ $index | displayNumberAsAlphabelt }}: {{item.tieu_de}}</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading">Đáp án đúng</span>
+                                    <span class="uk-text-small uk-text-muted">{{source.fields.correctAnswer}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-medium-1-1">
+                        <ul class="md-list">
+                            
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading">Phân loại</span>
+                                    <span class="uk-text-small uk-text-muted">Nhóm câu hỏi: {{source.phan_loai.nhom_cau_hoi.ten ? source.phan_loai.nhom_cau_hoi.ten : '-'}}</span>
+                                    <span class="uk-text-small uk-text-muted">Nhóm thiết bị: {{source.fields.loai_tb ? source.fields.loai_tb : '-'}}</span>
+                                    <span class="uk-text-small uk-text-muted">Bậc thi: {{source.fields.bac_thi ? source.fields.bac_thi : '-'}}</span>
+                                    <span class="uk-text-small uk-text-muted">Độ khó: {{source.phan_loai.muc_do.ten ? source.phan_loai.muc_do.ten : '-'}}</span>
+                                    <span class="uk-text-small uk-text-muted uk-text-italic uk-margin-small-top" ng-show="source.isReserveOrder">Câu hỏi không cho phép xáo trộn các lựa chọn</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading">Các thẻ được gắn</span>
+                                    <span class="uk-text-small uk-text-muted">{{source.fields.tags ? source.fields.tags : '-'}}</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading">Thống kê</span>
+                                    <span class="uk-text-small uk-text-muted">Số lựa chọn: {{source.noi_dung.thong_ke.numOfLuaChons}}</span>
+                                    <span class="uk-text-small uk-text-muted">Số đáp án đúng: {{source.noi_dung.thong_ke.numOfCorrectAnswers}}</span>
+                                    <span class="uk-text-small uk-text-muted">Hình ảnh: {{source.noi_dung.thong_ke.numOfUrlHinhAnhs}}</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading">Hệ thống</span>
+                                    <span class="uk-text-small uk-text-muted">Phân lớp: {{source.phan_lop.ten}}</span>
+                                    <span class="uk-text-small uk-text-muted">Kiểu câu hỏi: {{source.phan_loai.kieu_cau_hoi.ten}}</span>
+                                    <span class="uk-text-small uk-text-muted">Được tạo {{source.metadata.ngay_tao|displayDate:'fromNow'}} bời {{(source.metadata.nguoi_tao_name)?source.metadata.nguoi_tao_name:source.metadata.nguoi_tao_email}}</span>
+                                    <span ng-show="source.metadata.ngay_cap_nhat_cuoi" class="uk-text-small uk-text-muted">Cập nhật lần cuối  {{source.metadata.ngay_cap_nhat_cuoi|displayDate:'fromNow'}} bời {{(source.metadata.nguoi_cap_nhat_cuoi_name)?source.metadata.nguoi_cap_nhat_cuoi_name:source.metadata.nguoi_cap_nhat_cuoi_email}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li>
+                {{source.noi_dung.url_hinh_anhs}}
+                <ul class="uk-slideshow" data-uk-slideshow="{autoplay:true, kenburns:true}">
+                    <li ng-repeat="item in source.noi_dung.url_hinh_anhs"><img src="{{item}}" alt="{{item}}"></li>
+                </ul>
+            </li>
+            <li>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-medium-1-1">
+                        <ul class="md-list">
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading" ng-show="source.mo_ta">Mô tả</span>
+                                    <span class="uk-text-small uk-text-muted">{{source.mo_ta}}</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading" ng-show="source.ghi_chu">Ghi chú</span>
+                                    <span class="uk-text-small uk-text-muted">{{source.ghi_chu}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="uk-modal-footer uk-text-right">
+            <button type="button" class="md-btn md-btn-flat uk-text-warning no-animate" ng-click="utils.goToEditPage()" ng-show="utils.isEditable()">Cập nhật</button>
+            <button type="button" class="md-btn md-btn-flat" ng-click="utils.closeModal()">Đóng</button>
+        </div>
+    </div>
+</div>

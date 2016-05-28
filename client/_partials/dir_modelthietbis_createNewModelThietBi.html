@@ -1,0 +1,21 @@
+<h1>Model Thiết Bị:</h1>
+<form>
+    <label>Hãng sản xuất:</label>
+    <select ng-model="newModelThietBi.hang_san_xuat.keyId">
+        <option ng-repeat="item in hangsanxuats" value="{{item._id}}">{{item.ten}}</option>
+    </select>
+    <label>Tên model:</label>
+    <input ng-model="newModelThietBi.ten">
+    <label>Mã model:</label>
+    <input ng-model="newModelThietBi.ma">
+    <label>Mô tả:</label>
+    <input ng-model="newModelThietBi.mo_ta">
+    <label>Ghi chú:</label>
+    <input ng-model="newModelThietBi.ghi_chu">
+    <label>Icon:</label>
+    <input ng-model="newModelThietBi.icon">
+    <label>Công khai:</label>
+    <input type="checkbox" ng-model="newModelThietBi.isPublic">
+    <button ng-click="createNew()">Add</button>
+    <button ng-click="removeAll()">Remove All</button>
+</form>

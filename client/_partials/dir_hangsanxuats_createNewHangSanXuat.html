@@ -1,0 +1,21 @@
+<h1>Hãng Sản Xuất:</h1>
+<form>
+    <label>Tên hãng:</label>
+    <input ng-model="newHangSanXuat.ten">
+    <label>Mã hãng:</label>
+    <input ng-model="newHangSanXuat.ma">
+    <label>Quốc gia:</label>
+    <select ng-model="newHangSanXuat.quoc_gia.keyId">
+        <option ng-repeat="item in quocgias" value="{{item._id}}">{{item.ten}}</option>
+    </select>
+    <label>Mô tả:</label>
+    <input ng-model="newHangSanXuat.mo_ta">
+    <label>Ghi chú:</label>
+    <input ng-model="newHangSanXuat.ghi_chu">
+    <label>Icon:</label>
+    <input ng-model="newHangSanXuat.icon">
+    <label>Công khai:</label>
+    <input type="checkbox" ng-model="newHangSanXuat.isPublic">
+    <button ng-click="createNew()">Add</button>
+    <button ng-click="removeAll()">Remove All</button>
+</form>

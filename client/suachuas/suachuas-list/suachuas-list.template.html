@@ -1,0 +1,93 @@
+<div id="top_bar" ng-class="{'topbar-double-height': vm.pageOptions.topBarHeight=='x2'}" ng-show="vm.pageOptions.isDisplayTopBar" class="no-animate">
+    <div class="md-top-bar">
+        <div class="uk-width-large-8-10 uk-container-center">
+            <ul class="top_bar_nav" id="snippets_grid_filter">
+                <li ng-repeat="nhom in vm.pageOptions.filters.nhomsFilterSource" ng-class="{'uk-active': nhom.ma===vm.pageOptions.filters.filterNhomId}" ng-click="vm.utils.setFilterByNhomId(nhom.ma)">
+                    <a href="#">{{ nhom.ten }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="uk-grid uk-margin-medium-top uk-margin-large-bottom" data-uk-grid-margin>
+    <div class="uk-width-1-1">
+    	<div class="uk-container-center" ng-class="{'uk-width-large-8-10': !vm.pageOptions.isDisplayFullWidthGrid, 'uk-width-large-1-1': vm.pageOptions.isDisplayFullWidthGrid}">
+            
+<!--             <k-grid-menu
+                grid-data="vm.gridData"
+                page-options="vm.pageOptions"
+                k-data="vm._kData"
+                k-helpers="vm._kHelpers"
+                local-config-data-name="vm.pageOptions.localConfigDataName"
+                cloud-config-data-name="vm.pageOptions.cloudConfigDataName"
+                >
+            </k-grid-menu> -->
+			<s-grid-menu
+                k-grid-data-source="vm.gridData.kGrid.kOptions.dataSource"
+                page-options="vm.pageOptions"
+                local-config-data-name="vm.pageOptions.localConfigDataName"
+                cloud-config-data-name="vm.pageOptions.cloudConfigDataName"
+            >
+            </s-grid-menu>
+
+            <br/>
+
+<!--             <div class="uk-grid uk-margin-top no-animate" ng-show="!vm.numOfSuaChuas">
+               <div style="margin:auto;">
+                    <img style="border-radius: 50%;" src="assets/img/skynet/suachuas.list_empty.png">
+                    <div class="heading_list uk-margin-top uk-text-center">Không có dữ liệu sửa chữa được hiển thị.</div>
+                </div>
+            </div> -->
+            <!-- <div class="no-animate" ng-show="vm.numOfSuaChuas"> -->
+            <div class="uk-grid uk-margin-bottom" id="suachuas_list_calendar_zone">
+                <div class="uk-width-medium-1-6 uk-margin-small-top">
+                    <div class="uk-form-row">
+                        <label>Từ ngày</label>
+                        <input kendo-date-picker style="width: 100%;"
+                            k-format="'yyyy-MM-dd'"
+                            k-depth="'year'"
+                            ng-model="vm.criteria.dateRage.from"/>
+                    </div>
+                </div> 
+                <div class="uk-width-medium-1-6 uk-margin-small-top">
+                    <div class="uk-form-row">
+                        <label>Đến ngày</label>
+                        <input kendo-date-picker style="width: 100%;"
+                            k-format="'yyyy-MM-dd'"
+                            k-depth="'year'"
+                            ng-model="vm.criteria.dateRage.to"/>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="no-animate" id="myGrid"
+                
+                kendo-grid="vm.pageOptions.gridRef"
+                k-options="vm.gridData.kGrid.kOptions"
+                k-on-change="vm.gridData.kGrid.kEvents.onChange(kendoEvent, data)"
+                k-on-data-bound="vm.gridData.kGrid.kEvents.onDataBound(kendoEvent)"    
+            >
+            </div>
+            
+		</div>
+    </div>
+</div>
+
+<!-- <div class="md-fab-wrapper">
+    <a class="md-fab md-fab-accent no-animate" ng-show="vm.pageOptions.fabState==='suachuas_createNew'" ng-click="vm.utils.openModal('#modal_suachuas_add_new')">
+        <i class="material-icons">&#xE145;</i>
+    </a>
+    <a class="md-fab md-fab-accent no-animate" ng-show="vm.pageOptions.fabState==='suachuas_viewDetails'" data-uk-modal="{target: '#modal_suachuas_details'}">
+        <i class="material-icons">&#xE880;</i>
+    </a>
+</div> -->
+
+<suachuas-modal-add-new dictionary="vm.dictionary"></suachuas-modal-add-new>
+<suachuas-modal-details id="vm.pageOptions.selected.suachua._id" dictionary="vm.dictionary"></suachuas-modal-details>
+<suachuas-sidebar page-reactive-data="vm.pageReactiveData" dictionary="vm.dictionary"></suachuas-sidebar>
+
+
+
+
+

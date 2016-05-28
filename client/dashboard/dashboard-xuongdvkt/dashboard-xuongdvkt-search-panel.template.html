@@ -1,0 +1,23 @@
+<div id="nav_quan_ly_search_panel">
+    <div>
+        <form class="search-form">
+            <input type="search" placeholder="Tìm kiếm..." ng-model="myFilter.ma_tb.ma_tb">
+        </form> 
+    </div>
+    <div>
+        <h3>Các phương tiện sửa chữa</h3>
+        <div class="scrollable-area">
+            <table class="uk-table uk-table-hover" style="border-collapse: separate;">
+                <tbody>
+                    <tr ng-repeat="suachua in pageData.suachuas.raw | filter: myFilter " class="search-result-item" ng-class="{ 'suachua-selected': suachua._id === pageData.source.selectedSuaChua._id }" ng-click="methods.selectSuaChua(suachua._id);">
+                        <td style="width:25%" ng-class="{'color-success': (suachua.trang_thai == 'Sửa chữa xong'), 'color-warning': (suachua.trang_thai == 'Chuẩn bị bàn giao'), 'color-danger': (suachua.trang_thai == 'Đang sửa chữa')}">{{suachua.ma_tb.ma_tb}}</td>
+                        <td style="width:15%;">{{suachua.dia_diem.vi_tri}}</td>
+                        <td style="width:40%;">{{suachua.thoi_gian.bat_dau | displayDate: 'fromNow'}}</td>
+                        <td style="text-align:right;"><span ng-hide="suachua.trang_thai=='Sửa chữa xong'">{{suachua.thoi_gian.sua_chua_du_kien | number: 1}}</span><span ng-show="suachua.trang_thai=='Sửa chữa xong'">{{suachua.thong_ke.thoi_gian.sua_chua.thuc_te | number: 1}}</span></td>
+                    </tr>   
+                </tbody>                
+            </table>    
+        </div>      
+    </div>    
+</div>
+

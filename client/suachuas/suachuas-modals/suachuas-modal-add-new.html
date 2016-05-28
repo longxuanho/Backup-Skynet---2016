@@ -1,0 +1,165 @@
+<div class="uk-modal" id="modal_suachuas_add_new">
+    <div class="uk-modal-dialog">
+        <div class="uk-modal-header">
+            <h3 class="uk-modal-title color-accent">Thêm sửa chữa mới</h3>
+            <span class="uk-align-right">
+                <i class="md-icon material-icons" ng-click="vm.utils.resetSuaChua()">&#xE5D5;</i>
+                <i class="md-icon material-icons" ng-click="vm.utils.addNewSuaChua()">&#xE161;</i>                
+            </span>
+            
+        </div>
+        <div class="uk-grid">
+            <div class="uk-width-1-1">
+                <ul id="tabs_newSuaChua" class="uk-switcher uk-margin">
+                    <li>
+                        <div class="uk-grid uk-margin-small-top uk-margin-medium-bottom">
+                            <div class="newsuachua_alert uk-width-medium-1-1 uk-margin-medium-bottom">
+                                <div class="uk-notify-message">{{vm.modalOptions.errorMessage}}</div>
+                            </div>                            
+                            <div class="uk-width-medium-1-3">                                
+                                <div class="uk-form-stacked">
+                                    <label for="newsuachua_phanloai_nhomtb">Nhóm phương tiện</label>
+                                    <select kendo-drop-down-list style="width: 100%;" id="newsuachua_phanloai_nhomtb"
+                                        k-ng-model="vm.newSuaChua.phan_loai.nhom_tb"
+                                        k-option-label="' '"
+                                        k-data-text-field="'ten'" 
+                                        k-data-value-field="'ma'"
+                                        k-filter="'contains'"
+                                        k-index="-1"
+                                        k-data-source="vm.dictionary.nhom_tbs">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-3">
+                                <div class="uk-form-stacked">
+                                    <label for="newsuachua_phanloai_loaitb">Loại phương tiện</label>
+                                    <select kendo-drop-down-list style="width: 100%;" id="newsuachua_phanloai_loaitb"
+                                        k-cascade-from="'newsuachua_phanloai_nhomtb'"
+                                        k-cascade-from-field="'group'"
+                                        k-option-label="' '"
+                                        k-ng-model="vm.newSuaChua.phan_loai.loai_tb"
+                                        k-data-text-field="'ten'" 
+                                        k-data-value-field="'ma'"
+                                        k-filter="'contains'"
+                                        k-index="-1"
+                                        k-data-source="vm.dictionary.loai_tbs">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-3">
+                                <div class="uk-form-stacked">
+                                    <label for="newsuachua_phanloai_loaitb">Mã phương tiện</label>
+                                    <select kendo-drop-down-list style="width: 100%;" id="newsuachua_phanloai_matb"
+                                        k-ng-model="vm.newSuaChua.ma_tb"
+                                        k-option-label="' '"
+                                        k-cascade-from="'newsuachua_phanloai_loaitb'"
+                                        k-cascade-from-field="'group'"
+                                        k-data-text-field="'ma_tb'" 
+                                        k-data-value-field="'ma_tb'"
+                                        k-filter="'contains'"
+                                        k-index="-1"
+                                        k-data-source="vm.dictionary.ma_tbs">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-3 uk-margin-small-top">
+                                <div class="uk-form-stacked">
+                                    <label for="newsuachua_phanloai_loaisuachua">Loại sửa chữa</label>
+                                    <select kendo-drop-down-list style="width: 100%;" id="newsuachua_phanloai_loaisuachua"
+                                        k-ng-model="vm.newSuaChua.phan_loai.loai_sua_chua"
+                                        k-data-text-field="'ten'" 
+                                        k-data-value-field="'ma'"
+                                        k-filter="'contains'"
+                                        k-index="-1"
+                                        k-data-source="vm.dictionary.loai_sua_chuas">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-3 uk-margin-small-top">
+                                <div class="uk-form-stacked">
+                                    <label for="newsuachua_diadiem_khuvuc">Khu vực</label>
+                                    <select kendo-drop-down-list style="width: 100%;" id="newsuachua_diadiem_khuvuc"
+                                        k-ng-model="vm.newSuaChua.dia_diem.khu_vuc"
+                                        k-data-text-field="'ten'" 
+                                        k-data-value-field="'ma'"
+                                        k-option-label="' '"
+                                        k-filter="'contains'"
+                                        k-index="-1"
+                                        k-data-source="vm.dictionary.khu_vucs">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-3 uk-margin-small-top">
+                                <div class="uk-form-stacked">
+                                    <label for="newsuachua_diadiem_vitri">Vị trí</label>
+                                    <select kendo-drop-down-list style="width: 100%;" id="newsuachua_diadiem_vitri"
+                                        ng-model="vm.newSuaChua.dia_diem.vi_tri"
+                                        k-option-label="' '"
+                                        k-filter="'contains'"
+                                        k-index="-1"
+                                        k-data-source="vm.modalData.vi_tris">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-2 uk-margin-small-top">
+                                <div class="uk-form-row">
+                                    <label>Thời gian bắt đầu</label>
+                                    <input kendo-date-time-picker style="width: 100%;"
+                                        k-culture="'vi-VN'"
+                                        k-depth="'year'"
+                                        k-interval="15"
+                                        k-ng-model="vm.newSuaChua.thoi_gian.bat_dau"/>
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-3 uk-margin-small-top">
+                                <div class="uk-form-row">
+                                    <label>TGSC dự kiến (h)</label>
+                                    <input kendo-numeric-text-box style="width: 100%;" 
+                                        k-min="0"
+                                        k-max="1000"
+                                        k-step="0.25"
+                                        k-ng-model="vm.newSuaChua.thoi_gian.sua_chua_du_kien" />
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-1 uk-margin-medium-top">
+                                <div class="uk-form-row">
+                                    <label>Nội dung sửa chữa</label>
+                                    <input type="text" class="md-input" ng-model="vm.newSuaChua.noi_dung.noi_dung" md-input />
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-1 uk-margin-medium-top">
+                                <div class="uk-form-row">
+                                    <label>Thẻ dấu</label>
+                                    <select kendo-multi-select style="width: 95%;" k-data-source="vm.dictionary.tags.dau_keo_chay_ngoai" k-delay="800" k-ng-model="vm.newSuaChua.tags"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="uk-grid uk-margin-medium-bottom">
+                            <div class="newsuachua_alert uk-width-medium-1-1 uk-margin-medium-bottom">
+                                <div class="uk-notify-message">{{vm.modalOptions.errorMessage}}</div>
+                            </div>
+                            <div class="uk-width-medium-1-1 uk-margin-small-top">
+                                <div class="uk-form-row">
+                                    <label>Mô tả</label>
+                                    <textarea cols="30" rows="3" class="md-input label-fixed" ng-model="vm.newSuaChua.mo_ta" md-input textarea-autosize></textarea>
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-1 uk-margin-medium-top">
+                                <div class="uk-form-row">
+                                    <label>Ghi chú</label>
+                                    <textarea cols="30" rows="4" class="md-input label-fixed" ng-model="vm.newSuaChua.ghi_chu" md-input textarea-autosize></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="uk-tab uk-tab-bottom uk-tab-flip" data-uk-tab="{connect:'#tabs_newSuaChua', animation:'scale'}">
+                    <li class="uk-active"><a href="#">Thông tin</a></li>
+                    <li><a href="#">Ghi chú</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

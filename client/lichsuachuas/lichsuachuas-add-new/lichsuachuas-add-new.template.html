@@ -1,0 +1,66 @@
+<div class="md-card md-card-single main-print" single-card>
+    <form action="" class="uk-form-stacked">
+        <div class="md-card-toolbar">
+            <div class="md-card-toolbar-actions" ng-click="addNewLichSuaChua()">
+                <i class="md-icon material-icons">&#xE161;</i>
+            </div>
+            <input class="md-card-toolbar-input" type="text" ng-model="newLichSuaChua.ten" placeholder="Kế hoạch sửa chữa mới" />
+        </div>
+        <div class="md-card-content">
+            <div class="uk-grid" data-uk-grid-margin>
+                <div class="uk-width-medium-1-2">
+                    <div>Ngành:</div>
+                    <select kendo-drop-down-list style="width: 100%;" ng-model="newLichSuaChua.nhom.keyId" k-data-text-field="'ten'" k-data-value-field="'_id'" k-data-source="nhoms">
+                    </select>
+                </div>
+                <div class="uk-width-medium-1-2">
+                    <div>Loại sửa chữa:</div>
+                    <select kendo-drop-down-list style="width: 100%;" ng-model="newLichSuaChua.loai_sua_chua" k-data-text-field="'text'" k-data-value-field="'value'" k-data-source="kOptions.loaisuachuas">
+                    </select>
+                </div>
+                <div class="uk-width-medium-1-2">
+                    <div>Trạng thái:</div>
+                    <select kendo-drop-down-list style="width: 100%;" ng-model="newLichSuaChua.trang_thai" k-data-text-field="'text'" k-data-value-field="'value'" k-data-source="kOptions.trangthais">
+                    </select>
+                </div>
+                <div class="uk-width-medium-1-2">
+                    <div>Thiết bị:</div>
+                    <select kendo-drop-down-list style="width: 100%;" ng-model="newLichSuaChua.thiet_bi.keyId" k-data-text-field="'ma_tb.ma_tb'" k-data-value-field="'_id'" k-data-source="thietbis" k-rebind="thietbis">
+                    </select>
+                </div>
+                <div class="uk-width-medium-1-2">
+                    <div class="uk-form-row">
+                        <label>Mã kế hoạch</label>
+                        <input type="text" class="md-input label-fixed" ng-model="newLichSuaChua.ma" md-input />
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-2">
+                    <div class="uk-form-row">
+                        <label>Icon</label>
+                        <input type="text" class="md-input label-fixed" ng-model="newLichSuaChua.icon" md-input />
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-1 uk-margin-top">
+                    <div class="uk-form-row">
+                        <input type="checkbox" ui-switch ng-model="newLichSuaChua.isPublic" color="{{utils.accentColor}}" checked id="switch_demo_primary" />
+                        <label for="switch_demo_primary" class="inline-label">{{ newLichSuaChua.isPublic?'Công khai':'Riêng tư' }}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-grid uk-grid-divider grid-block" data-uk-grid-margin>
+                <div class="uk-width-medium-1-1">
+                    <div class="uk-form-row">
+                        <label for="message">Mô tả</label>
+                        <input type="text" class="md-input label-fixed" rows="1" md-input ng-model="newLichSuaChua.mo_ta" />
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-1">
+                    <div class="uk-form-row">
+                        <label for="message">Ghi chú</label>
+                        <textarea id="message" class="md-input" name="message" rows="3" md-input ng-model="newLichSuaChua.ghi_chu"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

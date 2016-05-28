@@ -1,0 +1,172 @@
+<h1>Thiết Bị:</h1>
+<form>
+    <h3>Mã Thiết Bị:</h3>
+    ma_tb:
+    <input ng-model="newThietBi.ma_tb.ma_tb">
+    ma_topx:
+    <input ng-model="newThietBi.ma_tb.ma_topx">
+    ma_topovn:
+    <input ng-model="newThietBi.ma_tb.ma_topovn">
+    ma_maximo:
+    <input ng-model="newThietBi.ma_tb.ma_maximo">
+    <h3>Phân loại:</h3>
+    Nhóm:
+    <select ng-model="newThietBi.phan_loai.nhom.keyId">
+        <option ng-repeat="item in nhoms" value="{{item._id}}">{{item.ten}}</option>
+    </select>
+    Chủng Loại:
+    <select ng-model="newThietBi.phan_loai.chung_loai.keyId">
+        <option ng-repeat="item in chungloais" value="{{item._id}}">{{item.ten}}</option>
+    </select>
+    Loại:
+    <select ng-model="newThietBi.phan_loai.loai.keyId">
+        <option ng-repeat="item in loais" value="{{item._id}}">{{item.ten}}</option>
+    </select>
+    <h3>Hồ Sơ Thiết Bị:</h3>
+    <p>Thông Tin Chung:</p>
+    Năm SX:
+    <input ng-model="newThietBi.ho_so_tb.thong_tin_chung.nam_sx">
+    Năm SD:
+    <input ng-model="newThietBi.ho_so_tb.thong_tin_chung.nam_sd">
+    Thời điểm SX:
+    <input type="date" ng-model="newThietBi.ho_so_tb.thong_tin_chung.thoi_diem_sx">
+    Thời điểm SD:
+    <input type="date" ng-model="newThietBi.ho_so_tb.thong_tin_chung.thoi_diem_sd">
+    Số khung:
+    <input ng-model="newThietBi.ho_so_tb.thong_tin_chung.so_khung">
+    Số máy:
+    <input ng-model="newThietBi.ho_so_tb.thong_tin_chung.so_may">
+    Số giấy đăng ký:
+    <input ng-model="newThietBi.ho_so_tb.thong_tin_chung.so_giay_dang_ky">
+    Số giấy đăng kiểm:
+    <input ng-model="newThietBi.ho_so_tb.thong_tin_chung.so_giay_dang_kiem">
+    Ghi chú:
+    <input ng-model="newThietBi.ho_so_tb.thong_tin_chung.ghi_chu">
+    Mô tả:
+    <input ng-model="newThietBi.ho_so_tb.thong_tin_chung.mo_ta">
+    Icon:
+    <input ng-model="newThietBi.ho_so_tb.thong_tin_chung.icon">
+    <br>
+    Xuất xứ:
+    <select ng-model="newThietBi.ho_so_tb.thong_tin_chung.xuat_xu.keyId">
+        <option ng-repeat="item in quocgias" value="{{item._id}}">{{item.ten}}</option>
+    </select>
+    Hãng Sản Xuất:
+    <select ng-model="newThietBi.ho_so_tb.thong_tin_chung.hang_san_xuat.keyId">
+        <option ng-repeat="item in hangsanxuats" value="{{item._id}}">{{item.ten}}</option>
+    </select>
+    <select ng-model="newThietBi.ho_so_tb.thong_tin_chung.model_tb.keyId">
+        <option ng-repeat="item in modelthietbis" value="{{item._id}}">{{item.ten}}</option>
+    </select>
+    Thong Tin Chung: {{newThietBi.ho_so_tb.thong_tin_chung}}
+    <h3>Lý lịch phương tiện:</h3>
+    <button ng-click="addNumOfLyLichThietBis()()">Thêm hồ sơ</button>
+    {{newThietBi.ho_so_tb.ly_lich_tb}}
+
+    <div>
+        <div ng-repeat="item in options.array.numOfNewLyLichThietBisArray">
+            <h3>Hồ sơ #{{item}}</h3>
+            Loại hồ sơ:
+            <select ng-model="newThietBi.ho_so_tb.ly_lich_tb[item].loai_ho_so">
+                <option value="bien_ban">Biên bản</option>
+                <option value="ly_lich_phuong_tien">Lý lịch phương tiện</option>
+                <option value="giay_dang_kiem">Giấy đăng kiểm</option>
+                <option value="giay_dang_ky">Giấy đăng ký</option>
+                <option value="giay_kiem_dinh">Giấy kiểm định</option>
+            </select>
+            Tên đăng ký:
+            <input type="text" ng-model="newThietBi.ho_so_tb.ly_lich_tb[item].ten_dang_ky">
+            Mã hồ sơ:
+            <input type="text" ng-model="newThietBi.ho_so_tb.ly_lich_tb[item].ma_ho_so">
+            Thời điểm xác nhận:
+            <input type="date" ng-model="newThietBi.ho_so_tb.ly_lich_tb[item].thoi_diem_xac_nhan">
+            Năm xác nhận:
+            <input type="number" ng-model="newThietBi.ho_so_tb.ly_lich_tb[item].nam_xac_nhan">
+            Nội dung:
+            <input type="text" ng-model="newThietBi.ho_so_tb.ly_lich_tb[item].noi_dung">
+            Ghi chú:
+            <input type="text" ng-model="newThietBi.ho_so_tb.ly_lich_tb[item].ghi_chu">
+            Mô tả:
+            <input type="text" ng-model="newThietBi.ho_so_tb.ly_lich_tb[item].mo_ta">
+            Icon:
+            <input type="text" ng-model="newThietBi.ho_so_tb.ly_lich_tb[item].icon">
+            Hết hạn?
+            <input type="checkbox" ng-model="newThietBi.ho_so_tb.ly_lich_tb[item].isOutOfDate">
+            <button ng-click="decreaseNumOfLyLichThietBis()(item)">X</button>
+        </div>
+    </div>
+    <div>
+        <h3>RefImgs:</h3>
+        <button ng-click="addNumOfRefImgs()()">Thêm hình ảnh</button> {{options.array.numOfNewRefImgsArray}}
+        <div ng-repeat="item in options.array.numOfNewRefImgsArray">
+            file_path:
+            <input type="text" ng-model="newThietBi.ho_so_tb.ref_img[item].file_path" ng-show="newThietBi.ho_so_tb.ref_img[item].isLocal">
+            file_url:
+            <input type="text" ng-model="newThietBi.ho_so_tb.ref_img[item].file_url" ng-hide="newThietBi.ho_so_tb.ref_img[item].isLocal">
+            file_caption:
+            <input type="text" ng-model="newThietBi.ho_so_tb.ref_img[item].file_caption">
+            file_description:
+            <input type="text" ng-model="newThietBi.ho_so_tb.ref_img[item].file_description">
+            isLocal:
+            <input type="checkbox" ng-model="newThietBi.ho_so_tb.ref_img[item].isLocal">
+            <button ng-click="decreaseNumOfRefImgs()(item)">X</button>
+        </div>
+    </div>
+    <div>
+        <h3>Thông số kỹ thuật:</h3>
+        <button ng-click="addNumOfThongSoKyThuats()()">Thêm thông số kỹ thuật</button>
+        <div ng-repeat="item in options.array.numOfNewThongSoKyThuatsArray">
+            <h3>Thông Số #{{item}}</h3>
+            <select ng-model="newThietBi.thong_so_ky_thuat[item].loai_thong_so.keyId">
+                <option ng-repeat="loaithongsokythuat in loaithongsokythuats" value="{{loaithongsokythuat._id}}">{{loaithongsokythuat.ten}}</option>
+            </select>
+            <input type="number" ng-model="newThietBi.thong_so_ky_thuat[item].gia_tri">
+            <input type="text" ng-model="newThietBi.thong_so_ky_thuat[item].mo_ta">
+            <input type="text" ng-model="newThietBi.thong_so_ky_thuat[item].ghi_chu">
+            <button ng-click="decreaseNumOfThongSoKyThuats()(item)">X</button>
+        </div>
+    </div>
+    <div>
+        <h3>Đơn Vị Quản Lý:</h3>
+        <button ng-click="addNumOfDonViQuanLies()()">Thêm đơn vị quản lý</button>
+        {{newThietBi.don_vi_quan_ly}}
+        {{options.array.numOfNewDonViQuanLiesArray}}
+        <div ng-repeat="item in options.array.numOfNewDonViQuanLiesArray">
+            Đơn vị #{{item}}
+            <select ng-model="newThietBi.don_vi_quan_ly[item].keyId">
+                <option ng-repeat="donvi in donvis" value="{{donvi._id}}">{{donvi.ten}}</option>
+            </select>
+            <button ng-click="decreaseNumOfDonViQuanLies()(item)" ng-hide="options.array.numOfNewDonViQuanLiesArray.length===1">X</button>
+        </div>
+    </div>
+    <div>
+        <h3>Đơn Vị Sở Hữu:</h3>
+        <button ng-click="addNumOfDonViSoHuus()()">Thêm đơn vị sở hữu</button>
+        {{newThietBi.don_vi_so_huu}}
+        {{options.array.numOfNewDonViSoHuusArray}}
+        <div ng-repeat="item in options.array.numOfNewDonViSoHuusArray">
+            Đơn vị #{{item}}
+            <select ng-model="newThietBi.don_vi_so_huu[item].keyId">
+                <option ng-repeat="donvi in donvis" value="{{donvi._id}}">{{donvi.ten}}</option>
+            </select>
+            <button ng-click="decreaseNumOfDonViSoHuus()(item)" ng-hide="options.array.numOfNewDonViSoHuusArray.length===1">X</button>
+        </div>
+    </div>
+    <h3>Địa bàn hoạt động:</h3>
+    <select ng-model="newThietBi.dia_ban_hoat_dong.keyId">
+        <option ng-repeat="item in diabans" value="{{item._id}}">{{item.dia_ban.ten}}</option>
+    </select>
+
+    <h3>Metadata:</h3>
+    Mô tả:
+    <input ng-model="newThietBi.mo_ta">
+    Ghi chú:
+    <input ng-model="newThietBi.ghi_chu">
+    Icon:
+    <input ng-model="newThietBi.icon">
+    <h3>Khác:</h3>
+    Công khai:
+    <input type="checkbox" ng-model="newThietBi.isPublic">
+    <button ng-click="createNew()">Add</button>
+    <button ng-click="removeAll()">Remove All</button>
+</form>

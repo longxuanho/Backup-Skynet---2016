@@ -1,0 +1,49 @@
+<div class="md-card md-card-single main-print" single-card>
+    <form action="" class="uk-form-stacked">
+        <div class="md-card-toolbar">
+            <div class="md-card-toolbar-actions" ng-click="addNewNhom()">
+                <i class="md-icon material-icons">&#xE161;</i>
+            </div>
+            <input class="md-card-toolbar-input" type="text" ng-model="newNhom.ten" placeholder="Tên nhóm mới" />
+        </div>
+        <div class="md-card-content">
+            <div class="uk-grid" data-uk-grid-margin>
+                <div class="uk-width-medium-1-1">
+                    <label class="uk-form-label">Thông tin chung:</label>
+                </div>
+                <div class="uk-width-medium-1-2">
+                    <div class="uk-form-row">
+                        <label>Mã nhóm</label>
+                        <input type="text" class="md-input label-fixed" ng-model="newNhom.ma" md-input />
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-2">
+                    <div class="uk-form-row">
+                        <label>Icon</label>
+                        <input type="text" class="md-input label-fixed" ng-model="newNhom.icon" md-input />
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-1 uk-margin-top">
+                    <div class="uk-form-row">
+                        <input type="checkbox" ui-switch ng-model="newNhom.isPublic" color="{{utils.accentColor}}" checked id="switch_demo_primary" />
+                        <label for="switch_demo_primary" class="inline-label">{{ newNhom.isPublic?'Công khai':'Riêng tư' }}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-grid uk-grid-divider grid-block" data-uk-grid-margin>
+                <div class="uk-width-medium-1-1">
+                    <div class="uk-form-row">
+                        <label for="message">Mô tả</label>
+                        <input type="text" class="md-input label-fixed" rows="1" md-input ng-model="newNhom.mo_ta" />
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-1">
+                    <div class="uk-form-row">
+                        <label for="message">Ghi chú</label>
+                        <textarea id="message" class="md-input" name="message" rows="3" md-input ng-model="newNhom.ghi_chu"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

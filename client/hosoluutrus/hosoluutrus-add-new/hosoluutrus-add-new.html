@@ -1,0 +1,35 @@
+<h3>Tạo tài liệu lưu trữ mới:</h3>
+<form>
+    Tên:
+    <input ng-model="hosoluutrusAddNew.newHoSoLuuTru.ten">
+    Mã:
+    <input ng-model="hosoluutrusAddNew.newHoSoLuuTru.ma">
+    Phân loại: (Select)
+    <input ng-model="hosoluutrusAddNew.newHoSoLuuTru.phan_loai">
+    Loại: (Select)
+    <input ng-model="hosoluutrusAddNew.newHoSoLuuTru.loai">
+    Đơn vị phát hành: (Select)
+    <input ng-model="hosoluutrusAddNew.newHoSoLuuTru.don_vi_phat_hanh">
+    Nội dung:
+    <input ng-model="hosoluutrusAddNew.newHoSoLuuTru.noi_dung">
+    Ngày ký:
+    <input type="date" ng-model="hosoluutrusAddNew.newHoSoLuuTru.ngay_ky">
+    Người ký:
+    <input ng-model="hosoluutrusAddNew.newHoSoLuuTru.nguoi_ky">
+    Mô tả:
+    <input ng-model="hosoluutrusAddNew.newHoSoLuuTru.mo_ta">
+    Ghi chú:
+    <input ng-model="hosoluutrusAddNew.newHoSoLuuTru.ghi_chu">
+    Icon:
+    <input ng-model="hosoluutrusAddNew.newHoSoLuuTru.icon">
+    Trạng thái: (Select)
+    <input ng-model="hosoluutrusAddNew.newHoSoLuuTru.trang_thai">
+    Ngôn ngữ: (Select)
+    <input ng-model="hosoluutrusAddNew.newHoSoLuuTru.ngon_ngu">
+    File đính kèm: (Upload)
+    <input ng-model="hosoluutrusAddNew.newHoSoLuuTru.file_dinh_kem">
+    Công khai:
+    <input type="checkbox" ng-model="hosoluutrusAddNew.newHoSoLuuTru.isPublic">
+    <button ng-click="hosoluutrusAddNew.addNewHoSoLuuTru()">Add</button>
+    <button ng-click="hosoluutrusAddNew.clearNewHoSoLuuTruForm()">Clear</button>
+</form>

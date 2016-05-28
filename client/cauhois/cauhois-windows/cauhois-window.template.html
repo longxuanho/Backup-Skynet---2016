@@ -1,0 +1,193 @@
+<div class="uk-clearfix {{$root.main_theme}}">    
+    <div class="uk-float-right">
+        <i class="md-icon material-icons no-animate" ng-show="cauhoisWindow.kWindowOptions.mode==='createNew'" ng-click="cauhoisWindow.addNewCauHoi()">&#xE876;</i>
+        <i class="md-icon material-icons no-animate" ng-show="cauhoisWindow.kWindowOptions.mode==='update'" ng-click="cauhoisWindow.save()">&#xE161;</i>
+        <i class="md-icon material-icons no-animate" ng-click="cauhoisWindow.utils.randomizeLuaChonOrder()" ng-hide="cauhoisWindow.source.isReserveOrder">&#xE0D7;</i>
+        <i class="md-icon material-icons no-animate" ng-show="cauhoisWindow.kWindowOptions.mode==='createNew'" ng-class="{'uk-text-warning': cauhoisWindow.source.phan_loai.loai_tb === null}" ng-click="cauhoisWindow.utils.resetNewCauHoi()">&#xE5D5;</i>
+        <i class="md-icon material-icons no-animate" ng-show="cauhoisWindow.kWindowOptions.mode==='update'" ng-class="{'uk-text-warning': cauhoisWindow.source.phan_loai.loai_tb === null}" ng-click="cauhoisWindow.reset()">&#xE5D5;</i>
+        <i class="md-icon material-icons no-animate color-accent" ng-click="cauhoisWindow.utils.toggleMode()" ng-show="cauhoisWindow.kWindowOptions.mode==='update'">&#xE254;</i>
+        <i class="md-icon material-icons no-animate color-accent" ng-click="cauhoisWindow.utils.toggleMode()" ng-show="cauhoisWindow.kWindowOptions.mode==='createNew'">&#xE03B;</i>
+    </div>                 
+</div>
+<div class="md-card-content reset-print {{$root.main_theme}}">
+    <div class="uk-accordion" data-uk-accordion id="cauhois_window_main_panel">
+        <h3 class="uk-accordion-title" id="accordion_du_lieu">Dữ liệu câu hỏi</h3>
+        <div class="uk-accordion-content">
+            <div class="uk-width-medium-1-1">
+                <div class="uk-form-row">
+                    <label>Câu hỏi</label>
+                    <textarea cols="30" rows="3" class="md-input" md-input textarea-autosize ng-model="cauhoisWindow.source.noi_dung.tieu_de"></textarea>
+                </div>
+            </div>
+            <div class="uk-width-medium-1-1 uk-clearfix">
+                <div class="uk-align-medium-right">
+                    Thêm / bớt các lựa chọn:
+                    <i class="md-icon material-icons no-animate" ng-class="{'color-fade': !cauhoisWindow.pageOptions.able.addNumOfLuaChons}" ng-click="cauhoisWindow.utils.addNumOfLuaChons()">&#xE145;</i>
+                    <i class="md-icon material-icons no-animate" ng-class="{'color-fade': !cauhoisWindow.pageOptions.able.decreaseNumOfLuaChons}" ng-click="cauhoisWindow.utils.decreaseNumOfLuaChons()">&#xE15B;</i>
+                </div>
+            </div>
+            <div class="uk-width-medium-1-1">
+                <ul class="uk-sortable sortable-handler" id="sortable" data-uk-sortable>
+                    <li ng-repeat="item in cauhoisWindow.source.noi_dung.lua_chons | orderBy:'order'" data-index="{{$index}}" class="uk-nestable-item" >
+                        <div class="uk-nestable-panel">
+                            <div style="padding:0;">
+                                <div style="display:inline-block;max-width:48px;">
+                                    <i class="material-icons no-animate md-icon" ng-class="{'md-icon-active': item.isCorrect, 'md-icon-inactive': !item.isCorrect}" ng-click="cauhoisWindow.utils.setCorrectAnswer(item)">&#xE876;</i>
+                                </div>                                        
+                                <div style="display:inline-block;width: 85%;">
+                                    {{ $index | displayNumberAsAlphabelt }}.<br/>
+                                    <textarea cols="30" rows="1" class="md-input uk-text-muted uk-text-small" md-input textarea-autosize style="padding-top:0px;line-height: 16px" ng-model="item.tieu_de"></textarea>
+                                </div>
+                            </div>                                                                                          
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <h3 class="uk-accordion-title" id="accordion_phan_loai">Phân loại</h3>
+        <div class="uk-accordion-content">
+            <div class="uk-width-medium-1-1 uk-clearfix" ng-show="cauhoisWindow.kWindowOptions.mode === 'createNew'">
+                <div class="uk-align-medium-right">
+                    <i class="md-icon material-icons no-animate" ng-click="cauhoisWindow.utils.resetPhanLoaiSection()">&#xE5D5;</i>
+                    <i class="md-icon-fade material-icons no-animate" ng-class="{'uk-text-warning': cauhoisWindow.pageOptions.template.flags.isLockSectionPhanLoai}" ng-click="cauhoisWindow.utils.toggleLockSectionPhanLoai()">{{ (!cauhoisWindow.pageOptions.template.flags.isLockSectionPhanLoai) ? '&#xE898;' : '&#xE899;' }}</i>
+                </div>
+            </div>
+            <div class="uk-width-medium-1-1 uk-margin-medium-top" ng-if="cauhoisWindow.kWindowOptions.mode === 'update'">
+            </div>
+            <div class="uk-width-medium-1-1">
+                <span class="icheck-inline">
+                    <input id="cb_isReserveOrder" class="iCheckInput" type="checkbox" icheck ng-model="cauhoisWindow.source.isReserveOrder"/>
+                    <label for="cb_isReserveOrder" class="inline-label">Không cho phép đảo lựa chọn</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1" >
+                <div class="uk-margin-medium-top" style="display:inline-block;width:60%;">
+                    <div class="uk-form-stacked">
+                        <label for="cauhoi_phanloai_nhomcauhoi">Nhóm câu hỏi</label>
+                        <select kendo-drop-down-list style="width: 95%;" id="cauhoi_phanloai_nhomcauhoi"
+                            k-ng-model="cauhoisWindow.source.phan_loai.nhom_cau_hoi"
+                            k-data-text-field="'ten'" 
+                            k-data-value-field="'ma'"
+                            k-filter="'contains'"
+                            k-index="-1"
+                            k-rebind="cauhoisWindow.source.phan_loai.nhom_cau_hoi"
+                            k-data-source="cauhoisWindow.dictionary.nhom_cau_hois">
+                        </select>
+                    </div>
+                </div>
+                <div class="uk-margin-small-top" style="display:inline-block;width:39%;">
+                    <div class="uk-form-stacked">
+                        <label for="cauhoi_phanloai_mucdo">Mức độ</label>
+                        <select kendo-drop-down-list style="width: 100%;" id="cauhoi_phanloai_mucdo"
+                            k-ng-model="cauhoisWindow.source.phan_loai.muc_do"
+                            k-data-text-field="'ten'"
+                            k-data-value-field="'ma'"
+                            k-index="-1"
+                            k-rebind="cauhoisWindow.source.phan_loai.muc_do"
+                            k-data-source="cauhoisWindow.dictionary.muc_dos">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-width-medium-1-1" >
+                <div class="uk-margin-small-top" style="display:inline-block;width:60%;">
+                    <div class="uk-form-stacked">
+                        <label for="cauhoi_phanloai_nhomtb">Nhóm TB</label>
+                        <select kendo-drop-down-list style="width: 95%;" id="cauhoi_phanloai_nhomtb"
+                            k-ng-model="cauhoisWindow.source.phan_loai.nhom_tb"
+                            k-data-text-field="'ten'"
+                            k-data-value-field="'ma'"
+                            k-filter="'contains'"
+                            k-index="-1"
+                            k-rebind="cauhoisWindow.source.phan_loai.nhom_tb"
+                            k-data-source="cauhoisWindow.dictionary.nhom_tbs">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-width-medium-1-1 uk-margin-small-top">
+                <label for="cauhoi_phanloai_loaithietbi">Loại TB</label>
+                <select kendo-multi-select id="cauhoi_phanloai_loaithietbi"
+                    k-data-source="cauhoisWindow.pageReactiveData.resolve_data.loai_tbs[cauhoisWindow.source.phan_loai.nhom_tb.ten]"
+                    k-value-primitive="true"
+                    k-ng-model="cauhoisWindow.source.phan_loai.loai_tb"
+                >
+                </select>
+            </div>
+            <div class="uk-width-medium-1-1 uk-margin-small-top uk-margin-medium-bottom">
+                <div class="uk-form-stacked">
+                    <label for="cauhoi_phanloai_bacthi">Bậc thi</label>
+                    <select kendo-multi-select id="cauhoi_phanloai_bacthi"
+                        k-data-source="cauhoisWindow.dictionary.bac_this"
+                        ng-model="cauhoisWindow.source.phan_loai.bac_thi"
+                    >
+                    </select>
+                </div>
+            </div>
+            <div class="uk-width-medium-1-1 uk-margin-medium-bottom">
+                <label for="cauhoi_phanloai_loaithietbi">Gắn thẻ</label>
+                <select kendo-multi-select id="cauhoi_phanloai_loaithietbi"
+                    k-data-source="cauhoisWindow.pageReactiveData.resolve_data.tags[cauhoisWindow.source.phan_loai.nhom_tb.ten]"
+                    k-filter="'contains'"
+                    k-value-primitive="true"
+                    k-ng-model="cauhoisWindow.source.tags">
+                </select>
+            </div>
+                                                    
+        </div>
+        <h3 class="uk-accordion-title" id="accordion_phan_loai">Hình ảnh</h3>
+        <div class="uk-accordion-content">
+            <div class="uk-width-medium-1-1 uk-clearfix">
+                <div class="uk-align-medium-right">
+                    <i class="md-icon material-icons no-animate" ng-class="{'color-fade': ((!cauhoisWindow.pageOptions.able.addNumOfUrlHinhAnhs) || (!cauhoisWindow.pageOptions.props.isHasImages))}" ng-click="cauhoisWindow.utils.addNumOfHinhAnhs()">&#xE145;</i>
+                    <i class="md-icon material-icons no-animate" ng-class="{'color-fade': ((!cauhoisWindow.pageOptions.able.decreaseNumOfUrlHinhAnhs) || (!cauhoisWindow.pageOptions.props.isHasImages))}" ng-click="cauhoisWindow.utils.decreaseNumOfHinhAnhs()">&#xE15B;</i>
+                    <i class="md-icon material-icons no-animate" ng-click="cauhoisWindow.utils.resetHinhAnhsSection()" ng-show="cauhoisWindow.kWindowOptions.mode === 'createNew'">&#xE5D5;</i>
+                </div>
+            </div>
+            <div class="uk-width-medium-1-1" ng-class="{'uk-margin-medium-bottom': !cauhoisWindow.pageOptions.props.isHasImages}">
+                <div class="uk-form-row">
+                    <input type="checkbox" ui-switch ng-model="cauhoisWindow.pageOptions.props.isHasImages" color="{{cauhoisWindow.utils.accentColor}}" id="cauhoi_noidung_isHasImages" />
+                    <label for="cauhoi_noidung_isHasImages" class="inline-label">Câu hỏi {{ cauhoisWindow.pageOptions.props.isHasImages ? 'có' : 'không' }} sử dụng hình ảnh</label>
+                </div>
+            </div>
+            <div class="uk-width-medium-1-1">
+                <div ng-repeat="item in cauhoisWindow.source.noi_dung.url_hinh_anhs track by $index" class="uk-width-medium-1-1 no-animate" ng-show="cauhoisWindow.pageOptions.props.isHasImages">
+                    <div class="uk-margin-medium-top" style="display:inline-block;max-width:48px;">
+                        <i class="md-icon material-icons no-animate" ng-class="{'color-fade': !item}" ng-click="cauhoisWindow.utils.showModalLightBox($index)">&#xE8F4;</i>
+                    </div>
+                    <div class="uk-margin-medium-top" style="display:inline-block;width:85%;">
+                        <label>Liên kết tới hình ảnh</label>
+                        <input type="text" class="md-input" ng-model="cauhoisWindow.source.noi_dung.url_hinh_anhs[$index]" md-input />
+                    </div>              
+                </div>
+                <div class="uk-margin-medium-bottom"></div>
+            </div>
+            
+        </div>
+        <h3 class="uk-accordion-title" id="accordion_phan_loai">Ghi chú</h3>
+        <div class="uk-accordion-content">
+            <div class="uk-width-medium-1-1 uk-clearfix" ng-show="cauhoisWindow.kWindowOptions.mode === 'createNew'">
+                <div class="uk-align-medium-right">
+                    <i class="md-icon material-icons no-animate" ng-class="{'color-fade': !cauhoisWindow.pageOptions.able.decreaseNumOfLuaChons}" ng-click="cauhoisWindow.utils.resetGhiChuSection()">&#xE5D5;</i>
+                    <i class="md-icon-fade material-icons no-animate" ng-class="{'uk-text-warning': cauhoisWindow.pageOptions.template.flags.isLockSectionGhiChu}" ng-click="cauhoisWindow.utils.toggleLockSectionGhiChu()">{{ (!cauhoisWindow.pageOptions.template.flags.isLockSectionGhiChu) ? '&#xE898;' : '&#xE899;' }}</i>
+                </div>
+            </div>
+            <div class="uk-width-1-1">
+                <label for="mo_ta">Mô tả</label>
+                <textarea id="mo_ta" class="md-input" name="mo_ta" cols="10" rows="1" md-input ng-model="cauhoisWindow.source.mo_ta"></textarea>
+            </div>
+            <div class="uk-width-1-1 uk-margin-medium-top uk-margin-medium-bottom">
+                <label for="ghi_chu">Ghi chú</label>
+                <textarea id="ghi_chu" class="md-input" name="ghi_chu" cols="10" rows="1" md-input ng-model="cauhoisWindow.source.ghi_chu"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="uk-modal" id="modal_lightbox">
+    <div class="uk-modal-dialog uk-modal-dialog-lightbox">
+        <button type="button" class="uk-modal-close uk-close uk-close-alt"></button>
+        <img src="{{cauhoisWindow.pageOptions.props.lightBoxImageSrc}}" alt=""/>
+        <div class="uk-modal-caption">{{cauhoisWindow.pageOptions.props.lightBoxImageSrc}}</div>
+    </div>
+</div>

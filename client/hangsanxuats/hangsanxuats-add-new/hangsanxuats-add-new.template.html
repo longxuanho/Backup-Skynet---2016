@@ -1,0 +1,53 @@
+<div class="md-card md-card-single main-print" single-card>
+    <form action="" class="uk-form-stacked">
+        <div class="md-card-toolbar">
+            <div class="md-card-toolbar-actions" ng-click="addNewHangSanXuat()">
+                <i class="md-icon material-icons">&#xE161;</i>
+            </div>
+            <input class="md-card-toolbar-input" type="text" ng-model="newHangSanXuat.ten" placeholder="Tên hãng sản xuất mới" />
+        </div>
+        <div class="md-card-content">
+            <div class="uk-grid" data-uk-grid-margin>
+                <div class="uk-width-medium-1-1">
+                    <div class="uk-width-medium-1-2">
+                        <div>Quốc gia:</div>
+                        <select kendo-drop-down-list style="width: 100%;" ng-model="newHangSanXuat.quoc_gia.keyId" k-data-text-field="'ten'" k-data-value-field="'_id'" k-data-source="quocgias">
+                        </select>
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-2">
+                    <div class="uk-form-row">
+                        <label>Mã hãng sản xuất</label>
+                        <input type="text" class="md-input label-fixed" ng-model="newHangSanXuat.ma" md-input />
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-2">
+                    <div class="uk-form-row">
+                        <label>Icon</label>
+                        <input type="text" class="md-input label-fixed" ng-model="newHangSanXuat.icon" md-input />
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-1 uk-margin-top">
+                    <div class="uk-form-row">
+                        <input type="checkbox" ui-switch ng-model="newHangSanXuat.isPublic" color="{{utils.accentColor}}" checked id="switch_demo_primary" />
+                        <label for="switch_demo_primary" class="inline-label">{{ newHangSanXuat.isPublic?'Công khai':'Riêng tư' }}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-grid uk-grid-divider grid-block" data-uk-grid-margin>
+                <div class="uk-width-medium-1-1">
+                    <div class="uk-form-row">
+                        <label for="message">Mô tả</label>
+                        <input type="text" class="md-input label-fixed" rows="1" md-input ng-model="newHangSanXuat.mo_ta" />
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-1">
+                    <div class="uk-form-row">
+                        <label for="message">Ghi chú</label>
+                        <textarea id="message" class="md-input" name="message" rows="3" md-input ng-model="newHangSanXuat.ghi_chu"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

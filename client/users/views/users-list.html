@@ -1,0 +1,8 @@
+<users-search-box items-count="usersCount" items-total-count="usersTotalCount">
+</users-search-box>
+<div ng-repeat="user in users">
+    <div ng-class="{user_online: user.status.online, user_offline: !user.status.online}">
+        {{_helpers.resolveUser(user._id) | displayName}} : {{user.username}} <span>({{utils.userLastLogin(user)}})</span> <a ui-sref="manage_usersDetails({ userId: user._id })">Edit</a>
+    </div>
+    <p>{{user}}</p>
+</div>

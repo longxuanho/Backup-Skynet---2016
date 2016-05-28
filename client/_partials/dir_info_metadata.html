@@ -1,0 +1,7 @@
+<h3>Metadata:</h3>
+<p>Được tạo bởi {{ metadata.nguoiTao | displayName }}</p>
+<p>{{ ngayTao | displayDate:'relative' }} ({{ ngayTao | displayDate:'calendar' }})</p>
+<div ng-show="ngayCapNhatCuoi">
+	<p>Cập nhật lần cuối bởi {{ metadata.nguoiCapNhatCuoi | displayName}}</p>    
+    <p>{{ ngayCapNhatCuoi | displayDate}} ({{ ngayCapNhatCuoi | displayDate:'calendar' }})</p>
+</div>

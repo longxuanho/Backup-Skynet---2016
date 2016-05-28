@@ -1,0 +1,20 @@
+Hello!
+<button ng-click="helpers.toggleFiltering()">Toggle Filtering</button>
+<button type="button" ng-click="helpers.createNewState()">Save</button>
+<button type="button" ng-click="helpers.restoreDefaultState()">Restore</button>
+<br>
+<br> Name of new State:
+<input type="text" ng-model="newStateName"> Desc of new State:
+<input type="text" ng-model="newStateDesc"> Available State:
+<div ng-repeat="item in userSettings.data.ui_grids.states track by $index">
+    <a ng-click="helpers.loadState(item.gia_tri)" href="#" ng-hide="isOnEditStateInlineMask[$index]">{{item.ten}}</a>
+    <div ng-show="isOnEditStateInlineMask[$index]">
+        <input type="text" ng-model="item.ten">
+        <input type="text" ng-model="item.mo_ta">
+    </div>
+    <button ng-click="utils.toggleEditStateInlineMask($index)" ng-hide="isOnEditStateInlineMask[$index]">Edit</button>
+    <button ng-click="helpers.updateInlineState($index)" ng-show="isOnEditStateInlineMask[$index]">Save</button>
+    <button ng-click="utils.toggleEditStateInlineMask($index)" ng-show="isOnEditStateInlineMask[$index]">Cancel</button>
+    <button ng-click="helpers.removeState(item)">X</button>
+</div>
+<div ui-grid="gridOptions" class="myGrid" style="margin: auto;" ui-grid-pinning ui-grid-resize-columns ui-grid-move-columns ui-grid-exporter ui-grid-save-state ui-grid-selection ui-grid-grouping></div>

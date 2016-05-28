@@ -1,0 +1,81 @@
+<div id="xuongdvkt-dashboard">
+    <div class="uk-panel uk-panel-box uk-panel-box-primary hero-background-{{vm.pageOptions.ui.heroContent.content.mode}}" id="dashboard-xuongdvkt-hero-content" ng-if="vm.pageOptions.ui.heroContent.content.text && vm.pageOptions.displayMode.current_nav_tab !== 'Thống kê'">
+        <marquee behavior="scroll" direction="left" scrollamount="5" style="width:100%;" class="hero-color-{{vm.pageOptions.ui.heroContent.content.mode}}">{{vm.pageOptions.ui.heroContent.content.text}}</marquee>
+    </div>
+    <div style="padding: 0 48px;">
+        <div>    
+            <div class="flip-board-panel" ng-show="vm.pageOptions.displayMode.current_nav_tab !== 'Thống kê'">
+                <div>
+                    <div class="uk-clearfix">
+                        <div class="uk-align-left" style="margin-top: 10px;margin-bottom:10px;">
+                            <div style="display: inline-block;margin-right: 48px;padding-left:18px;"><span class="count color-danger">{{vm.pageData.statistics.count_panel['Đang sửa chữa']}}</span> <span class="flip-board-desc">đang sửa chữa</span></div>
+                            <div style="display: inline-block;margin-right: 48px;"><span class="count color-warning">{{vm.pageData.statistics.count_panel['Chuẩn bị bàn giao']}}</span> <span class="flip-board-desc">chuẩn bị bàn giao</span></div>
+                            <div style="display: inline-block;margin-right: 48px;"><span class="count color-success">{{vm.pageData.statistics.count_panel['Sửa chữa xong']}}</span> <span class="flip-board-desc">sửa chữa xong</span></div>
+                        </div>
+                        <div id="xuongdvkt-realtime-clock" class="uk-align-right" ng-hide="$root.primarySidebarOpen" style="margin: 10px 0 0;display: inline-block;">
+                            <dashboard-xuongdvkt-realtime-clock></dashboard-xuongdvkt-realtime-clock>
+                        </div>
+                    </div>    
+                </div>                              
+            </div>
+            <div class="uk-grid">
+                <div ng-class="{'uk-width-medium-7-10': vm.pageOptions.displayMode.isDisplaySearchPanel, 'uk-width-medium-1-1': !vm.pageOptions.displayMode.isDisplaySearchPanel}" id="xuong_dvkt_list_view">
+                    <ul class="uk-tab" data-uk-tab="{connect:'#tabs_anim6', animation:'slide-bottom'}">
+                        <li class="uk-active"><a href="#">Bảng tin</a></li>
+                        <li><a href="#">Thống kê</a></li>
+                        <li><a href="#">Quản lý</a></li>
+                        <li><a href="#">Thiết lập</a></li>
+                    </ul>
+                    <ul id="tabs_anim6" class="uk-switcher uk-margin-remove">
+                        <li>
+                            <div style="padding: 20px 30px 10px 30px;" class="uk-container-center uk-align-center">
+                                <div style="width:100%;text-align:right;">
+                                    <span style="color:#F05A28;font-size:1.15rem;font-weight:300;padding-right:18px;padding-top:10px;">Hôm nay</span>   
+                                </div> 
+                                <table class="uk-table uk-table-hover">
+                                    <tr class="xuongdvkt-dashboard-title">
+                                        <td style="width:8%;" ng-click="vm.utils.getDataView.cycleSortOrder('khu_vuc')" ng-class="{'order-active': vm.pageOptions.ui.sort.by=='khu_vuc'}">Khu vực</td>
+                                        <td style="width:12%;" ng-click="vm.utils.getDataView.cycleSortOrder('ma_tb')" ng-class="{'order-active': vm.pageOptions.ui.sort.by=='ma_tb'}">Mã TB</td> 
+                                        <td style="width:8%;" ng-click="vm.utils.getDataView.cycleSortOrder('dvql')" ng-class="{'order-active': vm.pageOptions.ui.sort.by=='dvql'}">ĐVQL</td>
+                                        <td ng-click="vm.utils.getDataView.cycleSortOrder('noi_dung')" ng-class="{'order-active': vm.pageOptions.ui.sort.by=='noi_dung'}">Nội dung sửa chữa</td>
+                                        <td style="width:15%;" ng-click="vm.utils.getDataView.cycleSortOrder('thoi_gian')" ng-class="{'order-active': vm.pageOptions.ui.sort.by=='thoi_gian'}">Bắt đầu</td>
+                                        <td ng-click="vm.utils.getDataView.cycleSortOrder('du_kien')" ng-class="{'order-active': vm.pageOptions.ui.sort.by=='du_kien'}" style="text-align:right;width:12%;">DK bàn giao</td>
+                                    </tr>
+                                    <!-- <tr ng-repeat="suachua in vm.pageData.dummy.suachuas | filter: { ma_tb: vm.myFilter } " class="suachuas-dashboard-item" style="background-color: yellow;"> -->
+                                    <tr ng-repeat="suachua in vm.pageData.suachuas.view" class="xuongdvkt-dashboard-list-item suachua">
+                                        <td style="color:#888;">{{suachua.dia_diem.vi_tri}}</td>
+                                        <td ng-class="{'color-success': (suachua.trang_thai == 'Sửa chữa xong'), 'color-warning': (suachua.trang_thai == 'Chuẩn bị bàn giao'), 'color-danger': (suachua.trang_thai == 'Đang sửa chữa')}">{{suachua.ma_tb.ma_tb}}</td> 
+                                        <td style="color:#888;">{{suachua.ma_tb.dvql}}</td>
+                                        <td style="color:#888;white-space: nowrap;max-width:500px;overflow: hidden;">{{suachua.noi_dung}}</td>
+                                        <td style="color:#888;">{{suachua.thoi_gian_bat_dau_resolved}}</td>
+                                        <td style="text-align:right;color:#888;"><span ng-hide="suachua.thoi_gian.sua_chua_du_kien">--/--</span><span ng-show="suachua.thoi_gian.sua_chua_du_kien" ng-class="{'color-success': (suachua.trang_thai == 'Sửa chữa xong'), 'color-warning': (suachua.trang_thai == 'Chuẩn bị bàn giao'), 'color-danger': (suachua.trang_thai == 'Đang sửa chữa')}">{{suachua.thoi_gian.ket_thuc_du_kien | displayDate:'fromNow'}}</span></td>
+                                        <!-- </span> / {{suachua.thoi_gian.ket_thuc_du_kien | displayDate:'shortHour24'}}</span> -->
+                                    </tr>
+                                </table>                      
+                                <div ng-if="!vm.pageData.suachuas.view.length" style="color: #888;font-size: 1.25rem;font-weight: 300;padding-left: 18px;">Không có sửa chữa tại thời điểm này.</div>   
+                                <div style="width:100%;text-align:right;color:#555;">
+                                    <span>2016 © Phòng Kỹ Thuật Vật Tư, Tổng Công Ty Tân Cảng Sài Gòn.</span>
+                                </div>             
+                            </div>
+                                   
+                        </li>
+                        <li>
+                           <dashboard-xuongdvkt-charts page-options="vm.pageOptions" page-data="vm.pageData"></dashboard-xuongdvkt-charts>
+                        </li>
+                        <li>
+                            <dashboard-xuongdvkt-manage page-options="vm.pageOptions" page-data="vm.pageData"></dashboard-xuongdvkt-manage>
+                        </li>
+                        <li>
+                            <dashboard-xuongdvkt-settings page-options="vm.pageOptions" page-data="vm.pageData"></dashboard-xuongdvkt-settings>
+                        </li>
+                    </ul>  
+                </div>
+                <div class="uk-width-medium-3-10" id="nav_quan_ly_search_panel" ng-if="vm.pageOptions.displayMode.isDisplaySearchPanel">
+                    <dashboard-xuongdvkt-search-panel  page-data="vm.pageData"></dashboard-xuongdvkt-search-panel>
+                </div>
+            </div>       
+            
+        </div>        
+    </div>
+   
+</div>

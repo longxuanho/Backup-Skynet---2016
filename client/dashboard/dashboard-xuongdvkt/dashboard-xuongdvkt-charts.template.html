@@ -1,0 +1,33 @@
+<div>
+    <div class="uk-grid nav_thong_ke_chart_header" ng-if="pageOptions.displayMode.current_nav_tab == 'Thống kê'">
+        <div class="uk-width-medium-1-2 uk-margin-medium-top">
+            <h3 style="color:#D3D3D3;margin-left:48px;">Thống kê sửa chữa trong ngày: <span style="color:#F05A28;">{{pageData.statistics.count_panel.totalOfSuaChuas}} lượt</span></h3>
+        </div>
+    </div>
+    <div class="uk-grid nav_thong_ke_chart_zones" ng-if="pageOptions.displayMode.current_nav_tab == 'Thống kê'">
+        <div class="uk-width-medium-1-2">
+            <div kendo-chart id="donut_thong_ke_luot_suachuas"
+                k-options="pageData.kendoOptions.charts.donut_thong_ke_luot_suachuas"
+                k-rebind="pageData.kendoOptions.charts.donut_thong_ke_luot_suachuas"
+                style="height: 300px;">
+            </div>  
+        </div>
+        <div class="uk-width-medium-1-2">
+            <div kendo-chart id="stacked_bar_luot_sua_chua"
+                k-options="pageData.kendoOptions.charts.stacked_bar_luot_sua_chua"
+                k-rebind="pageData.kendoOptions.charts.stacked_bar_luot_sua_chua"
+                style="height: 300px;">
+            </div>  
+        </div>
+    </div>
+    <div class="uk-grid nav_thong_ke_chart_zones" ng-if="pageOptions.displayMode.current_nav_tab == 'Thống kê'">
+        <div class="uk-width-medium-1-2">
+            <div kendo-chart id="radar_phan_loai_luot_suachuas"
+                k-options="pageData.kendoOptions.charts.radar_phan_loai_luot_suachuas"
+                k-rebind="pageData.kendoOptions.charts.radar_phan_loai_luot_suachuas.series"
+                style="height: 300px;">
+            </div>      
+        </div>    
+    </div>   
+</div>
+

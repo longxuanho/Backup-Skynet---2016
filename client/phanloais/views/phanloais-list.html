@@ -1,0 +1,93 @@
+<hr>
+<button style="display: inline-block;" ng-click="setPageDisplay('nhoms')">Nhóm</button>
+<button style="display: inline-block;" ng-click="setPageDisplay('chungloais')">Chủng Loại</button>
+<button style="display: inline-block;" ng-click="setPageDisplay('loais')">Loại</button>
+<hr>
+<div ng-if="(page_display==='nhoms')">
+    <phanloais-search-box 
+        current-page="{{page_display}}"
+        items-count="nhomsCount"
+        items-total-count="nhomsTotalCount">
+    </phanloais-search-box>
+    <hr>
+    <div ng-controller='NhomsListCtrl'>
+        <phanloais-create-new-nhom
+            datasource="newNhom"
+            action-create-new="createNewNhom"
+            action-remove-all="removeNhomAll">
+        </phanloais-create-new-nhom>
+        <hr>
+        <div 
+            dir-paginate="nhom in nhoms | itemsPerPage: _ui.perPage"
+            total-items="nhomsCount.count">
+            <phanloais-nhom-card
+                datasource="nhom"
+                action-remove-nhom="removeNhom"
+                action-is-can-be-removed="utils.isCanBeRemoved">
+            </phanloais-nhom-card>
+        </div>
+        <dir-pagination-controls on-page-change="_ui.pageChanged(newPageNumber)">
+        </dir-pagination-controls>
+    </div>
+</div>
+<div ng-if="page_display==='chungloais'">
+    <phanloais-search-box
+        current-page="{{page_display}}"
+        items-count="chungloaisCount"
+        items-total-count="chungloaisTotalCount">
+    </phanloais-search-box>
+    <hr>
+    <div ng-controller='ChungLoaisListCtrl'>
+        <phanloais-create-new-chung-loai
+            datasource="newChungLoai"
+            nhoms-selectsource="nhoms"
+            action-create-new="createNewChungLoai"
+            action-remove-all="removeChungLoaiAll">
+        </phanloais-create-new-chung-loai>
+        <hr>
+        <div dir-paginate="chungloai in chungloais | itemsPerPage: _ui.perPage"
+            total-items="chungloaisCount.count">
+            <phanloais-chung-loai-card 
+                datasource="chungloai"
+                action-remove-chung-loai="removeChungLoai"
+                action-is-can-be-removed="utils.isCanBeRemoved"
+            >
+            </phanloais-chung-loai-card>
+        </div>
+        <dir-pagination-controls on-page-change="_ui.pageChanged(newPageNumber)">
+        </dir-pagination-controls>
+    </div>
+</div>
+<div ng-if="page_display==='loais'">
+    <phanloais-search-box
+        current-page="{{page_display}}"
+        items-count="loaisCount"
+        items-total-count="loaisTotalCount"
+    >
+    </phanloais-search-box>
+    <hr>
+    <div ng-controller='LoaisListCtrl'>
+        <phanloais-create-new-loai
+            datasource="newLoai"
+            nhoms-selectsource="nhoms"
+            chungloais-selectsource="chungloais" 
+            action-create-new="createNewLoai"
+            action-remove-all="removeLoaiAll"
+        >
+        </phanloais-create-new-loai>
+        <hr>
+        <div 
+            dir-paginate="loai in loais | itemsPerPage: _ui.perPage"
+            total-items="loaisCount.count">
+            <phanloais-loai-card
+                datasource="loai"
+                action-remove-loai="removeLoai"
+                action-is-can-be-removed="utils.isCanBeRemoved"
+            >
+            </phanloais-loai-card>
+        </div>
+        <dir-pagination-controls on-page-change="_ui.pageChanged(newPageNumber)">
+        </dir-pagination-controls>
+    </div>
+</div>
+

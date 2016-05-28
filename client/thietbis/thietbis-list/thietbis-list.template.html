@@ -1,0 +1,66 @@
+<div id="top_bar" ng-class="{'topbar-double-height': vm.pageOptions.topBarHeight=='x2'}" ng-show="vm.pageOptions.isDisplayTopBar" class="no-animate">
+    <div class="md-top-bar">
+        <div class="uk-width-large-8-10 uk-container-center">
+            <ul class="top_bar_nav" id="snippets_grid_filter">
+                <li ng-repeat="nhom in vm.pageOptions.filters.nhomsFilterSource" ng-show="nhom.isActive" ng-class="{'uk-active': nhom._id===vm.pageOptions.filters.filterNhomId}" ng-click="vm.utils.setFilterByNhomId(nhom._id)">
+                    <a href="#">{{ nhom.ten }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="uk-grid uk-margin-medium-top uk-margin-large-bottom" data-uk-grid-margin>
+    <div class="uk-width-1-1">
+    	<div class="uk-container-center" ng-class="{'uk-width-large-8-10': !vm.pageOptions.isDisplayFullWidthGrid, 'uk-width-large-1-1': vm.pageOptions.isDisplayFullWidthGrid}">
+            
+            <k-grid-menu
+                grid-data="vm.gridData"
+                page-options="vm.pageOptions"
+                k-data="vm._kData"
+                k-helpers="vm._kHelpers"
+                local-config-data-name="vm.pageOptions.localConfigDataName"
+                cloud-config-data-name="vm.pageOptions.cloudConfigDataName"
+                >
+            </k-grid-menu>
+			
+            <br/>
+
+            <kendo-grid
+                id="myGrid"
+                k-data-source="vm.gridData.kGrid.kData.dataSource"
+                k-columns="vm.gridData.kGrid.kOptions.columns"
+                k-selectable="vm.gridData.kGrid.kOptions.selectable"
+                k-allow-copy="vm.gridData.kGrid.kOptions.allowCopy"
+                k-sortable="vm.gridData.kGrid.kOptions.sortable"
+                k-pageable="vm.gridData.kGrid.kOptions.pageable"
+                k-filterable="vm.gridData.kGrid.kOptions.filterable"
+                k-groupable="vm.gridData.kGrid.kOptions.groupable"
+                k-navigatable="vm.gridData.kGrid.kOptions.navigatable"
+                k-resizable="vm.gridData.kGrid.kOptions.resizable"
+                k-reorderable="vm.gridData.kGrid.kOptions.reorderable"
+                k-scrollable="vm.gridData.kGrid.kOptions.scrollable"
+                k-excel="vm.gridData.kGrid.kOptions.excel"
+                k-pdf="vm.gridData.kGrid.kOptions.pdf"
+                k-toolbar="vm.gridData.kGrid.kOptions.toolbar"
+                k-rebind="vm.gridData.kGrid"
+                k-on-change="vm.gridData.kGrid.gridOnChange(kendoEvent)"
+                k-on-data-bound="vm.gridData.kGrid.gridOnDataBound(kendoEvent)">
+            </kendo-grid>
+		</div>
+    </div>
+</div>
+
+<thietbis-modal-details source="vm.pageOptions.selected.thietbi"></thietbis-modal-details>
+
+<div class="md-fab-wrapper">
+    <a class="md-fab md-fab-accent no-animate" ng-show="vm.pageOptions.fabState==='thietbis_createNew'" ui-sref="thietbis.addNew">
+        <i class="material-icons">&#xE145;</i>
+    </a>
+    <a class="md-fab md-fab-accent no-animate" ng-show="vm.pageOptions.fabState==='thietbis_viewDetails'" data-uk-modal="{target: '#modal_thietbis_details'}">
+        <i class="material-icons">&#xE8B6;</i>
+    </a>
+</div>
+

@@ -1,0 +1,22 @@
+<div class="uk-margin-medium-bottom">
+    <!-- <h3 class="heading_c uk-margin-bottom">Cập nhật hình đại diện</h3> -->
+    <ul class="md-list md-list-addon">
+        <div class="uk-width-1-1 uk-margin-top">
+        <div id="file_upload_drop" class="uk-file-upload no-animate" ng-show="!onUploading">
+            <p class="uk-text">Kéo/thả ảnh của bạn tại đây</p>
+            <p class="uk-text-muted uk-text-small uk-margin-small-bottom">hoặc</p>
+            <span class="uk-form-file md-btn">Chọn ảnh<input id="file_upload_select" type="file" ng-model="file_upload"></span>
+        </div>
+        <div id="file_upload-progressbar" class="uk-progress uk-hidden">
+            <div class="uk-progress-bar" style="width:0">0%</div>
+        </div>
+    </div>
+    <div class="uk-width-1-1 uk-margin-top">
+        <div class="md-btn no-animate" ng-click="saveCroppedImage()" ng-disabled="!cropImgSrc" ng-show="onUploading">Tải ảnh lên</div>
+        <div ng-show="cropImgSrc" class="ng-crop-container">
+            <p class="uk-text-large uk-text-primary">Tuyệt! Giờ hãy chọn một khung hình hợp lý...</p>
+            <img-crop image="cropImgSrc" result-image="myCroppedImage" area-type="circle"></img-crop>
+        </div>
+    </div>    
+    </ul>
+</div>

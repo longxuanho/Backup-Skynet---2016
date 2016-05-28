@@ -1,0 +1,89 @@
+<div id="top_bar" ng-class="{'topbar-double-height': vm.pageOptions.topBarHeight=='x2'}" ng-show="vm.pageOptions.isDisplayTopBar" class="no-animate">
+    <div class="md-top-bar">
+        <div class="uk-width-large-8-10 uk-container-center">
+            <ul class="top_bar_nav uk-hidden-small" id="snippets_grid_filter">
+                <li ng-repeat="nhom in vm.pageOptions.filters.nhomsFilterSource" ng-show="nhom.isActive" ng-class="{'uk-active': nhom.ma===vm.pageOptions.filters.filterNhomId}" ng-click="vm.utils.setFilterByNhomId(nhom.ma)">
+                    <a href="#">{{ nhom.ten }}</a>
+                </li>
+            </ul>
+            <div class="top_bar_nav uk-visible-small" id="snippets_grid_filter_small">
+                <div class="uk-clearfix">
+                    <div class="md-top-bar-actions-right">
+                        <div class="md-top-bar-icons" data-uk-dropdown="{pos:'bottom-right'}">
+                            <i class="md-icon material-icons">&#xE5D4;</i>
+                            <div class="uk-dropdown uk-dropdown-small">
+                                <ul class="uk-nav uk-dropdown-close">
+                                    <li ng-repeat="nhom in vm.pageOptions.filters.nhomsFilterSource" ng-click="vm.utils.setFilterByNhomId(nhom.ma)"><a href="#" ng-class="{'color-primary': nhom.ma===vm.pageOptions.filters.filterNhomId}">{{nhom.ten}} <span ng-show="nhom.ma===vm.pageOptions.filters.filterNhomId" class='k-icon k-si-tick' ng-class="{'color-primary': nhom.ma===vm.pageOptions.filters.filterNhomId}"></span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="uk-grid uk-margin-medium-top uk-margin-large-bottom" data-uk-grid-margin>
+    <div class="uk-width-1-1">
+    	<div class="uk-container-center" ng-class="{'uk-width-large-8-10': !vm.pageOptions.isDisplayFullWidthGrid, 'uk-width-large-1-1': vm.pageOptions.isDisplayFullWidthGrid}">
+			
+            <br/>
+            <div class="uk-grid uk-margin-top no-animate" ng-show="!vm.numOfCauHois">
+               <div style="margin:auto;">
+                    <img style="border-radius: 50%;" src="assets/img/skynet/cauhois_empty.png">
+                    <div class="heading_list uk-margin-top uk-text-center">Không có dữ liệu câu hỏi được hiển thị.</div>
+                </div>
+            </div>           
+
+            <!-- GRID -->
+            <div ng-show="vm.numOfCauHois">
+                <div    id="myGrid" 
+                        kendo-grid="vm.pageOptions.gridRef"
+                        k-options="vm.gridData.kGrid.kOptions"
+                        k-on-change="vm.gridData.kGrid.kEvents.onChange(kendoEvent, data)"
+                        k-on-data-bound="vm.gridData.kGrid.kEvents.onDataBound(kendoEvent)"
+                >
+                    <div k-detail-template>
+                        <div ng-if="dataItem.noi_dung.isHasImages">
+                            <img class="uk-thumbnail uk-thumbnail-mini" ng-repeat="item in dataItem.noi_dung.url_hinh_anhs" ng-src="{{item}}" ng-click="vm.utils.showModalLightBox(item)">
+                        </div>
+                        <!--  
+                        <div ng-if="dataItem.noi_dung.isHasImages">
+                            <a ng-repeat="item in dataItem.noi_dung.url_hinh_anhs" href="{{item}}" data-uk-lightbox>
+                                <img class="uk-thumbnail uk-thumbnail-mini" ng-src="{{item}}">    
+                            </a>
+                        </div>
+                        -->                        
+                        <ul style="list-style-type:upper-alpha;">
+                            <li ng-repeat="item in dataItem.noi_dung.lua_chons track by $index" ng-class="{'color-primary': item.isCorrect}">{{item.tieu_de}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+		</div>
+    </div>
+</div>
+
+<cauhois-modal-details source="vm.pageOptions.selected"></cauhois-modal-details>
+<datahelpers-modal-manage k-data-helper-options="vm.kDataHelpers.options.tags">
+    <p>Các tag hay thẻ dấu được dùng để gắn cho câu hỏi với nội dung phù hợp, hỗ trợ người dùng tìm kiếm nhanh các nhóm câu hỏi có cùng nội dung được quản lý theo tag.</p>
+</datahelpers-modal-manage>
+
+<datahelpers-modal-manage k-data-helper-options="vm.kDataHelpers.options.loai_tbs">
+    <p>Các nội dung về loại thiết bị được gắn với câu hỏi phù hợp, hỗ trợ người dùng tìm kiếm nhanh các nhóm câu hỏi có nội dung được quản lý theo loại thiết bị.</p>
+</datahelpers-modal-manage>
+
+<div class="md-fab-wrapper">
+    <a class="md-fab md-fab-accent no-animate" ng-show="vm.pageOptions.fabState==='cauhois_createNew' && !vm.pageOptions.data.kWindow.isActive" ng-click="vm.pageOptions.data.kWindow.isActive = true;">
+        <i class="material-icons">&#xE145;</i>
+    </a>
+    <a class="md-fab md-fab-accent no-animate" ng-show="vm.pageOptions.fabState==='cauhois_viewDetails'" data-uk-modal="{target: '#modal_cauhois_details'}">
+        <i class="material-icons">&#xE880;</i>
+    </a>
+</div>
+ 
+
+
+
+

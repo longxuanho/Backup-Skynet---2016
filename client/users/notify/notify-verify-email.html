@@ -1,0 +1,58 @@
+<div id="page_content">
+    <div id="page_content_inner">
+        <div class="uk-grid uk-grid-width-small-3-4 uk-grid-width-medium-1-2" data-uk-grid-margin>
+            
+            <div class="uk-container-center" ng-if="verifyState==='ongoing'">
+                <h3 class="heading_b uk-margin-bottom uk-text-primary">Xác thực địa chỉ email...</h3>
+                <div class="md-card md-card-primary md-card-hover">
+                    <div class="md-card-content">
+                        <p>
+                            Chúng tôi đang xác thực mã token và địa chỉ email của bạn. Xin vui lòng chờ trong giây lát...
+                        </p>
+                    </div>
+                </div>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-container-center">
+                        <md-preloader></md-preloader>
+                    </div>
+                </div>
+            </div>
+
+            <div class="uk-container-center" ng-if="verifyState==='ok'">
+                <h3 class="heading_b uk-margin-bottom uk-text-success">Kích hoạt tài khoản thành công!</h3>
+                <div class="md-card md-card-success md-card-hover">
+                    <div class="md-card-content">
+                        <p class="uk-text-large uk-text-bold">
+                            Xin chúc mừng!
+                        </p>
+                        <p>
+                            Bạn đã kích hoạt tài khoản tại Skynet thành công. Để có thể truy cập vào các khu vực ưu tiên, hãy liên hệ với admin để được cấp quyền sử dụng tương ứng.
+                        </p>
+                        <p>
+                            Chúng tôi sẽ chuyển tới trang mà bạn yêu cầu trong giây lát...
+                        </p>
+                    </div>
+                </div>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-container-center">
+                        <md-preloader success></md-preloader>
+                    </div>
+                </div>
+            </div>
+
+            <div class="uk-container-center" ng-if="verifyState==='failed'">
+                <h3 class="heading_b uk-margin-bottom uk-text-danger">Kích hoạt tài khoản thất bại.</h3>
+                <div class="md-card md-card-danger md-card-hover">
+                    <div class="md-card-content">
+                        <p>
+                        	Đã có lỗi xảy ra trong quá trình kích hoạt token và tài khoản email của bạn. Thông điệp phản hồi từ sever như sau:
+                        </p>
+                        <p class="uk-text-italic uk-text-danger">
+                            {{message}}.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

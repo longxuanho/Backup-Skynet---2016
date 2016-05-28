@@ -1,0 +1,26 @@
+<h1>Đơn vị:</h1>
+<form>
+    <label>Tên đơn vị:</label>
+    <input ng-model="newDonVi.ten">
+    <label>Tên giao dịch quốc tế:</label>
+    <input ng-model="newDonVi.ten_quoc_te">
+    <label>Mã đơn vị:</label>
+    <input ng-model="newDonVi.ma">
+    <label>Phân loại:</label>
+    <select ng-model="newDonVi.phan_loai">
+        <option value="tct">Tổng Công ty</option>
+        <option value="cty_thanh_vien">Cty Thành viên</option>
+        <option value="cty_ve_tinh">Cty Vệ tinh</option>
+        <option value="khac">Cty Khác</option>
+    </select>
+    <label>Mô tả:</label>
+    <input ng-model="newDonVi.mo_ta">
+    <label>Ghi chú:</label>
+    <input ng-model="newDonVi.ghi_chu">
+    <label>Icon:</label>
+    <input ng-model="newDonVi.icon">
+    <label>Công khai:</label>
+    <input type="checkbox" ng-model="newDonVi.isPublic">
+    <button ng-click="createNew()">Add</button>
+    <button ng-click="removeAll()">Remove All</button>
+</form>

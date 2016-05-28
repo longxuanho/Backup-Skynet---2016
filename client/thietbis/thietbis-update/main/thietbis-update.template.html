@@ -1,0 +1,21 @@
+<div id="top_bar" class="no-animate">
+    <div class="md-top-bar">
+        <div class="uk-width-large-8-10 uk-container-center">
+            <ul class="top_bar_nav" id="snippets_grid_filter">
+                <li ng-repeat="item in vm.pageOptions.updateStates" ng-show="true" ng-class="{'uk-active': item.isActive}" ng-click="vm.utils.setCurrentUpdateState(item.value)">
+                    <a href="#">{{ item.name }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="uk-margin-medium-top uk-width-medium-8-10 uk-container-center reset-print">
+    <div class="uk-grid uk-grid-collapse" data-uk-grid-margin>
+        <div class="uk-width-large-1-1">
+
+            <thietbis-update-main source="vm.source" master="vm.master" ng-if="vm.pageOptions.currentState==='thong_tin_chung'"></thietbis-update-main>
+            <thietbis-update-thongsokythuats source="vm.source" master="vm.master" ng-if="vm.pageOptions.currentState==='thong_so_ky_thuat'"></thietbis-update-thongsokythuats>
+            
+        </div>
+    </div>
+</div>

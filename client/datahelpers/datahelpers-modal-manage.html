@@ -1,0 +1,121 @@
+<div class="uk-modal" id="{{vm.modalOptions.modalId}}">
+    <div class="uk-modal-dialog">
+        <div class="uk-modal-header">
+            <h3 class="uk-modal-title">{{vm.modalOptions.modalHeader}}</h3>
+        </div>
+        <div ng-transclude>
+            <!-- Các mô tả về chức năng của modal được đặt tại đây -->
+        </div>
+        <div class="uk-grid">
+            <div class="uk-width-medium-1-1">
+                <div class="uk-clearfix">
+                    <div class="uk-float-right">
+
+                        <!-- SET GRID ACTIVE -->
+                        <i class="md-icon material-icons no-animate" ng-click="vm.modalOptions.isModalActive=true;" ng-show="!vm.modalOptions.isModalActive">&#xE417;</i>
+                        
+                        <!-- CREATE NEW MODE -->
+                        <i class="md-icon material-icons no-animate" ng-click="vm.utils.setMode('createNew')" ng-show="vm.modalOptions.mode==='' && vm.modalOptions.isModalActive">&#xE145;</i>
+                        <i class="md-icon material-icons no-animate"  ng-show="vm.modalOptions.mode==='createNew'" ng-click="vm.utils.create_new.insert()">&#xE876;</i>
+                        <i class="md-icon material-icons no-animate" ng-class="{'color-primary': vm.pageOptions.mode==='view'}" ng-show="vm.modalOptions.mode==='createNew'" ng-click="vm.utils.create_new.cancel()">&#xE14C;</i>
+
+                        <!-- UPDATE MODE -->
+                        <i class="md-icon material-icons no-animate" ng-click="vm.utils.setMode('update')" ng-show="vm.modalOptions.mode==='selected'">&#xE254;</i>
+                        <i class="md-icon material-icons no-animate"  ng-show="vm.modalOptions.mode==='update'" ng-click="vm.utils.update.update()">&#xE161;</i>
+                        <i class="md-icon material-icons no-animate" ng-class="{'color-primary': vm.pageOptions.mode==='view'}" ng-show="vm.modalOptions.mode==='update'" ng-click="vm.utils.update.cancel()">&#xE14C;</i>
+
+                        <!-- REMOVE MODE -->
+                        <i class="md-icon material-icons no-animate" ng-show="vm.modalOptions.mode==='selected'" ng-click="vm.utils.setMode('remove')">&#xE872;</i>
+                        <i class="md-icon material-icons no-animate" ng-show="vm.modalOptions.mode==='remove'" ng-click="vm.utils.remove.remove(vm.modalOptions.selectedItem._id)">&#xE16C;</i>
+                        <i class="md-icon material-icons no-animate" ng-show="vm.modalOptions.mode==='remove'" ng-click="vm.utils.remove.cancel()">&#xE5C9;</i>
+                    </div>                
+                </div>
+            </div>
+
+            <!-- CREATE NEW FORM -->
+            <div class="uk-width-medium-1-1" ng-show="vm.modalOptions.mode==='createNew'">
+                <div class="uk-grid">
+                    <div class="uk-width-medium-1-3" ng-if="vm.kDataHelperOptions.renderFields.ref.isActive">
+                        <div class="uk-form-stacked uk-margin-medium-top">
+                            <label>{{vm.kDataHelperOptions.renderFields.ref.label}}</label>
+                            <select kendo-drop-down-list style="width: 100%;" k-data-source="vm.kDataHelperOptions.renderFields.ref.recommended" ng-model="vm.modalOptions.newItem.container.ref">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-3" ng-if="vm.kDataHelperOptions.renderFields.group.isActive">
+                        <div class="uk-form-stacked uk-margin-medium-top">
+                            <label>{{vm.kDataHelperOptions.renderFields.group.label}}</label>
+                            <select kendo-drop-down-list style="width: 100%;" k-data-source="vm.kDataHelperOptions.renderFields.group.recommended" ng-model="vm.modalOptions.newItem.container.group">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-3" ng-if="vm.kDataHelperOptions.renderFields.text.isActive">
+                        <div class="uk-form-stacked uk-margin-medium-top">
+                            <label>{{vm.kDataHelperOptions.renderFields.text.label}}</label>
+                            <input type="text" class="k-textbox" ng-model="vm.modalOptions.newItem.container.text" style="width:100%;"/>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-3" ng-if="vm.kDataHelperOptions.renderFields.value.isActive">
+                        <div class="uk-form-stacked uk-margin-medium-top">
+                            <label>{{vm.kDataHelperOptions.renderFields.value.label}}</label>
+                            <input type="text" class="k-textbox" ng-model="vm.modalOptions.newItem.container.value" style="width:100%;"/>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-3" ng-if="vm.kDataHelperOptions.renderFields.value.isActive">
+                        <div class="uk-form-stacked uk-margin-medium-top">
+                            <label>{{vm.kDataHelperOptions.renderFields.order.label}}</label>
+                            <input kendo-numeric-text-box k-ng-model="vm.modalOptions.newItem.container.order" style="width: 100%;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UPDATE FORM -->
+            <div class="uk-width-medium-1-1" ng-show="vm.modalOptions.mode==='update'">
+                <div class="uk-grid">
+                    <div class="uk-width-medium-1-3" ng-if="vm.kDataHelperOptions.renderFields.ref.isActive">
+                        <div class="uk-form-stacked uk-margin-medium-top">
+                            <label>{{vm.kDataHelperOptions.renderFields.ref.label}}</label>
+                            <select kendo-drop-down-list style="width: 100%;" k-data-source="vm.kDataHelperOptions.renderFields.ref.recommended" ng-model="vm.modalOptions.selectedItem.container.ref">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-3" ng-if="vm.kDataHelperOptions.renderFields.group.isActive">
+                        <div class="uk-form-stacked uk-margin-medium-top">
+                            <label>{{vm.kDataHelperOptions.renderFields.group.label}}</label>
+                            <select kendo-drop-down-list style="width: 100%;" k-data-source="vm.kDataHelperOptions.renderFields.group.recommended" ng-model="vm.modalOptions.selectedItem.container.group">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-3" ng-if="vm.kDataHelperOptions.renderFields.text.isActive">
+                        <div class="uk-form-stacked uk-margin-medium-top">
+                            <label>{{vm.kDataHelperOptions.renderFields.text.label}}</label>
+                            <input type="text" class="k-textbox" ng-model="vm.modalOptions.selectedItem.container.text" style="width:100%;"/>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-3" ng-if="vm.kDataHelperOptions.renderFields.value.isActive">
+                        <div class="uk-form-stacked uk-margin-medium-top">
+                            <label>{{vm.kDataHelperOptions.renderFields.value.label}}</label>
+                            <input type="text" class="k-textbox" ng-model="vm.modalOptions.selectedItem.container.value" style="width:100%;"/>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-3" ng-if="vm.kDataHelperOptions.renderFields.value.isActive">
+                        <div class="uk-form-stacked uk-margin-medium-top">
+                            <label>{{vm.kDataHelperOptions.renderFields.order.label}}</label>
+                            <input kendo-numeric-text-box k-ng-model="vm.modalOptions.selectedItem.container.order" style="width: 100%;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GRID -->
+            <div class="uk-width-medium-1-1 uk-margin-medium-top" ng-if="vm.modalOptions.isModalActive">
+                <kendo-grid k-options="vm.utils.manage.kGridOptions" id="{{vm.modalOptions.gridId}}">
+                </kendo-grid>
+            </div>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button type="button" class="md-btn md-btn-flat" ng-click="vm.utils.closeModal()">Đóng</button>
+        </div>
+    </div>
+</div>

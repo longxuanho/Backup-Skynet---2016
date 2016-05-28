@@ -1,0 +1,35 @@
+Hello!
+<button ng-click="uiGrid.toggleFiltering()">Toggle Filtering</button>
+<button type="button" ng-click="addNewUiGridState()">Save</button>
+<button type="button" ng-click="restoreUiGridDefaultState()">Restore</button>
+<br>
+<br> 
+Tên trạng thái:
+<input type="text" ng-model="newState.ten">
+Mô tả:
+<input type="text" ng-model="newState.mo_ta">
+Ghi chú:
+<input type="text" ng-model="newState.ghi_chu">
+Icon:
+<input type="text" ng-model="newState.icon">
+<div ng-if="isShowPublicUiGridStateOption">
+	Đồng bộ tới tất cả mọi người:
+	<input type="checkbox" ng-model="newState.isPublic">
+</div>
+<p>Available State:</p>
+<ul>
+	<li ng-repeat="item in userSettings track by $index"><a ng-click="loadUiGridState(item.gia_tri)" href="#">{{item.ten}}</a> : {{item.mo_ta}} <button ng-click="removeUiGridState(item)">X</button></li>
+</ul>
+<div ng-repeat="item in userSettings track by $index">
+	
+    <!-- <a ng-click="utils.loadState(item.gia_tri)" href="#" ng-hide="utils.isOnEditStateInlineMask[$index]">{{item.ten}}</a>
+    <div ng-show="utils.isOnEditStateInlineMask[$index]">
+        <input type="text" ng-model="item.ten">
+        <input type="text" ng-model="item.mo_ta">
+    </div>
+    <button ng-click="utils.toggleEditStateInlineMask($index)" ng-hide="utils.isOnEditStateInlineMask[$index]">Edit</button>
+    <button ng-click="utils.updateInlineState($index)" ng-show="utils.isOnEditStateInlineMask[$index]">Save</button>
+    <button ng-click="utils.toggleEditStateInlineMask($index)" ng-show="utils.isOnEditStateInlineMask[$index]">Cancel</button>
+    <button ng-click="utils.removeState(item)">X</button> -->
+</div>
+<div ui-grid="uiGrid.gridOptions" class="myGrid" style="margin: auto;" ui-grid-pinning ui-grid-resize-columns ui-grid-move-columns ui-grid-exporter ui-grid-save-state ui-grid-selection ui-grid-grouping></div>

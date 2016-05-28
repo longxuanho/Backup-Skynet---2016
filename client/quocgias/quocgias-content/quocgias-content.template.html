@@ -1,0 +1,84 @@
+<div class="md-card-toolbar">
+    <div class="md-card-toolbar-actions hidden-print">
+        <i class="md-icon material-icons" print-page print-message="Bạn muốn in nội dung này?">&#xE8ad;</i>
+        <div class="md-card-dropdown" data-uk-dropdown="{pos:'bottom-right'}">
+            <i class="md-icon material-icons">&#xE5D4;</i>
+            <div class="uk-dropdown uk-dropdown-small">
+                <ul class="uk-nav">
+                    <li><a href="#" data-uk-modal="{target:'#modal_quocgias_thiet_lap'}">Thiết lập</a></li>
+                    <li><a href="#" class="foreground-color-accent" ui-sref="quocgias.details({ quocgiaId: source._id })">Chỉnh sửa</a></li>
+                    <li><a href="#" ui-sref="quocgias.blank">Trở về</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <h3 class="md-card-toolbar-heading-text large">
+        Nhóm: {{source.ten}}
+    </h3>
+</div>
+<div class="md-card-content">
+    <div class="uk-margin-medium-bottom">
+        <span class="uk-text-muted uk-text-small uk-text-italic">Được tạo {{ source.metadata.ngay_tao | displayDate:'relative' }} bởi {{ _helpers.resolveUser(source.metadata.nguoi_tao) | displayName }} </span>
+        <br/>
+        <span class="uk-text-muted uk-text-small uk-text-italic" ng-show="!source.metadata.ngay_cap_nhat_cuoi">Chưa có thay đổi nào được ghi nhận</span>
+        <span class="uk-text-muted uk-text-small uk-text-italic" ng-show="source.metadata.ngay_cap_nhat_cuoi">Cập nhật lần cuối vào {{ source.metadata.ngay_cap_nhat_cuoi | displayDate:'relative' }} bởi {{ _helpers.resolveUser(source.metadata.nguoi_cap_nhat_cuoi) | displayName }}</span>
+    </div>
+    <div class="uk-grid" data-uk-grid-margin>
+        <div class="uk-width-small-3-5">
+            <div class="uk-margin-bottom">
+                <span class="uk-text-muted uk-text-small uk-text-italic">Mã quản lý:</span>
+                <address>
+                    <p><strong>{{source._id}}</strong></p>
+                    <p>{{source.ma}} - {{source.name}}</p>
+                </address>
+            </div>
+            <div class="uk-margin-medium-bottom">
+                <span class="uk-text-muted uk-text-small uk-text-italic" ng-show="!source.ghi_chu">Chưa có ghi chú nào cho quốc gia này</span>
+                <span class="uk-text-muted uk-text-small uk-text-italic" ng-show="source.ghi_chu">Ghi chú:</span>
+                <p>{{source.ghi_chu}}</p>
+            </div>
+        </div>
+        <div class="uk-width-small-2-5">
+            <span class="uk-text-muted uk-text-small uk-text-italic">Đang hiển thị:</span>
+            <div><span class="heading_b foreground-color-accent">{{ sourceCount }}</span> /{{ sourceTotalCount }}</div>
+            <p class="uk-text-small uk-text-muted uk-margin-top-remove">hạng mục</p>
+        </div>
+    </div>
+    <div class="uk-grid uk-margin-large-bottom">
+        <div class="uk-width-1-1">
+            <table class="uk-table">
+                <thead>
+                    <tr class="uk-text-upper">
+                        <th>HSX liên quan</th>
+                        <th class="uk-hidden-small">Mã quản lý</th>
+                        <th class="uk-hidden-small">Ngày tạo</th>
+                        <th class="uk-text-center">Thiết bị</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="uk-table-middle" ng-repeat="hangsanxuat in hangsanxuats" on-last-repeat ng-show="source._id">
+                        <td>
+                            <span class="uk-text-large">{{ hangsanxuat.ten }}</span>
+                            <br/>
+                        </td>
+                        <td class="uk-hidden-small">
+                            {{ hangsanxuat._id }}
+                        </td>
+                        <td class="uk-hidden-small">
+                            {{ hangsanxuat.metadata.ngay_tao | displayDate:'calendar' }}
+                        </td>
+                        <td class="uk-text-center">
+                            {{ service.tax }}%
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="uk-grid">
+        <div class="uk-width-1-1">
+            <span class="uk-text-muted uk-text-small uk-text-italic">Hiện có {{ source._id ? hangsanxuats.length:0 }} hãng sản xuất thuộc quốc gia này.</span>
+        </div>
+    </div>
+    <quocgias-modal-thiet-lap></quocgias-modal-thiet-lap>
+</div>

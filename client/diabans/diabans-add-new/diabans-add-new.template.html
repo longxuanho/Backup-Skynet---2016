@@ -1,0 +1,56 @@
+<div class="md-card md-card-single main-print" single-card>
+    <form action="" class="uk-form-stacked">
+        <div class="md-card-toolbar">
+            <div class="md-card-toolbar-actions" ng-click="addNewDiaBan()">
+                <i class="md-icon material-icons">&#xE161;</i>
+            </div>
+            <input class="md-card-toolbar-input" type="text" ng-model="newDiaBan.ten" placeholder="Tên địa bàn mới" />
+        </div>
+        <div class="md-card-content">
+            <div class="uk-grid" data-uk-grid-margin>
+                <div class="uk-width-medium-1-2">
+                    <div>Miền:</div>
+                    <select kendo-drop-down-list style="width: 100%;" ng-model="newDiaBan.mien" k-data-text-field="'text'" k-data-value-field="'value'" k-data-source="kOptions.mien">
+                    </select>
+                </div>
+                <div class="uk-width-medium-1-2">
+                    <a class="md-btn md-btn-flat uk-margin-top" ng-class="{'uk-text-muted': !newDiaBan.map_data.location.ten, 'md-btn-flat-primary': newDiaBan.map_data.location.ten}" href="#" data-uk-modal="{target:'#modal_location'}">Map data</a>                
+                </div>
+                <div class="uk-width-medium-1-2">
+                    <div class="uk-form-row">
+                        <label>Mã địa bàn</label>
+                        <input type="text" class="md-input label-fixed" ng-model="newDiaBan.ma" md-input />
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-2">
+                    <div class="uk-form-row">
+                        <label>Icon</label>
+                        <input type="text" class="md-input label-fixed" ng-model="newDiaBan.icon" md-input />
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-1 uk-margin-top">
+                    <div class="uk-form-row">
+                        <input type="checkbox" ui-switch ng-model="newDiaBan.isPublic" color="{{utils.accentColor}}" checked id="switch_demo_primary" />
+                        <label for="switch_demo_primary" class="inline-label">{{ newDiaBan.isPublic?'Công khai':'Riêng tư' }}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-grid uk-grid-divider grid-block" data-uk-grid-margin>
+                <div class="uk-width-medium-1-1">
+                    <div class="uk-form-row">
+                        <label for="message">Mô tả</label>
+                        <input type="text" class="md-input label-fixed" rows="1" md-input ng-model="newDiaBan.mo_ta" />
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-1">
+                    <div class="uk-form-row">
+                        <label for="message">Ghi chú</label>
+                        <textarea id="message" class="md-input" name="message" rows="3" md-input ng-model="newDiaBan.ghi_chu"></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- MODALS -->
+            <diabans-modal-map-data source="newDiaBan"></diabans-modal-map-data>
+        </div>
+    </form>
+</div>

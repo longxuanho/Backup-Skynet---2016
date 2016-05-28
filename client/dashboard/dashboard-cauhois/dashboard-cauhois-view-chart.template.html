@@ -1,0 +1,264 @@
+<div class="uk-grid uk-grid-width-small-1-2 uk-grid-width-large-1-3 uk-grid-width-xlarge-1-4 uk-text-center uk-sortable sortable-handler" id="dashboard_sortable_cards" data-uk-sortable data-uk-grid-margin>
+    <div>
+        <div class="md-card md-card-hover md-card-overlay">
+            <div class="md-card-content">
+                <div class="epc_chart" easypiechart options="vm.pageOptions.epc.cauhois_total" percent="vm.pageData.statistics.cauhois.percent_kythuats_vs_all">
+                    <span class="epc_chart_text"><span class="countUpMe">{{vm.pageData.statistics.cauhois.total}}</span></span>
+                </div>
+            </div>
+            <div class="md-card-overlay-content">
+                <div class="uk-clearfix md-card-overlay-header">
+                    <card-overlay-toggle></card-overlay-toggle>
+                    <h3>
+                        Số câu hỏi
+                    </h3>
+                </div>
+                Skynet đang quản lý <span class="uk-text-bold">{{vm.pageData.statistics.cauhois.total | number:0}}</span> câu hỏi về Kỹ thuật, chiếm <span class="uk-text-bold">{{vm.pageData.statistics.cauhois.percent_kythuats_vs_all | number:0}}%</span> trong tổng số <span class="uk-text-bold">{{vm.numberOfCauHoisTotal | number:0}}</span> câu hỏi trên toàn hệ thống.
+            </div>
+        </div>        
+    </div>
+    <div>
+        <div class="md-card md-card-hover md-card-overlay">
+            <div class="md-card-content uk-flex uk-flex-center uk-flex-middle">
+                <div kendo-chart id="bar_small_ratio"
+                    k-options="vm.pageOptions.charts.small_bar_ratio"
+                    k-rebind="vm.pageOptions.charts.small_bar_ratio"
+                    style="height: 130px;">
+                </div>
+            </div>
+            <div class="md-card-overlay-content">
+                <div class="uk-clearfix md-card-overlay-header">
+                    <card-overlay-toggle></card-overlay-toggle>
+                    <h3>
+                        Hiệu suất quản lý
+                    </h3>
+                </div>
+                Skynet quản lý <span class="uk-text-bold">{{vm.pageData.statistics.cauhois.total | number:0}}</span> câu hỏi về Kỹ thuật, được bố trí vào <span class="uk-text-bold">{{vm.pageData.statistics.cauhois.count_loaitbs}}</span> bộ đề thi với tổng số <span class="uk-text-bold">{{vm.pageData.statistics.cauhois.big_total | number:0}}</span> câu hỏi, cho hiệu suất nén thông tin đạt <span class="uk-text-bold">{{vm.pageData.statistics.cauhois.percent_effective | number:0}}%</span>.
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="md-card md-card-hover md-card-overlay md-card-overlay-active">
+            <div class="md-card-content" id="canvas_1">
+                <div kendo-chart id="bar_small_ratio"
+                    k-options="vm.pageOptions.charts.small_line_activities"
+                    style="height: 130px;">
+                </div>
+            </div>
+            <div class="md-card-overlay-content">
+                <div class="uk-clearfix md-card-overlay-header">
+                    <card-overlay-toggle></card-overlay-toggle>
+                    <h3>
+                        Hoạt động
+                    </h3>
+                </div>
+                <p ng-hide="vm.newest_log._id">Không có hoạt động của người dùng được ghi nhận gần đây.</p>
+                <p ng-show="vm.newest_log._id"><span class="uk-text-bold">{{vm.newest_log.user.userName}}</span> đã <span class="uk-text-bold">{{vm.newest_log.action | lowercase}} {{vm.newest_log.target.desc | lowercase}}</span> câu hỏi thuộc nhóm <span class="uk-text-bold">{{vm.newest_log.section}}</span> vào <span class="uk-text-bold">{{vm.newest_log.when.time | displayDate:'fromNow'}}</span>.</p>
+                <button class="md-btn md-btn-primary" ng-show="vm.newest_log._id" ng-click="vm.utils.ui.modals.show_modal_activities()">Thêm</button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="md-card md-card-hover md-card-overlay">
+            <div class="md-card-content">
+                <div class="epc_chart" easypiechart options="vm.pageOptions.epc.user_status" percent="vm.pageData.statistics.cauhois.percent_users_online">
+                    <span class="epc_chart_icon"><i class="material-icons">&#xE7EF;</i></span>
+                </div>
+            </div>
+            <div class="md-card-overlay-content">
+                <div class="uk-clearfix md-card-overlay-header">
+                    <card-overlay-toggle></card-overlay-toggle>
+                    <h3>
+                        Người dùng
+                    </h3>
+                </div>
+                Hiện có <span class="uk-text-bold">{{vm.numberOfUserOnline}}</span> người dùng đang online trên tổng số <span class="uk-text-bold">{{vm.numberOfUsersTotal}}</span> người dùng đã đăng ký.
+            </div>
+        </div>
+    </div>
+</div>
+<div class="uk-grid" data-uk-grid-margin data-uk-grid-match="{target:'.md-card-content'}">
+    <div class="uk-width-medium-1-2">
+        <div class="md-card">
+            <div class="md-card-toolbar">
+                <div class="md-card-toolbar-actions">
+                    <card-fullscreen-activate></card-fullscreen-activate>
+                    <i class="md-icon material-icons">&#xE5D5;</i>
+                    <div class="md-card-dropdown" data-uk-dropdown="{pos:'bottom-right'}">
+                        <i class="md-icon material-icons">&#xE5D4;</i>
+                        <div class="uk-dropdown uk-dropdown-small">
+                            <ul class="uk-nav">
+                                <li><a href="#">Action 1</a></li>
+                                <li><a href="#">Action 2</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <card-fullscreen-deactivate></card-fullscreen-deactivate>
+                <h3 class="md-card-toolbar-heading-text">
+                    Tổng quan
+                </h3>
+            </div>
+            <div class="md-card-content">
+                <div class="uk-grid">
+                    <div class="uk-width-medium-1-1">
+                        <div kendo-chart id="donut_nhomtbs_countId"
+                            k-options="vm.pageOptions.charts.donut_nhomtbs_countId"
+                            k-rebind="vm.pageOptions.charts.donut_nhomtbs_countId"
+                            ng-hide="$root.card_fullscreen"
+                            style="height: 350px;">
+                        </div>  
+                    </div>                    
+                </div>
+
+                <div class="md-card-fullscreen-content">
+                    <p class="uk-margin-large-top uk-margin-small-bottom heading_list"><span class="uk-text-success">Dữ liệu quản lý NGB chuyên ngành Kỹ thuật:</span> {{vm.pageData.statistics.cauhois.total}} câu hỏi</p> 
+                    <div class="uk-grid" ng-if="$root.card_fullscreen">
+                        <div class="uk-width-medium-1-2">
+                            <div kendo-chart id="donut_large_nhomtbs_countId"
+                                k-options="vm.pageOptions.charts.donut_large_nhomtbs_countId"
+                                style="height: 350px;">
+                            </div>  
+                        </div>
+                        <div class="uk-width-medium-1-2">
+                            <div kendo-chart id="donut_large_nhomcauhois_countId"
+                                k-options="vm.pageOptions.charts.donut_large_nhomcauhois_countId"
+                                style="height: 350px;">
+                            </div>  
+                        </div>                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="uk-width-medium-1-2">
+        <div class="md-card">
+            <div class="md-card-toolbar">
+                <div class="md-card-toolbar-actions">
+                    <card-fullscreen-activate></card-fullscreen-activate>
+                    <i class="md-icon material-icons">&#xE5D5;</i>
+                    <div class="md-card-dropdown" data-uk-dropdown="{pos:'bottom-right'}">
+                        <i class="md-icon material-icons">&#xE5D4;</i>
+                        <div class="uk-dropdown uk-dropdown-small">
+                            <ul class="uk-nav">
+                                <li><a href="#">Action 1</a></li>
+                                <li><a href="#">Action 2</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <card-fullscreen-deactivate></card-fullscreen-deactivate>
+                <h3 class="md-card-toolbar-heading-text">
+                    Số lượng câu hỏi quản lý theo Bộ đề
+                </h3>
+            </div>
+            <div class="md-card-content">
+                <div class="uk-grid">
+                    <div class="uk-width-medium-1-1">
+                        <div kendo-chart id="bar_loaitbs_countId"
+                            k-options="vm.pageOptions.charts.bar_loaitbs_countId"
+                            ng-hide="$root.card_fullscreen"
+                            style="height: 350px;">
+                        </div>  
+                    </div>                    
+                </div>
+
+                <div class="md-card-fullscreen-content">
+                    <div class="md-card-fullscreen-content">
+                    <p class="uk-margin-large-top uk-margin-small-bottom heading_list"><span class="uk-text-success">Tổng số câu hỏi được phân bổ vào các bộ đề:</span> {{vm.pageData.statistics.cauhois.big_total}} câu hỏi</p> 
+                    <div class="uk-grid" ng-if="$root.card_fullscreen">
+                        <div class="uk-width-medium-1-2">
+                            <div kendo-chart id="bar_large_loaitbs_countId"
+                                k-options="vm.pageOptions.charts.bar_large_loaitbs_countId"
+                                style="height: 350px;">
+                            </div>  
+                        </div>
+                        <div class="uk-width-medium-1-2">
+                            <div kendo-chart id="bar_large_nhomcauhois_countId"
+                                k-options="vm.pageOptions.charts.bar_large_nhomcauhois_countId"
+                                k-rebind="vm.pageOptions.charts.bar_large_nhomcauhois_countId"
+                                style="height: 350px;">
+                            </div>  
+                        </div>                   
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
+
+<div class="uk-modal" id="modal_cauhois_view_activities">
+    <div class="uk-modal-dialog">
+        <ul class="uk-tab" data-uk-tab="{connect:'#tabs_anim6', animation:'scale'}">
+            <li class="uk-active"><a href="#">Tổng quan</a></li>
+            <li><a href="#">Chi tiết</a></li>
+        </ul>
+        <ul id="tabs_anim6" class="uk-switcher uk-margin">
+            <li>
+                <div class="uk-grid" ng-if="vm.pageOptions.ui.modals.isViewActivities">
+                    <div class="uk-width-medium-1-1">
+                        <div kendo-chart id="area_modal_activities_countId"
+                            k-options="vm.pageOptions.charts.area_modal_activities_countId"
+                            style="height: 350px;">
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="uk-grid">
+                    <div class="uk-width-medium-1-1">
+                        <div id="activities_modal_grid" 
+                            kendo-grid="vm.pageOptions.grids.refs.activities_modal_grid"
+                            k-options="vm.pageOptions.grids.activities_modal_grid"
+                        >
+                            <div k-detail-template>
+                                <ul class="md-list">
+                                    <li>
+                                        <div class="md-list-content">
+                                            <span class="md-list-heading">Trạng thái</span>
+                                            <span class="uk-text-small uk-text-muted">{{dataItem.action}} {{dataItem.when.time | displayDate:'fromNow'}} bởi {{dataItem.user.userName}}</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="md-list-content">
+                                            <span class="md-list-heading">Mã câu hỏi</span>
+                                            <span class="uk-text-small uk-text-muted">{{dataItem.target.keyId}}</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="md-list-content">
+                                            <span class="md-list-heading">Nội dung câu hỏi</span>
+                                            <span class="uk-text-small uk-text-muted">{{dataItem.target.ref}}</span>
+                                        </div>
+                                    </li>                                    
+                                    <li  ng-if="dataItem.action=='Cập nhật'">
+                                        <div class="md-list-content">
+                                            <span class="md-list-heading">Trường thông tin</span>
+                                            <span class="uk-text-small uk-text-muted">{{dataItem.target.desc}}</span>
+                                        </div>
+                                    </li>
+                                    <li ng-if="dataItem.action=='Cập nhật'">
+                                        <div class="md-list-content">
+                                            <span class="md-list-heading">Giá trị cũ</span>
+                                            <span class="uk-text-small uk-text-muted">{{dataItem.target.from}}</span>
+                                        </div>
+                                    </li>
+                                    <li ng-if="dataItem.action=='Cập nhật'">
+                                        <div class="md-list-content">
+                                            <span class="md-list-heading">Giá trị mới</span>
+                                            <span class="uk-text-small uk-text-muted">{{dataItem.target.to}}</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="uk-modal-footer uk-text-right">
+            <button type="button" class="md-btn md-btn-flat" ng-click="vm.utils.ui.modals.close_modal_activities()">Đóng</button>
+        </div>
+    </div>
+</div>

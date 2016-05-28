@@ -1,0 +1,87 @@
+<div class="md-card md-card-single main-print">
+    <form action="" class="uk-form-stacked" ng-cloak>
+        <div class="md-card-toolbar">                        
+            <div class="md-card-toolbar-actions" ng-click="vm.addNewThongSoKyThuat()">
+                <i class="md-icon material-icons">&#xE03B;</i>
+            </div>
+            <div class="md-card-toolbar-actions" ng-click="vm.reset()">
+                <i class="md-icon material-icons">&#xE923;</i>
+            </div>
+            <input class="md-card-toolbar-input" type="text" value="{{vm.master.ma_tb.ma_tb}}: Thêm thông số mới" placeholder="Mã thiết bị" readonly />
+        </div>
+        <div class="md-card-content">
+            <div class="uk-grid uk-margin-small-bottom" data-uk-grid-margin>
+                <div class="uk-width-medium-1-4">
+                    <div class="uk-form-stacked">
+                        <label for="kUI_dropdown_static">Nhóm thông số</label>
+                        <select kendo-drop-down-list style="width: 100%;"
+                            ng-model="vm.newThongSoKyThuat.nhom_thong_so"
+                            k-filter="'contains'"
+                            k-data-source="vm.dictionary.nhom_thong_so_ky_thuat"
+                            k-rebind="vm.source.phan_loai.chung_loai.keyId">
+                        </select>
+                    </div>
+                </div>
+                <div class="uk-width-medium-3-4"></div>
+                <div class="uk-width-medium-1-2">
+                    <input kendo-auto-complete style="width: 100%;" 
+                        ng-model="vm.newThongSoKyThuat.ten"
+                        k-filter="'contains'"
+                        k-placeholder="'Thông số kỹ thuật'"
+                        k-highlight-first="true"
+                        k-suggest="true"
+                        k-data-source="vm.dictionary.thong_so_dict[vm.source.phan_loai.chung_loai.ma][vm.newThongSoKyThuat.nhom_thong_so]['text']"/>
+                </div>
+                <div class="uk-width-small-1-2 uk-width-medium-1-4 no-animate" ng-hide="vm.pageOptions.isGiaTriKieuText">
+                    <input kendo-numeric-text-box style="width: 100%;"
+                        ng-model="vm.newThongSoKyThuat.gia_tri"
+                        k-placeholder="'Giá trị'"
+                        k-culture="'en-US'" />
+                </div>
+                <div class="uk-width-small-1-2 uk-width-medium-1-4 no-animate" ng-hide="vm.pageOptions.isGiaTriKieuText">
+                    <select kendo-drop-down-list style="width: 100%;"
+                        ng-model="vm.newThongSoKyThuat.don_vi"
+                        k-filter="'contains'"
+                        k-data-source="vm.dictionary.thong_so_dict[vm.source.phan_loai.chung_loai.ma][vm.newThongSoKyThuat.nhom_thong_so]['measure']">
+                    </select>
+                </div>
+                <div class="uk-width-small-1-1 uk-width-medium-1-2 no-animate" ng-show="vm.pageOptions.isGiaTriKieuText">
+                    <input kendo-auto-complete style="width: 100%;" 
+                        ng-model="vm.newThongSoKyThuat.gia_tri_text"
+                        k-placeholder="'Giá trị *'"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<br/>
+
+<div class="md-card md-card-single">
+    <kendo-grid
+        id="myGrid"
+        k-data-source="vm.gridData.thongsokythuatsGrid.kData.dataSource"
+        k-columns="vm.gridData.thongsokythuatsGrid.kOptions.columns"
+        k-selectable="vm.gridData.thongsokythuatsGrid.kOptions.selectable"
+        k-sortable="vm.gridData.thongsokythuatsGrid.kOptions.sortable"
+        k-pageable="vm.gridData.thongsokythuatsGrid.kOptions.pageable"
+        k-reorderable="vm.gridData.thongsokythuatsGrid.kOptions.reorderable"
+        k-scrollable="vm.gridData.thongsokythuatsGrid.kOptions.scrollable"
+        k-resizable="vm.gridData.thongsokythuatsGrid.kOptions.resizable"
+        k-rebind="vm.gridData.thongsokythuatsGrid"
+        k-on-change="vm.gridData.thongsokythuatsGrid.gridOnChange(kendoEvent)"
+        k-on-data-bound="vm.gridData.thongsokythuatsGrid.gridOnDataBound(kendoEvent)">
+    </kendo-grid>
+</div> 
+
+<div class="md-fab-wrapper">
+    <a class="md-fab md-fab-accent no-animate" ng-show="vm.pageOptions.fabState==='thongsokythuats_goToList'" ui-sref="thietbis.addNew">
+        <i class="material-icons">&#xE30D;</i>
+    </a>
+    <a class="md-fab md-fab-accent no-animate" ng-show="vm.pageOptions.fabState==='thongsokythuats_update'" data-uk-modal="{target: '#modal_thongsokythuats_update'}">
+        <i class="material-icons">&#xE880;</i>
+    </a>
+</div> 
+
+<thongsokythuats-modal-update thongsokythuat="vm.pageOptions.selected.thongsokythuat" thietbi="vm.master" fab-state="vm.pageOptions.fabState"></thongsokythuats-modal-update>
+

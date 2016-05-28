@@ -1,0 +1,99 @@
+/*
+*  Skynet Angular
+*  version: 2.0
+*
+*  Content:
+*    1. variables/mixins
+*    2. UIkit custom styles
+*    3. Kendo UI custom styles
+*    4. custom components
+*    5. material design styles
+*    6. plugins
+*    7. partials (header,sidebars,top bar)
+*    8. pages
+*    9. altair admin styles
+*    10. print styles
+*    12. themes
+*    11. style switcher
+*/
+
+/* 1. variables/mixins ======================== */
+@import (reference) "_variables_mixins.import.less";
+
+/* 2. UIkit custom styles ============================ */
+@import "/client/altair/assets/less/imports/uikit/uikit.almost-flat.less";
+@import "_uikit_custom.import.less";
+
+/* 3. Kendo UI custom styles ========================= */
+@import "/client/altair/assets/less/imports/kendo/kendo.common-material.core.min.less";
+@import "/client/altair/assets/less/imports/kendo/kendo.common-material.min.less";
+@import "/client/altair/assets/less/imports/kendo/kendo.material.min.less";
+@import "_kendo_ui_custom.import.less";
+
+/* 4. custom components ============================== */
+@import "components/_preloaders.import.less";
+@import "components/_timeline.import.less";
+
+/* 5. material design styles ========================= */
+@import "/client/altair/assets/less/md/md_main.import.less";
+
+/* 6. plugins ======================================== */
+@import "/client/altair/assets/less/plugins/_custom_scrollbar.import.less";
+@import "/client/altair/assets/less/plugins/_icheck.import.less";
+@import "/client/altair/assets/less/plugins/_switchery.import.less";
+@import "/client/altair/assets/less/plugins/_selectize.import.less";
+@import "/client/altair/assets/less/plugins/_waves.import.less";
+@import "/client/altair/assets/less/plugins/_easy_pie_chart.import.less";
+
+/* 7. partials (header,sidebars,top bar) ============= */
+
+// main header
+@import "/client/altair/assets/less/partials/_header_main.import.less";
+// sidebars
+@import "/client/altair/assets/less/partials/_sidebars.import.less";
+// top bar
+@import "/client/altair/assets/less/partials/_top_bar.import.less";
+// page heading
+@import "/client/altair/assets/less/partials/_page_heading.import.less";
+// top dropdown menu
+@import "/client/altair/assets/less/partials/_menu_top_dropdown.import.less";
+// top menu
+@import "/client/altair/assets/less/partials/_menu_top.import.less";
+
+// breadcrumbs
+@import "/client/altair/assets/less/partials/_breadcrumbs.import.less";
+
+// footer
+@import "/client/altair/assets/less/partials/_footer.import.less";
+
+/* 8. custom pages =================================== */
+@import "/client/altair/assets/less/pages/_login_page.import.less";
+@import "/client/altair/assets/less/pages/_user_profile.import.less";
+@import "/client/altair/assets/less/pages/_chat.import.less";
+
+/* 9. altair main styles ============================= */
+@import "_altair_admin.import.less";
+
+/* 10. print styles ================================== */
+@import "_print.import.less";
+
+/* 11. themes ======================================== */
+@import "/client/altair/assets/less/themes/_theme_a.import.less";
+@import "/client/altair/assets/less/themes/_theme_b.import.less";
+@import "/client/altair/assets/less/themes/_theme_c.import.less";
+@import "/client/altair/assets/less/themes/_theme_d.import.less";
+@import "/client/altair/assets/less/themes/_theme_e.import.less";
+@import "/client/altair/assets/less/themes/_theme_f.import.less";
+@import "/client/altair/assets/less/themes/_theme_g.import.less";
+@import "/client/altair/assets/less/themes/_theme_h.import.less";
+@import "/client/altair/assets/less/themes/_theme_i.import.less";
+
+/* 12. style switcher ================================ */
+@import "/client/altair/assets/less/partials/_style_switcher.import.less";
+
+/* 13. angularjs ===================================== */
+@import "/client/altair/assets/less/angular/_app.import.less";
+@import "/client/altair/assets/less/angular/_wizard.import.less";
+
+/* 14. By Long Ho ===================================== */
+@import "_customize.import.less";

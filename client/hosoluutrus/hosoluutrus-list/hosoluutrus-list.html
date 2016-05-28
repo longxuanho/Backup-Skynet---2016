@@ -1,0 +1,29 @@
+<h3>Hồ sơ lưu trữ:</h3>
+
+<hosoluutrus-add-new></hosoluutrus-add-new>
+
+<div>
+    <input type="search" ng-model="hosoluutrusList.searchText" placeholder="Search">
+    <select ng-model="hosoluutrusList.orderProperty" ng-change="hosoluutrusList.updateSort()">
+        <option value="1">Ascending</option>
+        <option value="-1">Descending</option>
+    </select>
+    Tìm theo:
+    <select ng-model="hosoluutrusList.searchBy">
+        <option ng-repeat="item in hosoluutrusList._data.ui.searchFields.hosoluutrus" value="{{item.value}}">{{item.name}}</option>
+    </select>
+    perPage:
+    <input type="number" ng-model="hosoluutrusList.perPage" placeholder="Số mục mỗi trang">
+    <h3>Count: {{hosoluutrusList.hosoluutrusCount}} / {{hosoluutrusList.hosoluutrusTotalCount}}</h3>
+</div>
+<hr>
+
+<div dir-paginate="hosoluutru in hosoluutrusList.hosoluutrus | itemsPerPage: hosoluutrusList.perPage" total-items="hosoluutrusList.hosoluutrusCount">
+    <div>
+        <a ui-sref="nhomDetails({ nhomId: hosoluutru._id })"  href="">{{hosoluutru.ten}}</a>
+        <p>Mã nhóm: {{hosoluutru.ma}}; Mô tả: {{hosoluutru.mo_ta}}; Ghi chú: {{hosoluutru.ghi_chu}}</p>
+        <button ng-click="hosoluutrusList.removeHoSoLuuTru(hosoluutru)" ng-show="hosoluutrusList.isCanBeRemoved">X</button>
+    </div>
+</div>
+<dir-pagination-controls on-page-change="hosoluutrusList.pageChanged(newPageNumber)">
+</dir-pagination-controls>

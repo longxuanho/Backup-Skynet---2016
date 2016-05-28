@@ -1,0 +1,25 @@
+<h1>Loại:</h1>
+<form>
+    Nhóm:
+    <select ng-model="newLoai.nhom.keyId">
+        <option ng-repeat="nhom in nhoms" value="{{nhom._id}}">{{nhom.ten}}</option>
+    </select>
+    Chủng Loại:
+    <select ng-model="newLoai.chung_loai.keyId">
+        <option ng-repeat="chungloai in chungloais" value="{{chungloai._id}}">{{chungloai.ten}}</option>
+    </select>
+    <label>Tên loại:</label>
+    <input ng-model="newLoai.ten">
+    <label>Mã loại:</label>
+    <input ng-model="newLoai.ma">
+    <label>Mô tả:</label>
+    <input ng-model="newLoai.mo_ta">
+    <label>Ghi chú:</label>
+    <input ng-model="newLoai.ghi_chu">
+    <label>Icon:</label>
+    <input ng-model="newLoai.icon">
+    <label>Công khai:</label>
+    <input type="checkbox" ng-model="newLoai.isPublic">
+    <button ng-click="createNew()">Add</button>
+    <button ng-click="removeAll()">Remove All</button>
+</form>

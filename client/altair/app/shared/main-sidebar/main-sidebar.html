@@ -1,0 +1,61 @@
+<!-- CHÚ Ý: Thay vì hiển thị logo cố định bằng hình ảnh, sử dụng CSS để đổi màu main logo qua class 'skynet-logo-small' -->
+
+<!-- main sidebar -->
+<aside id="sidebar_main" sidebar-primary custom-scrollbar ng-class="{ 'accordion_mode': menuAccordionMode }">
+    <div class="sidebar_main_header" ng-if="!fullHeaderActive">
+        <div class="sidebar_logo">
+            <!-- CASE: PRIMARY SIDEBAR -->
+            
+            <!-- Option 1:   
+                <a ui-sref="restricted.dashboard" ng-show="!miniSidebarActive"><img ng-src="assets/img/logo_main.png" alt="" add-image-prop /></a>
+            -->
+            <!-- Option 2: -->
+            <div class="skynet-logo-main no-animate" ng-show="!miniSidebarActive"></div>
+            
+            <!-- CASE: MINI SIDEBAR -->
+
+            <!-- Option 1:         
+            <a ui-sref="restricted.dashboard" ng-show="miniSidebarActive"><img ng-src="assets/img/logo_main_small.png" alt="" add-image-prop /></a>
+            -->
+            <!-- Option 2:
+            <div class="skynet-logo-small" ng-show="miniSidebarActive"></div>
+            -->
+            <!-- Option 3: -->
+            <div style="text-align: center;margin:auto;" ng-show="miniSidebarActive" class="no-animate">
+                <i class="md-icon material-icons color-primary" style="font-size:32px;margin-top:4px;line-height: 40px!important;height: 40px!important;width: 40px!important;">&#xE8AB;</i>
+            </div>
+        </div>
+<!--         <div class="sidebar_actions">
+            <selectize id="lang_switcher" name="lang_switcher" config='langSwitcherConfig' options='langSwitcherOptions' ng-model="langSwitcherModel"></selectize>
+        </div> -->
+    </div>
+    <div class="menu_section">
+        <ul>
+            <li ui-sref-active="current_section" ng-repeat="section in sections" ng-switch="section.link.length > 0" ng-class="{'submenu_trigger': (section.submenu.length > 0) && !miniSidebarActive, 'sidebar_submenu': (section.submenu.length > 0) && miniSidebarActive}" on-last-repeat>
+                <a ng-switch-when="true" ui-sref="{{section.link}}" ng-class="{'menu_tooltip' : miniSidebarActive}">
+                    <span class="menu_icon"><i class="material-icons" ng-bind-html="section.icon"></i></span>
+                    <span class="menu_title">{{section.title}}</span>
+                </a>
+                <a ng-switch-when="false" href="#" ng-click="submenuToggle($event)">
+                    <span class="menu_icon"><i class="material-icons" ng-bind-html="section.icon"></i></span>
+                    <span class="menu_title">{{section.title}}</span>
+                </a>
+                <ul ng-if="section.submenu">
+                    <li ng-if="section.submenu_title" class="submenu-title">{{section.submenu_title}}</li>
+                    <li ng-repeat-start="item in section.submenu" ng-if="item.group" class="menu_subtitle">{{item.group}}</li>
+                    <li ng-repeat-end ng-class="{ act_item: $state.includes(item.link), 'submenu_trigger': (item.submenu.length > 0) && !miniSidebarActive, 'sidebar_submenu': (item.submenu.length > 0) && miniSidebarActive }" ng-include="'submenuTree'"></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</aside>
+<script type="text/ng-template" id="submenuTree">
+    <a ng-if="item.link" ui-sref="{{item.link}}">{{item.title}}</a>
+    <a ng-if="!item.link" href="#" ng-click="submenuToggle($event)">{{item.title}}</a>
+    <ul ng-if="item.submenu">
+        <li ng-repeat="item in item.submenu" ng-include="'submenuTree'" ng-class="{ act_item: $state.includes(item.link), 'submenu_trigger': (item.submenu.length > 0) && !miniSidebarActive, 'sidebar_submenu': (item.submenu.length > 0) && miniSidebarActive }">
+            <a ng-if="item.link" ui-sref="{{item.link}}">{{item.title}}</a>
+            <a ng-if="!item.link" href="#" ng-click="submenuToggle($event)">{{item.title}}</a>
+        </li>
+    </ul>
+</script>

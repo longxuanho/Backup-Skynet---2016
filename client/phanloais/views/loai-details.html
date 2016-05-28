@@ -1,0 +1,31 @@
+<p>Here you will see the details of loai number: {{loai._id}}</p>
+<select ng-model="loai.nhom.keyId">
+    <option ng-repeat="nhom in nhoms" value="{{nhom._id}}">{{nhom.ten}}</option>
+</select>
+<select ng-model="loai.chung_loai.keyId">
+    <option ng-repeat="chungloai in chungloais" value="{{chungloai._id}}">{{chungloai.ten}}</option>
+</select>
+<input ng-model="loai.ten">
+<input ng-model="loai.ma">
+<input ng-model="loai.mo_ta">
+<input ng-model="loai.ghi_chu">
+<input ng-model="loai.icon">
+<label>Is public</label>
+<input type="checkbox" ng-model="loai.isPublic">
+<ul>
+    Users:
+    <li ng-repeat="user in users">
+        <div>{{ user.emails[0].address }}</div>
+    </li>
+</ul>
+<button ng-click="save()">Save</button>
+<button ng-click="reset()">Reset form</button>
+<button ui-sref="phanloais">Cancel</button>
+<div ng-if="!!$root.currentUser">
+    <info-metadata 
+        nguoi-tao="loai.metadata.nguoi_tao"
+        ngay-tao="loai.metadata.ngay_tao"
+        nguoi-cap-nhat-cuoi="loai.metadata.nguoi_cap_nhat_cuoi"
+        ngay-cap-nhat-cuoi="loai.metadata.ngay_cap_nhat_cuoi" >
+    </info-metadata>
+</div>

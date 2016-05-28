@@ -1,0 +1,16 @@
+<div class="uk-modal" id="modal_chungloais_xoa_chung_loai">
+    <div class="uk-modal-dialog">
+        <div class="uk-modal-header">
+            <h3 class="uk-modal-title">Xác nhận yêu cầu</h3>
+        </div>
+        <p>Một khi đã bị gỡ bỏ, chủng loại và các thông tin liên quan tới nó sẽ không thể phục hồi. Hãy chắc rằng bạn thực sự muốn thực hiện yêu cầu bằng cách nhập mã xác nhận dưới đây:</p>
+        <div class="uk-form-row">
+            <label>Mã xác nhận</label>
+            <input type="text" class="md-input label-fixed" ng-model="confirmCode" md-input />
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button type="button" class="md-btn md-btn-flat uk-modal-close">Hủy bỏ</button>
+            <button type="button" class="md-btn md-btn-flat md-btn-flat-primary" ng-click="remove()">Thực hiện</button>
+        </div>
+    </div>
+</div>

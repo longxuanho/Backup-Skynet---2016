@@ -1,0 +1,26 @@
+<p>Here you will see the details of nhom number:</p>
+<input ng-model="nhom.ten">
+<input ng-model="nhom.ma">
+<input ng-model="nhom.mo_ta">
+<input ng-model="nhom.ghi_chu">
+<input ng-model="nhom.icon">
+<label>Is public</label>
+<input type="checkbox" ng-model="nhom.isPublic">
+<ul>
+    Users:
+    <li ng-repeat="user in users">
+        <div>{{ user.emails[0].address }}</div>
+    </li>
+</ul>
+<button ng-click="save()">Save</button>
+<button ng-click="reset()">Reset form</button>
+<button ui-sref="phanloais">Cancel</button>
+<hr>
+<div ng-if="_helpers.isLoggedIn()">
+    <info-metadata 
+    	nguoi-tao="nhom.metadata.nguoi_tao"
+    	ngay-tao="nhom.metadata.ngay_tao"
+    	nguoi-cap-nhat-cuoi="nhom.metadata.nguoi_cap_nhat_cuoi"
+    	ngay-cap-nhat-cuoi="nhom.metadata.ngay_cap_nhat_cuoi" >
+    </info-metadata>
+</div>

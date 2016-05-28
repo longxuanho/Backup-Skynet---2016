@@ -1,0 +1,583 @@
+<div class="uk-width-medium-7-10 uk-container-center reset-print">
+    <div class="uk-grid uk-grid-collapse" data-uk-grid-margin>
+        <div class="uk-width-large-1-1">
+
+            <div class="md-card md-card-single main-print">
+                <form action="" class="uk-form-stacked">
+                    <div class="md-card-toolbar">
+                        <div class="md-card-toolbar-actions" ng-click="addNewNhanSu()">
+                            <i class="md-icon material-icons">&#xE161;</i>
+                        </div>
+                        <input class="md-card-toolbar-input" type="text" ng-model="newNhanSu.ma_nv" placeholder="Mã nhân sự mới" />
+                    </div>
+                    <div class="md-card-content">
+                        <div class="uk-grid uk-margin-medium-top uk-margin-large-bottom" data-uk-grid-margin>
+                            <div class="uk-width-large-1-2">
+                                <div class="uk-margin-right uk-margin-left">
+                                    <h3 class="heading_c uk-margin-small-bottom">Thông tin chung</h3>
+                                    <div class="uk-grid uk-margin-medium-top uk-margin-medium-bottom" data-uk-grid-margin>
+                                        <div class="uk-width-medium-1-2">
+                                            <div class="uk-form-stacked">
+                                                <label for="kUI_dropdown_static">Ngày kê khai</label>
+                                                <input kendo-date-picker k-ng-model="newNhanSu.tieu_su.ngay_ke_khai" k-format="'dd/MM/yyyy'" style="width: 100%;" />
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-medium-1-2">
+                                        </div>
+                                        <div class="uk-width-medium-1-2">
+                                            <div class="uk-form-row">
+                                                <label>Họ tên đệm</label>
+                                                <input type="text" class="md-input" ng-model="newNhanSu.tieu_su.ho_ten_dem" md-input />
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-medium-1-2">
+                                            <div class="uk-form-row">
+                                                <label>Tên</label>
+                                                <input type="text" class="md-input" ng-model="newNhanSu.tieu_su.ten" md-input />
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-medium-3-5">
+                                            <div class="uk-form-stacked">
+                                                <label for="kUI_dropdown_static">Ngày sinh</label>
+                                                <input kendo-date-picker k-ng-model="newNhanSu.tieu_su.ngay_sinh" k-format="'dd/MM/yyyy'" style="width: 100%;" />
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-medium-2-5">
+                                            <div class="uk-form-stacked">
+                                                <label for="kUI_dropdown_static">Giới tính</label>
+                                                <select kendo-drop-down-list style="width: 100%;" ng-model="newNhanSu.tieu_su.gioi_tinh">
+                                                    <option>Nam</option>
+                                                    <option>Nữ</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-medium-1-2">
+                                            <div class="uk-form-stacked">
+                                                <label for="kUI_dropdown_static">Tình trạng hôn nhân</label>
+                                                <select kendo-drop-down-list style="width: 100%;" ng-model="newNhanSu.tieu_su.tinh_trang_hon_nhan">
+                                                    <option>Độc thân</option>
+                                                    <option>Kết hôn</option>
+                                                    <option>Ly dị</option>
+                                                    <option>Ly thân</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-medium-3-5">
+                                            <div class="uk-form-row">
+                                                <label>Số CMND</label>
+                                                <input type="text" class="md-input" ng-model="newNhanSu.tieu_su.cmnd.so_cmnd" md-input />
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-medium-2-5">
+                                            <div class="uk-form-row">
+                                                <label>Dân tộc</label>
+                                                <input type="text" class="md-input" ng-model="newNhanSu.tieu_su.dan_toc" md-input />
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-medium-1-2">
+                                            <div class="uk-form-stacked">
+                                                <label for="kUI_dropdown_static">Ngày cấp</label>
+                                                <input kendo-date-picker k-ng-model="newNhanSu.tieu_su.cmnd.ngay_cap" k-format="'dd/MM/yyyy'" style="width: 100%;" />
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-medium-1-2">
+                                            <div class="uk-form-stacked">
+                                                <label for="kUI_dropdown_static">Nơi cấp</label>
+                                                 <select kendo-drop-down-list style="width: 100%;" ng-model="newNhanSu.tieu_su.cmnd.noi_cap" k-filter="'contains'" k-data-source="resource.tinh_thanh">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-medium-3-5">
+                                            <div class="uk-form-stacked">
+                                                <label for="kUI_dropdown_static">Quốc tịch</label>
+                                                <select kendo-drop-down-list style="width: 100%;" ng-model="newNhanSu.tieu_su.quoc_tich" k-filter="'contains'" k-data-source="resource.quoc_gia">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-medium-2-5">
+                                            <div class="uk-form-stacked">
+                                                <label for="kUI_dropdown_static">Tôn giáo</label>
+                                                <select kendo-combo-box style="width: 100%;" ng-model="newNhanSu.tieu_su.ton_giao" k-filter="'contains'" k-data-source="resource.ton_giao" k-on-change="utils.kendoOnChangeRestrictValues(kendoEvent, 'quocgias')">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-medium-1-1">
+                                            <input type="checkbox" name="style_sidebar_mini" id="style_sidebar_mini" icheck ng-model="newNhanSu.tieu_su.isNhapNgu" /> Đã nhập ngũ
+                                        </div>
+                                        <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="newNhanSu.tieu_su.isNhapNgu">
+                                            <div class="uk-form-stacked">
+                                                <label for="kUI_dropdown_static">Ngày nhập ngũ</label>
+                                                <input kendo-date-picker k-ng-model="newNhanSu.tieu_su.ngay_nhap_ngu" k-format="'dd/MM/yyyy'" style="width: 100%;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="uk-width-large-1-2">
+                                <div class="uk-accordion" data-uk-accordion>
+                                    <h3 class="uk-accordion-title">Tổ chức biên chế</h3>
+                                    <div class="uk-accordion-content">
+                                        <div class="uk-grid uk-margin-medium-top uk-margin-medium-bottom" data-uk-grid-margin>
+                                            <div class="uk-width-medium-3-5">
+                                                <div class="uk-form-stacked">
+                                                    <label for="kUI_dropdown_static">Đơn vị</label>
+                                                    <select kendo-drop-down-list style="width: 100%;"
+                                                        k-ng-model="newNhanSu.don_vi"
+                                                        k-data-text-field="'ten'"
+                                                        k-data-value-field="'ma'"
+                                                        k-filter="'contains'"
+                                                        k-data-source="kOptions.don_vi">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-3-5">
+                                                <div class="uk-form-stacked">
+                                                <label for="kUI_dropdown_static">Phòng ban</label>
+                                                    <select kendo-drop-down-list style="width: 100%;"
+                                                        k-ng-model="newNhanSu.cong_viec.to_chuc_bien_che.department"
+                                                        k-data-text-field="'ten'"
+                                                        k-data-value-field="'ma'"
+                                                        k-filter="'contains'"
+                                                        k-data-source="kOptions.departments">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-3-5">
+                                                <div class="uk-form-stacked">
+                                                <label for="kUI_dropdown_static">Tổ nhóm</label>
+                                                   <select kendo-drop-down-list style="width: 100%;"
+                                                        k-ng-model="newNhanSu.cong_viec.to_chuc_bien_che.subdepartment"
+                                                        k-data-text-field="'ten'"
+                                                        k-data-value-field="'ma'"
+                                                        k-filter="'contains'"
+                                                        k-data-source="kOptions.subdepartments">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-3-5">
+                                                <div class="uk-form-stacked">
+                                                    <label for="kUI_dropdown_static">Chức danh</label>
+                                                    <select kendo-drop-down-list style="width: 100%;" ng-model="newNhanSu.cong_viec.to_chuc_bien_che.chuc_danh" k-filter="'contains'" k-data-source="resource.chuc_danh">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-2-5">
+                                                <div class="uk-form-stacked">
+                                                    <label for="kUI_dropdown_static">Loại biên chế</label>
+                                                    <select kendo-drop-down-list style="width: 100%;" ng-model="newNhanSu.cong_viec.to_chuc_bien_che.loai_bien_che" k-data-source="resource.loai_bien_che">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>                                            
+                                    </div>
+                                    <h3 class="uk-accordion-title">Thông tin liên hệ</h3>
+                                    <div class="uk-accordion-content">
+                                        <div class="uk-grid uk-margin-medium-top uk-margin-medium-bottom" data-uk-grid-margin>
+                                            <div class="uk-width-medium-1-2">
+                                                <div class="uk-form-row">
+                                                    <label>Số điện thoại</label>
+                                                    <input type="text" class="md-input" ng-model="newNhanSu.thong_tin_lien_he.so_dien_thoai" md-input />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-2">
+                                                <div class="uk-form-row">
+                                                    <label>Email</label>
+                                                    <input type="text" class="md-input" ng-model="newNhanSu.thong_tin_lien_he.email" md-input />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-1">
+                                                <input type="checkbox" icheck ng-model="kOptions.isVisible_queQuan"/> Quê quán
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_queQuan">
+                                                <div class="uk-form-stacked">
+                                                    <label for="kUI_dropdown_static">Tỉnh thành</label>
+                                                    <select kendo-drop-down-list style="width: 100%;"
+                                                        ng-model="newNhanSu.tieu_su.que_quan.tinh_thanh"
+                                                        k-filter="'contains'"
+                                                        k-data-source="resource.tinh_thanh"
+                                                        k-on-change="utils.kendoOnChangeRestrictValues(kendoEvent, 'que_quan_tinh_thanh')">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_queQuan">
+                                                <div class="uk-form-stacked">
+                                                    <label for="kUI_dropdown_static">Quận huyện</label>
+                                                     <select kendo-drop-down-list style="width: 100%;"
+                                                        ng-model="newNhanSu.tieu_su.que_quan.quan_huyen"
+                                                        k-filter="'contains'"
+                                                        k-data-source="kOptions.que_quan_quan_huyen"
+                                                        k-rebind="kOptions.que_quan_quan_huyen"
+                                                        k-on-change="utils.kendoOnChangeRestrictValues(kendoEvent, 'que_quan_quan_huyen')">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_queQuan">
+                                                <div class="uk-form-row">
+                                                    <label>Phường xã</label>
+                                                    <input type="text" class="md-input" ng-model="newNhanSu.tieu_su.que_quan.phuong_xa" md-input />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-1">
+                                                <input type="checkbox" icheck ng-model="kOptions.isVisible_thuongTru" /> Địa chỉ thường trú
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_thuongTru">
+                                                <div class="uk-form-stacked">
+                                                    <label for="kUI_dropdown_static">Tỉnh thành</label>
+                                                     <select kendo-drop-down-list style="width: 100%;"
+                                                        ng-model="newNhanSu.tieu_su.thuong_tru.tinh_thanh"
+                                                        k-filter="'contains'"
+                                                        k-data-source="resource.tinh_thanh"
+                                                        k-on-change="utils.kendoOnChangeRestrictValues(kendoEvent, 'thuong_tru_tinh_thanh')">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_thuongTru">
+                                                <div class="uk-form-stacked">
+                                                    <label for="kUI_dropdown_static">Quận huyện</label>
+                                                    <select kendo-drop-down-list style="width: 100%;"
+                                                        ng-model="newNhanSu.tieu_su.thuong_tru.quan_huyen"
+                                                        k-filter="'contains'"
+                                                        k-data-source="kOptions.thuong_tru_quan_huyen"
+                                                        k-on-change="utils.kendoOnChangeRestrictValues(kendoEvent, 'thuong_tru_quan_huyen')">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_thuongTru">
+                                                <div class="uk-form-row">
+                                                    <label>Phường xã</label>
+                                                    <input type="text" class="md-input" ng-model="newNhanSu.tieu_su.thuong_tru.phuong_xa" md-input />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_thuongTru">
+                                                <div class="uk-form-row">
+                                                    <label>Địa chỉ</label>
+                                                    <input type="text" class="md-input" ng-model="newNhanSu.tieu_su.thuong_tru.dia_chi" md-input />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-1 ">
+                                                <input type="checkbox" icheck ng-model="kOptions.isVisible_nguoi_bao_lanh" /> Người bảo lãnh
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_nguoi_bao_lanh">
+                                                <div class="uk-form-stacked">
+                                                    <label for="kUI_dropdown_static">Quan hệ</label>
+                                                    <select kendo-combo-box style="width: 100%;"
+                                                        ng-model="newNhanSu.thong_tin_lien_he.nguoi_bao_lanh.quan_he"
+                                                        k-filter="'contains'"
+                                                        k-data-source="resource.quan_he"
+                                                        k-on-change="utils.kendoOnChangeRestrictValues(kendoEvent, 'nguoi_bao_lanh_quan_he')">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-hidden-small uk-margin-medium-top" ng-show="kOptions.isVisible_nguoi_bao_lanh">
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_nguoi_bao_lanh">
+                                                <div class="uk-form-row">
+                                                    <label>Họ tên</label>
+                                                    <input type="text" class="md-input" ng-model="newNhanSu.thong_tin_lien_he.nguoi_bao_lanh.ho_ten" md-input />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_nguoi_bao_lanh">
+                                                <div class="uk-form-row">
+                                                    <label>Số điện thoại</label>
+                                                    <input type="text" class="md-input" ng-model="newNhanSu.thong_tin_lien_he.nguoi_bao_lanh.so_dien_thoai" md-input />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_nguoi_bao_lanh">
+                                                <div class="uk-form-row">
+                                                    <label>Nơi công tác</label>
+                                                    <input type="text" class="md-input" ng-model="newNhanSu.thong_tin_lien_he.nguoi_bao_lanh.noi_cong_tac" md-input />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_nguoi_bao_lanh">
+                                                <div class="uk-form-row">
+                                                    <label>Chức danh</label>
+                                                    <input type="text" class="md-input" ng-model="newNhanSu.thong_tin_lien_he.nguoi_bao_lanh.chuc_danh" md-input />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-1">
+                                                <input type="checkbox" icheck ng-model="kOptions.isVisible_nguoi_bao_tin" /> Người báo tin
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_nguoi_bao_tin"> 
+                                                <div class="uk-form-stacked">
+                                                    <label for="kUI_dropdown_static">Quan hệ</label>
+                                                    <select kendo-combo-box style="width: 100%;" 
+                                                        ng-model="newNhanSu.thong_tin_lien_he.nguoi_bao_tin.quan_he"
+                                                        k-filter="'contains'"
+                                                        k-data-source="resource.quan_he"
+                                                        k-on-change="utils.kendoOnChangeRestrictValues(kendoEvent, 'nguoi_bao_lanh_quan_he')">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-hidden-small uk-margin-medium-top" ng-show="kOptions.isVisible_nguoi_bao_tin">
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_nguoi_bao_tin">
+                                                <div class="uk-form-row">
+                                                    <label>Họ tên</label>
+                                                    <input type="text" class="md-input" ng-model="newNhanSu.thong_tin_lien_he.nguoi_bao_tin.ho_ten" md-input />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_nguoi_bao_tin">
+                                                <div class="uk-form-row">
+                                                    <label>Số điện thoại</label>
+                                                    <input type="text" class="md-input" ng-model="newNhanSu.thong_tin_lien_he.nguoi_bao_tin.so_dien_thoai" md-input />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_nguoi_bao_tin">
+                                                <div class="uk-form-row">
+                                                    <label>Nghề nghiệp</label>
+                                                    <input type="text" class="md-input" ng-model="newNhanSu.thong_tin_lien_he.nguoi_bao_tin.nghe_nghiep" md-input />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_nguoi_bao_tin">
+                                                <div class="uk-form-row">
+                                                    <label>Nơi công tác</label>
+                                                    <input type="text" class="md-input" ng-model="newNhanSu.thong_tin_lien_he.nguoi_bao_tin.noi_cong_tac" md-input />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-1 uk-margin-medium-top" ng-show="kOptions.isVisible_nguoi_bao_tin">
+                                                <div class="uk-form-row">
+                                                    <label>Địa chỉ</label>
+                                                    <input type="text" class="md-input" ng-model="newNhanSu.thong_tin_lien_he.nguoi_bao_tin.dia_chi" md-input />
+                                                </div>
+                                            </div>                          
+                                        </div>
+                                    </div>  
+                                    <h3 class="uk-accordion-title">Học vấn</h3>
+                                    <div class="uk-accordion-content">
+                                        <div class="uk-grid uk-margin-medium-top uk-margin-medium-bottom" data-uk-grid-margin>
+                                            <div class="uk-width-medium-2-5">
+                                                <div class="uk-form-row">
+                                                    <label>Trình độ văn hóa</label>
+                                                    <input type="text" class="md-input" ng-model="newNhanSu.hoc_van.trinh_do_van_hoa" md-input />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-3-5">
+                                                <div class="uk-form-row">
+                                                    <label>Trình độ chuyên môn</label>
+                                                    <input type="text" class="md-input" ng-model="newNhanSu.hoc_van.trinh_do_chuyen_mon" md-input />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-3-5">
+                                                <div class="uk-form-row">
+                                                    <label>Ngành đào tạo</label>
+                                                    <input type="text" class="md-input" ng-model="newNhanSu.hoc_van.nganh_dao_tao" md-input />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-1 ">
+                                                <input type="checkbox" icheck ng-model="kOptions.isVisible_ngoai_ngu" /> Ngoại ngữ
+                                            </div>
+                                            <div class="uk-width-medium-1-1 uk-margin-medium-top" ng-show="kOptions.isVisible_ngoai_ngu">
+                                                <select kendo-multi-select
+                                                    k-data-source="resource.ngoai_ngu" 
+                                                    k-ng-model="newNhanSu.hoc_van.ngoai_ngu">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h3 class="uk-accordion-title">Hồ sơ nhân sự</h3>
+                                    <div class="uk-accordion-content">
+                                        <div class="uk-grid uk-margin-medium-top uk-margin-medium-bottom" data-uk-grid-margin>
+                                            <div class="uk-width-medium-1-2">
+                                                <div class="uk-form-stacked">
+                                                    <label for="kUI_dropdown_static">Trạng thái</label>
+                                                    <select kendo-drop-down-list style="width: 100%;"
+                                                        ng-model="newNhanSu.cong_viec.trang_thai" 
+                                                        k-data-source="resource.trang_thai">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-2">
+                                                <div class="uk-form-stacked">
+                                                    <label for="kUI_dropdown_static">Ngày vào cảng</label>
+                                                    <input kendo-date-picker k-ng-model="newNhanSu.cong_viec.ho_so.ngay_vao_cang" k-format="'dd/MM/yyyy'" style="width: 100%;" />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-3-5">
+                                                <div class="uk-form-row">
+                                                    <label>Hệ số lương</label>
+                                                    <input type="number" class="md-input" ng-model="newNhanSu.cong_viec.ho_so.he_so_luong" md-input />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-3-5">
+                                                <div class="uk-form-row">
+                                                    <label>Cấp bậc biên chế</label>
+                                                    <input type="text" class="md-input" ng-model="newNhanSu.cong_viec.ho_so.bac_bien_che" md-input />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-2-5">
+                                                <div class="uk-form-row">
+                                                    <label>Năm nhận</label>
+                                                    <input type="number" class="md-input" ng-model="newNhanSu.cong_viec.ho_so.nam_nhan_bac_bien_che" md-input />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-3-5">
+                                                <div class="uk-form-row">
+                                                    <label>Cấp bậc quốc phòng</label>
+                                                    <input type="text" class="md-input" ng-model="newNhanSu.cong_viec.ho_so.cap_bac_quoc_phong" md-input />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-2-5">
+                                                <div class="uk-form-row">
+                                                    <label>Năm nhận</label>
+                                                    <input type="number" class="md-input" ng-model="newNhanSu.cong_viec.ho_so.nam_nhan_bac_quoc_phong" md-input />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h3 class="uk-accordion-title">Bằng cấp và chứng chỉ</h3>
+                                    <div class="uk-accordion-content">
+                                        <div class="uk-grid uk-margin-medium-top uk-margin-medium-bottom" data-uk-grid-margin>
+                                            <div class="uk-width-medium-1-1">
+                                                <input type="checkbox" icheck ng-model="kOptions.isVisible_bang_lai_xe" /> Bằng lái xe
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_bang_lai_xe">
+	                                            <div class="uk-form-row">
+	                                                <label>Số bằng</label>
+	                                                <input type="text" class="md-input" ng-model="newNhanSu.bang_cap.bang_lai_xe.so_bang" md-input />
+	                                            </div>
+	                                        </div>
+	                                        <div class="uk-width-medium-1-2  uk-margin-medium-top" ng-show="kOptions.isVisible_bang_lai_xe">
+	                                            <div class="uk-form-row">
+	                                                <label>Trung tâm đào tạo</label>
+	                                                <input type="text" class="md-input" ng-model="newNhanSu.bang_cap.bang_lai_xe.trung_tam_dao_tao" md-input />
+	                                            </div>
+	                                        </div>
+	                                        <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_bang_lai_xe">
+                                                <div class="uk-form-stacked">
+                                                    <label for="kUI_dropdown_static">Ngày cấp</label>
+                                                    <input kendo-date-picker k-ng-model="newNhanSu.bang_cap.bang_lai_xe.ngay_cap" k-format="'dd/MM/yyyy'" style="width: 100%;" />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_bang_lai_xe">
+                                                <div class="uk-form-stacked">
+                                                    <label for="kUI_dropdown_static">Ngày hết hạn</label>
+                                                    <input kendo-date-picker k-ng-model="newNhanSu.bang_cap.bang_lai_xe.ngay_het_han" k-format="'dd/MM/yyyy'" style="width: 100%;" />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-1">
+                                                <input type="checkbox" icheck ng-model="kOptions.isVisible_giay_phep_lai_xe_quan_su" /> Giấy phép lái xe QS
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_giay_phep_lai_xe_quan_su">
+	                                            <div class="uk-form-row">
+	                                                <label>Số bằng</label>
+	                                                <input type="text" class="md-input" ng-model="newNhanSu.bang_cap.giay_phep_lai_xe_quan_su.so_bang" md-input />
+	                                            </div>
+	                                        </div>
+	                                        <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_giay_phep_lai_xe_quan_su">
+	                                            <div class="uk-form-row">
+	                                                <label>Trung tâm đào tạo</label>
+	                                                <input type="text" class="md-input" ng-model="newNhanSu.bang_cap.giay_phep_lai_xe_quan_su.trung_tam_dao_tao" md-input />
+	                                            </div>
+	                                        </div>
+	                                        <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_giay_phep_lai_xe_quan_su">
+                                                <div class="uk-form-stacked">
+                                                    <label for="kUI_dropdown_static">Ngày cấp</label>
+                                                    <input kendo-date-picker k-ng-model="newNhanSu.bang_cap.giay_phep_lai_xe_quan_su.ngay_cap" k-format="'dd/MM/yyyy'" style="width: 100%;" />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_giay_phep_lai_xe_quan_su">
+                                                <div class="uk-form-stacked">
+                                                    <label for="kUI_dropdown_static">Ngày hết hạn</label>
+                                                    <input kendo-date-picker k-ng-model="newNhanSu.bang_cap.giay_phep_lai_xe_quan_su.ngay_het_han" k-format="'dd/MM/yyyy'" style="width: 100%;" />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-1">
+                                                <input type="checkbox" icheck ng-model="kOptions.isVisible_chung_chi_cau_khung" /> Chứng chỉ vận hành cẩu khung
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_chung_chi_cau_khung">
+	                                            <div class="uk-form-row">
+	                                                <label>Số bằng</label>
+	                                                <input type="text" class="md-input" ng-model="newNhanSu.bang_cap.chung_chi_cau_khung.so_bang" md-input />
+	                                            </div>
+	                                        </div>
+	                                        <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_chung_chi_cau_khung">
+	                                            <div class="uk-form-row">
+	                                                <label>Trung tâm đào tạo</label>
+	                                                <input type="text" class="md-input" ng-model="newNhanSu.bang_cap.chung_chi_cau_khung.trung_tam_dao_tao" md-input />
+	                                            </div>
+	                                        </div>
+	                                        <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_chung_chi_cau_khung">
+                                                <div class="uk-form-stacked">
+                                                    <label for="kUI_dropdown_static">Ngày cấp</label>
+                                                    <input kendo-date-picker k-ng-model="newNhanSu.bang_cap.chung_chi_cau_khung.ngay_cap" k-format="'dd/MM/yyyy'" style="width: 100%;" />
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-medium-1-2 uk-margin-medium-top" ng-show="kOptions.isVisible_chung_chi_cau_khung">
+                                                <div class="uk-form-stacked">
+                                                    <label for="kUI_dropdown_static">Ngày hết hạn</label>
+                                                    <input kendo-date-picker k-ng-model="newNhanSu.bang_cap.chung_chi_cau_khung.ngay_het_han" k-format="'dd/MM/yyyy'" style="width: 100%;" />
+                                                </div>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    <h3 class="uk-accordion-title">Thành phần gia đình</h3>
+                                    <div class="uk-accordion-content">
+                                        <div class="uk-grid uk-margin-medium-bottom" data-uk-grid-margin ng-repeat="item in newNhanSu.thanh_phan_gia_dinh track by $index">
+	                                        <div class="uk-width-medium-1-2">
+                                                <div class="uk-form-stacked">
+                                                    <label for="kUI_dropdown_static">Quan hệ</label>
+                                                    <select kendo-combo-box style="width: 100%;"
+                                                        ng-model="newNhanSu.thanh_phan_gia_dinh[$index].quan_he"
+                                                        k-filter="'contains'"
+                                                        k-data-source="resource.quan_he" 
+                                                        k-on-change="utils.kendoOnChangeRestrictValues(kendoEvent, 'thanh_phan_gia_dinh')">
+                                                    </select>
+                                                </div>
+	                                    	</div>
+	                                    	<div class="uk-width-medium-1-2">
+	                                    		<div class="uk-form-stacked">
+                                                    <label for="kUI_dropdown_static">Ngày sinh</label>
+                                                    <input kendo-date-picker k-ng-model="newNhanSu.thanh_phan_gia_dinh[$index].ngay_sinh" k-format="'dd/MM/yyyy'" style="width: 100%;" />
+                                                </div>
+                                            </div>
+	                                    	<div class="uk-width-3-5">
+                                                <label for="user_bio">Họ tên</label>
+                                                <input type="text" class="md-input" ng-model="newNhanSu.thanh_phan_gia_dinh[$index].ho_ten" md-input />
+                                            </div>                                      
+                                            <div class="uk-width-2-5">
+                                                <label for="user_bio">Điện thoại</label>
+                                                <input type="text" class="md-input" ng-model="newNhanSu.thanh_phan_gia_dinh[$index].so_dien_thoai" md-input />
+                                            </div>
+                                            <div class="uk-width-1-1">
+                                                <label for="user_bio">Địa chỉ</label>
+                                                <input type="text" class="md-input" ng-model="newNhanSu.thanh_phan_gia_dinh[$index].dia_chi" md-input />
+                                            </div> 
+                                            <div class="uk-width-2-5">
+                                                <label for="user_bio">Nghề nghiệp</label>
+                                                <input type="text" class="md-input" ng-model="newNhanSu.thanh_phan_gia_dinh[$index].nghe_nghiep" md-input />
+                                            </div>
+                                            <div class="uk-width-3-5">
+                                                <label for="user_bio">Nơi làm việc/học tập</label>
+                                                <input type="text" class="md-input" ng-model="newNhanSu.thanh_phan_gia_dinh[$index].noi_cong_tac" md-input />
+                                            </div>
+                                            <div class="uk-width-medium-1-1">
+                                                <a class="md-btn md-btn-flat md-btn-flat-primary no-animate" ng-click="utils.removeThanhPhanGiaDinh($index)" ng-show="newNhanSu.thanh_phan_gia_dinh.length>1">Xóa bỏ</a>
+					                            <a class="md-btn md-btn-flat md-btn-flat-primary no-animate" ng-click="utils.addNewThanhPhanGiaDinh()" ng-show="$last">Thêm mới</a>
+                                                
+					                        </div>                                             
+                                        </div>
+                                    </div>
+                                    <h3 class="uk-accordion-title">Ghi chú</h3>
+                                    <div class="uk-accordion-content">
+                                        <div class="uk-grid uk-margin-medium-bottom" data-uk-grid-margin>
+                                            <div class="uk-width-1-1">
+                                                <label for="user_bio">Mô tả</label>
+                                                <textarea id="user_bio" class="md-input" name="user_bio" cols="10" rows="2" md-input ng-model="newNhanSu.mo_ta"></textarea>
+                                            </div>
+                                            <div class="uk-width-1-1">
+                                                <label for="user_bio">Ghi chú</label>
+                                                <textarea id="user_bio" class="md-input" name="user_bio" cols="10" rows="2" md-input ng-model="newNhanSu.ghi_chu"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>

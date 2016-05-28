@@ -1,0 +1,7 @@
+<h3>Metadata:</h3>
+<p>Được tạo bởi {{ _helpers.resolveUser(data.nguoi_tao) | displayName }}</p>
+<p>{{ data.ngay_tao | displayDate:'relative' }} ({{ data.ngay_tao | displayDate:'calendar' }})</p>
+<div ng-show="data.ngay_cap_nhat_cuoi">
+	<p>Cập nhật lần cuối bởi {{ _helpers.resolveUser(data.nguoi_cap_nhat_cuoi) | displayName }}</p>    
+    <p>{{ data.ngay_cap_nhat_cuoi | displayDate}} ({{ data.ngay_cap_nhat_cuoi | displayDate:'calendar' }})</p>
+</div>

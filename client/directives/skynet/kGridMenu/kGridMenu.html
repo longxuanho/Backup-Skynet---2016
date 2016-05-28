@@ -1,0 +1,505 @@
+<div class="md-card" ng-class="{'topbar-double-height': pageOptions.topBarHeight=='x2', 'below-hidden-topbar': !pageOptions.isDisplayTopBar}">
+    <div class="md-card-content">
+        <ul id="menu" 
+            kendo-menu
+            k-data-source="kendoMenu.dataSource"
+            k-orientation="'horizontal'"
+            k-on-select="onSelect(kendoEvent)"
+            k-rebind="kendoMenu">
+        </ul>
+    </div>
+</div>
+
+<!-- CÁC THIẾT LẬP CHUNG -->
+<div class="uk-modal" id="modal_menu_data_generalSettings">
+    <div class="uk-modal-dialog">
+        <div class="uk-modal-header">
+            <h3 class="uk-modal-title">Thiết Lập Chung</h3>
+        </div>
+        <p>
+            Tại đây bạn có thể thay đổi các thiết lập về cấu hình của bảng dữ liệu về các tính năng tương tác của người dùng với dữ liệu, gồm các thao tác chọn, nhóm và copy.
+        </p>
+        <div class="uk-grid">
+            <div class="uk-width-medium-1-1">
+                <span class="icheck-inline">
+                    <input id="cb_menu_data_generalSettings_isSelectable" class="iCheckInput" type="checkbox" icheck ng-model="menuOptions.isSelectable"/>
+                    <label for="cb_menu_data_generalSettings_isSelectable" class="inline-label">Cho phép chọn dữ liệu</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1" ng-show="menuOptions.isSelectable">
+                <span class="icheck-inline" style="margin:0;">
+                    <input id="radio_isSelectable_mode_menu" type="radio" icheck ng-model="gridData.kGrid.kOptions.selectable" value="'row'" ng-value="'row'"/>
+                    <label for="radio_isSelectable_mode_menu" class="inline-label">Theo hàng</label>
+                </span>
+                <span class="icheck-inline" style="margin:0;">
+                    <input  id="radio_isSelectable_mode_row" type="radio" icheck ng-model="gridData.kGrid.kOptions.selectable" value="'cell'" ng-value="'cell'"/>
+                    <label for="radio_isSelectable_mode_row" class="inline-label">Theo ô</label>
+                </span>
+                <span class="icheck-inline" style="margin:0;">
+                    <input id="radio_isSelectable_mode_multipleRow" type="radio" icheck ng-model="gridData.kGrid.kOptions.selectable" value="'multiple, row'" ng-value="'multiple, row'"/>
+                    <label for="radio_isSelectable_mode_multipleRow" class="inline-label">Theo nhiều hàng</label>
+                </span>
+                <span class="icheck-inline" style="margin:0;">
+                    <input id="radio_isSelectable_mode_multipleCell" type="radio" icheck ng-model="gridData.kGrid.kOptions.selectable" value="'multiple, cell'" ng-value="'multiple, cell'"/>
+                    <label for="radio_isSelectable_mode_multipleCell" class="inline-label">Theo nhiều ô</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1" ng-show="menuOptions.isSelectable">
+                <span class="icheck-inline">
+                    <input id="cb_menu_data_generalSettings_isAllowCopy" class="iCheckInput" type="checkbox" icheck ng-model="menuOptions.isAllowCopy"/>
+                    <label for="cb_menu_data_generalSettings_isAllowCopy" class="inline-label">Cho phép copy dữ liệu đã chọn</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1" ng-show="menuOptions.isAllowCopy">
+                <span class="icheck-inline" style="margin:0;">
+                    <input id="radio_isAllowCopy_delimeter_t" type="radio" icheck ng-model="gridData.kGrid.kOptions.allowCopy.delimeter" value="'\t'" ng-value="'\t'"/>
+                    <label for="radio_isAllowCopy_delimeter_t" class="inline-label">Phân tách [\t]</label>
+                </span>
+                <span class="icheck-inline" style="margin:0;">
+                    <input  id="radio_isAllowCopy_delimeter_comma" type="radio" icheck ng-model="gridData.kGrid.kOptions.allowCopy.delimeter" value="','" ng-value="','"/>
+                    <label for="radio_isAllowCopy_delimeter_comma" class="inline-label">Phân tách [\,]</label>
+                </span>
+                <span class="icheck-inline" style="margin:0;">
+                    <input id="radio_isAllowCopy_delimeter_semicolon" type="radio" icheck ng-model="gridData.kGrid.kOptions.allowCopy.delimeter" value="';'" ng-value="';'"/>
+                    <label for="radio_isAllowCopy_delimeter_semicolon" class="inline-label">Phân tách [\;]</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1 uk-margin-medium-top">
+                <span class="icheck-inline">
+                    <input id="cb_menu_data_generalSettings_groupable" class="iCheckInput" type="checkbox" icheck ng-model="menuOptions.isGroupable"/>
+                    <label for="cb_menu_data_generalSettings_groupable" class="inline-label">Cho phép nhóm dữ liệu</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1" ng-show="menuOptions.isGroupable">
+                <span class="icheck-inline">
+                    <input id="cb_menu_data_generalSettings_groupable_showFooter" class="iCheckInput" type="checkbox" icheck ng-model="gridData.kGrid.kOptions.groupable.showFooter"/>
+                    <label for="cb_menu_data_generalSettings_groupable_showFooter" class="inline-label">Hiện các thống kê theo nội dung được nhóm</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1 uk-margin-medium-top">
+                <span class="icheck-inline">
+                    <input id="cb_menu_data_generalSettings_scrollable" class="iCheckInput" type="checkbox" icheck ng-model="menuOptions.isScrollable"/>
+                    <label for="cb_menu_data_generalSettings_scrollable" class="inline-label">Cho phép cuộn trang</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1" ng-show="menuOptions.isScrollable">
+                <span class="icheck-inline">
+                    <input id="cb_menu_data_generalSettings_scrollable_virtual" class="iCheckInput" type="checkbox" icheck ng-model="gridData.kGrid.kOptions.scrollable.virtual"/>
+                    <label for="cb_menu_data_generalSettings_scrollable_virtual" class="inline-label">Sử dụng ảo hóa để cuộn trang</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1 uk-margin-medium-top">
+                <span class="icheck-inline">
+                    <input id="cb_menu_data_generalSettings_resizable" class="iCheckInput" type="checkbox" icheck ng-model="gridData.kGrid.kOptions.resizable"/>
+                    <label for="cb_menu_data_generalSettings_resizable" class="inline-label">Cho phép thay đổi kích thước cột dữ liệu</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1">
+                <span class="icheck-inline">
+                    <input id="cb_menu_data_generalSettings_reorderable" class="iCheckInput" type="checkbox" icheck ng-model="gridData.kGrid.kOptions.reorderable"/>
+                    <label for="cb_menu_data_generalSettings_reorderable" class="inline-label">Cho phép thay đổi thứ tự các cột dữ liệu</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1">
+                <span class="icheck-inline">
+                    <input id="cb_menu_data_generalSettings_navigatable" class="iCheckInput" type="checkbox" icheck ng-model="gridData.kGrid.kOptions.navigatable"/>
+                    <label for="cb_menu_data_generalSettings_navigatable" class="inline-label">Cho phép thao tác dữ liệu bằng keyboard</label>
+                </span>
+            </div>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button type="button" class="md-btn md-btn-flat uk-modal-close">Close</button>
+            <button type="button" class="md-btn md-btn-flat md-btn-flat-primary">Action</button>
+        </div>
+    </div>
+</div>
+
+<!-- GIỚI HẠN DỮ LIỆU -->
+<div class="uk-modal" id="modal_menu_data_limitDataRange">
+    <div class="uk-modal-dialog">
+        <div class="uk-modal-header">
+            <h3 class="uk-modal-title">Giới hạn dữ liệu</h3>
+        </div>
+        <p>
+            Skynet cho phép bạn thay đổi các thiết lập về giới hạn truy vấn dữ liệu theo các lĩnh vực mà bạn quan tâm. Bạn có thể thay đổi các thiết lập tại đây hoặc trên thanh dữ liệu, cũng như đặt chúng là mặc định cho thiết bị mà bạn đang dùng.
+        </p>
+        <div class="uk-grid">
+            <div class="uk-width-medium-1-1">
+                Giới hạn dữ liệu theo:
+            </div>
+            <div class="uk-width-medium-1-1 uk-margin-small-top">                
+                <!-- <select kendo-drop-down-list ng-model="pageOptions.filters.filterNhomId" k-data-text-field="'ten'" k-data-value-field="'_id'" k-filter="'contains'" k-data-source="pageOptions.filters.nhomsFilterSource" k-rebind="pageOptions.filters" k-readonly="true"> -->
+                <select kendo-drop-down-list k-value="pageOptions.filters.filterNhomId" k-data-text-field="'ten'" k-data-value-field="'_id'" k-filter="'contains'" k-data-source="pageOptions.filters.nhomsFilterSource" k-rebind="pageOptions.filters" k-readonly="true" k-on-change="utils.setFilterNhomId(kendoEvent)">
+                </select>
+            </div>
+            <div class="uk-width-medium-1-1 uk-margin-small-top">
+                <span class="icheck-inline">
+                    <input id="cb_menu_data_limitDataRange_isDisplayFullWidthGrid" class="iCheckInput" type="checkbox" icheck ng-model="pageOptions.isDisplayFullWidthGrid"/>
+                    <label for="cb_menu_data_limitDataRange_isDisplayFullWidthGrid" class="inline-label">Tối đa vùng dữ liệu</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1">
+                <span class="icheck-inline">
+                    <input id="cb_menu_data_limitDataRange_isDisplayTopBar" class="iCheckInput" type="checkbox" icheck ng-model="pageOptions.isDisplayTopBar"/>
+                    <label for="cb_menu_data_limitDataRange_isDisplayTopBar" class="inline-label">Hiển thị thanh dữ liệu</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1 uk-margin-small-top">
+                Kích thước:
+            </div>
+            <div class="uk-width-medium-1-3">                
+                <select kendo-drop-down-list ng-model="pageOptions.topBarHeight">
+                    <option value='x1'>Chiều cao x1</option>
+                    <option value='x2'>Chiều cao x2</option>
+                </select>
+            </div>
+            <div class="uk-width-medium-1-1 uk-margin-small-top">
+                Các mục hiển thị trên thanh dữ liệu:
+            </div>
+            <div class="uk-width-medium-1-3" ng-repeat="nhom in pageOptions.filters.nhomsFilterSource">
+                <span class="icheck-inline">
+                    <input id="cb_menu_data_limitDataRange_filterNhomId_{{nhom._id}}" class="iCheckInput" type="checkbox" icheck ng-model="nhom.isActive"/>
+                    <label for="cb_menu_data_limitDataRange_filterNhomId_{{nhom._id}}" class="inline-label">{{nhom.ten}}</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1 uk-margin-medium-top">
+                <span class="icheck-inline">
+                    <input id="cb_menu_data_limitDataRange_isSaveToLocalDevice" class="iCheckInput" type="checkbox" icheck ng-model="menuOptions.isSaveDataLimitToLocalDevice"/>
+                    <label for="cb_menu_data_limitDataRange_isSaveToLocalDevice" class="inline-label">Lưu các thiết lập này trên thiết bị của tôi</label>
+                </span>
+            </div>         
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button type="button" class="md-btn md-btn-flat uk-modal-close">Đóng</button>
+            <button type="button" class="md-btn md-btn-flat no-animate" ng-click="utils.resetDataConfigToLocalDevice()" ng-hide="menuOptions.isSaveDataLimitToLocalDevice">Reset</button>
+            <button type="button" class="md-btn md-btn-flat md-btn-flat-primary no-animate" ng-click="utils.saveDataConfigToLocalDevice()" ng-show="menuOptions.isSaveDataLimitToLocalDevice">Lưu thiết lập</button>
+        </div>
+    </div>
+</div>
+
+<!-- TRÍCH XUẤT EXCEL -->
+<div class="uk-modal" id="modal_menu_data_saveAsExcel">
+    <div class="uk-modal-dialog">
+        <div class="uk-modal-header">
+            <h3 class="uk-modal-title">Xuất Dữ Liệu Dạng Excel</h3>
+        </div>
+        <p>
+            Bạn có thể trích xuất các dữ liệu trong bảng thống kê dưới dạng bảng tính Excel (.xlsx). Skynet cung cấp các tùy chọn về trích xuất dữ liệu và tính tương thích dưới đây.
+        </p>
+        <div class="uk-grid">
+            <div class="uk-width-medium-1-1 uk-margin-small-top">
+                <div class="uk-form-row">
+                    <label>Tên file lưu trữ</label>
+                    <input type="text" class="md-input label-fixed" ng-model="gridData.kGrid.kOptions.excel.fileName" md-input />
+                </div>
+            </div>
+            <div class="uk-width-medium-1-1 uk-margin-medium-top">
+                Nguồn dữ liệu:
+                <span class="icheck-inline" style="margin:0;">
+                    <input id="radio_menu_data_data_saveAsExcel_allPages" type="radio" icheck ng-model="gridData.kGrid.kOptions.excel.allPages" value="true" ng-value="true"/>
+                    <label for="radio_menu_data_data_saveAsExcel_allPages" class="inline-label">Tất cả các trang</label>
+                </span>
+                <span class="icheck-inline" style="margin:0;">
+                    <input id="radio_menu_data_data_saveAsExcel_currPage" type="radio" icheck ng-model="gridData.kGrid.kOptions.excel.allPages" value="false" ng-value="false"/>
+                    <label for="radio_menu_data_data_saveAsExcel_currPage" class="inline-label">Trang hiện tại</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1">
+                <span class="icheck-inline">
+                    <input id="cb_menu_data_data_saveAsExcel_filterable" class="iCheckInput" type="checkbox" icheck ng-model="gridData.kGrid.kOptions.excel.filterable"/>
+                    <label for="cb_menu_data_data_saveAsExcel_filterable" class="inline-label">Tích hợp cùng bộ lọc dữ liệu</label>
+                </span>
+            </div>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button type="button" class="md-btn md-btn-flat uk-modal-close">Đóng</button>
+            <button type="button" class="md-btn md-btn-flat md-btn-flat-primary" ng-click="utils.saveAsExcel()">Tải về</button>
+        </div>
+    </div>
+</div>
+
+<!-- TRÍCH XUẤT PDF -->
+<div class="uk-modal" id="modal_menu_data_saveAsPdf">
+    <div class="uk-modal-dialog">
+        <div class="uk-modal-header">
+            <h3 class="uk-modal-title">Xuất Dữ Liệu Dạng Pdf</h3>
+        </div>
+        <p>
+            Bạn có thể trích xuất các dữ liệu trong bảng thống kê dưới dạng file Pdf. Lưu ý rằng tính năng trích xuất [Tất cả các trang] sẽ không khả dụng nếu bạn đang ở chế độ [Sử dụng ảo hóa để cuộn trang].
+        </p>
+        <div class="uk-grid">
+            <div class="uk-width-medium-1-1 uk-margin-small-top">
+                <div class="uk-form-row">
+                    <label>Tên file lưu trữ</label>
+                    <input type="text" class="md-input label-fixed" ng-model="gridData.kGrid.kOptions.pdf.fileName" md-input />
+                </div>
+            </div>
+            <div class="uk-width-medium-1-1 uk-margin-medium-top">
+                Nguồn dữ liệu:
+                <span class="icheck-inline" style="margin:0;">
+                    <input id="radio_menu_data_data_saveAsPdf_allPages" type="radio" icheck ng-model="gridData.kGrid.kOptions.pdf.allPages" value="true" ng-value="true"/>
+                    <label for="radio_menu_data_data_saveAsPdf_allPages" class="inline-label">Tất cả các trang </label>
+                </span>
+                <span class="icheck-inline" style="margin:0;">
+                    <input id="radio_menu_data_data_saveAsPdf_currPage" type="radio" icheck ng-model="gridData.kGrid.kOptions.pdf.allPages" value="false" ng-value="false"/>
+                    <label for="radio_menu_data_data_saveAsPdf_currPage" class="inline-label">Trang hiện tại </label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1 uk-margin-small-top">
+                Kích cỡ:
+                <span class="icheck-inline" style="margin:0;">
+                    <input id="radio_menu_data_data_saveAsPdf_paperSize_A4" type="radio" icheck ng-model="gridData.kGrid.kOptions.pdf.paperSize" value="'A4'" ng-value="'A4'"/>
+                    <label for="radio_menu_data_data_saveAsPdf_paperSize_A4" class="inline-label">A4 </label>
+                </span>
+                <span class="icheck-inline" style="margin:0;">
+                    <input id="radio_menu_data_data_saveAsPdf_paperSize_A3" type="radio" icheck ng-model="gridData.kGrid.kOptions.pdf.paperSize" value="'A3'" ng-value="'A3'"/>
+                    <label for="radio_menu_data_data_saveAsPdf_paperSize_A3" class="inline-label">A3 </label>
+                </span>
+                <span class="icheck-inline" style="margin:0;">
+                    <input id="radio_menu_data_data_saveAsPdf_paperSize_auto" type="radio" icheck ng-model="gridData.kGrid.kOptions.pdf.paperSize" value="'auto'" ng-value="'auto'"/>
+                    <label for="radio_menu_data_data_saveAsPdf_paperSize_auto" class="inline-label">Tối ưu </label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1 uk-margin-small-top" ng-show="gridData.kGrid.kOptions.pdf.paperSize!=='auto'">
+                Khổ giấy:
+                <span class="icheck-inline" style="margin:0;">
+                    <input id="radio_menu_data_data_saveAsPdf_landscape" type="radio" icheck ng-model="gridData.kGrid.kOptions.pdf.landscape" value="true" ng-value="true"/>
+                    <label for="radio_menu_data_data_saveAsPdf_landscape" class="inline-label">Ngang </label>
+                </span>
+                <span class="icheck-inline" style="margin:0;">
+                    <input id="radio_menu_data_data_saveAsPdf_orriented" type="radio" icheck ng-model="gridData.kGrid.kOptions.pdf.landscape" value="false" ng-value="false"/>
+                    <label for="radio_menu_data_data_saveAsPdf_orriented" class="inline-label">Dọc </label>
+                </span>
+            </div>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button type="button" class="md-btn md-btn-flat uk-modal-close">Đóng</button>
+            <button type="button" class="md-btn md-btn-flat md-btn-flat-primary" ng-click="utils.saveAsPdf()">Tải về</button>
+        </div>
+    </div>
+</div>
+
+<!-- CÁC CỘT HIỂN THỊ -->
+<div class="uk-modal" id="modal_menu_display_columns">
+    <div class="uk-modal-dialog">
+        <div class="uk-modal-header">
+            <h3 class="uk-modal-title">Thiết lập cột dữ liệu</h3>
+        </div>
+        <p>
+            Để thêm/bớt các cột dữ liệu hiển thị trong bảng tổng hợp, xin vui lòng tích chọn vào các cột được hiển thị, và bỏ chọn ở các cột không được hiển thị trong danh sách liệt kê dưới đây.
+        </p>
+        <div class="uk-grid">
+            <div class="uk-width-medium-1-2" ng-repeat="item in columnStatus">
+                <span class="icheck-inline">
+                    <input id="cb_menu_display_columns_{{item.field}}" class="iCheckInput" type="checkbox" icheck ng-model="item.isActive"/>
+                    <label for="cb_menu_display_columns_{{item.field}}" class="inline-label">{{item.title}}</label>
+                </span>
+            </div>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button type="button" class="md-btn md-btn-flat uk-modal-close">Close</button>
+            <button type="button" class="md-btn md-btn-flat md-btn-flat-primary" ng-click="utils.updateColumnStatus()">Action</button>
+        </div>
+    </div>
+</div>
+
+<!-- PHÂN TRANG -->
+<div class="uk-modal" id="modal_menu_display_paging">
+    <div class="uk-modal-dialog">
+        <div class="uk-modal-header">
+            <h3 class="uk-modal-title">Thiết lập phân trang</h3>
+        </div>
+        <p>Các thiết lập về phân trang cho bảng dữ liệu được thay đổi tại đây. Lưu ý rằng các thay đổi này chỉ khả dụng khi bạn đã kích hoạt tính năng Cho phép phân trang.</p>
+        <div class="uk-grid">
+            <div class="uk-width-medium-1-1">
+                <span class="icheck-inline">
+                    <input class="iCheckInput" type="checkbox" icheck ng-model="menuOptions.isPageable"/>
+                    <label class="inline-label">Cho phép phân trang</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1" ng-show="menuOptions.isPageable">
+                <span class="icheck-inline">
+                    <input class="iCheckInput" type="checkbox" icheck ng-model="gridData.kGrid.kOptions.pageable.numeric"/>
+                    <label class="inline-label">Nút điều hướng dạng số</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1" ng-show="menuOptions.isPageable">
+                <span class="icheck-inline">
+                    <input class="iCheckInput" type="checkbox" icheck ng-model="gridData.kGrid.kOptions.pageable.previousNext"/>
+                    <label class="inline-label">Các nút điều hướng cơ bản</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1" ng-show="menuOptions.isPageable">
+                <span class="icheck-inline">
+                    <input class="iCheckInput" type="checkbox" icheck ng-model="gridData.kGrid.kOptions.pageable.input"/>
+                    <label class="inline-label">Nhập số trang để điều hướng</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1" ng-show="menuOptions.isPageable">
+                <span class="icheck-inline">
+                    <input class="iCheckInput" type="checkbox" icheck ng-model="gridData.kGrid.kOptions.pageable.refresh"/>
+                    <label for="checkbox_demo_inline_1" class="inline-label">Hiện nút làm mới dữ liệu</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1" ng-show="menuOptions.isPageable">
+                <span class="icheck-inline">
+                    <input class="iCheckInput" type="checkbox" icheck ng-model="gridData.kGrid.kOptions.pageable.pageSizes"/>
+                    <label class="inline-label">Tùy biến số mục mỗi trang</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1" ng-show="menuOptions.isPageable">
+                <span class="icheck-inline">
+                    <input class="iCheckInput" type="checkbox" icheck ng-model="gridData.kGrid.kOptions.pageable.info"/>
+                    <label for="checkbox_demo_inline_1" class="inline-label">Hiện thông tin phân trang dữ liệu</label>
+                </span>
+            </div>           
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button type="button" class="md-btn md-btn-flat uk-modal-close">Close</button>
+            <button type="button" class="md-btn md-btn-flat md-btn-flat-primary">Action</button>
+        </div>
+    </div>
+</div>
+
+<!-- LỌC VÀ SẮP XẾP -->
+<div class="uk-modal" id="modal_menu_display_filterAndSort">
+    <div class="uk-modal-dialog">
+        <div class="uk-modal-header">
+            <h3 class="uk-modal-title">Lọc &amp; Sắp xếp</h3>
+        </div>
+        <p>
+            Tại đây bạn có thể thay đổi các thông tin cấu hình của bảng dữ liệu, bao gồm các tùy chọn cho bộ lọc dữ liệu và sắp xếp.
+        </p>
+        <div class="uk-grid">
+            <div class="uk-width-medium-1-1">
+                <span class="icheck-inline">
+                    <input id="cb_display_filterAndSort_isSortable" class="iCheckInput" type="checkbox" icheck ng-model="menuOptions.isSortable"/>
+                    <label for="cb_display_filterAndSort_isSortable" class="inline-label">Cho phép sắp xếp</label>
+                </span>
+            </div>
+
+            <div class="uk-width-medium-1-1" ng-show="menuOptions.isSortable">
+                <span class="icheck-inline">
+                    <input id="cb_display_filterAndSort_multipleMode" class="iCheckInput" type="checkbox" icheck ng-model="menuOptions.isSortable_MultipleMode"/>
+                    <label for="cb_display_filterAndSort_multipleMode" class="inline-label">Sắp xếp nhiều tầng</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1 uk-margin-medium-top">
+                <span class="icheck-inline">
+                    <input id="cb_display_filterAndSort_isFilterable" class="iCheckInput" type="checkbox" icheck ng-model="menuOptions.isFilterable"/>
+                    <label for="cb_display_filterAndSort_isFilterable" class="inline-label">Cho phép lọc dữ liệu</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1" ng-show="menuOptions.isFilterable">
+                <span class="icheck-inline" style="margin:0;">
+                    <input id="radio_isFilterable_mode_menu" type="radio" icheck ng-model="gridData.kGrid.kOptions.filterable.mode" value="'menu'" ng-value="'menu'"/>
+                    <label for="radio_isFilterable_mode_menu" class="inline-label">Theo menu</label>
+                </span>
+                <span class="icheck-inline" style="margin:0;">
+                    <input  id="radio_isFilterable_mode_row" type="radio" icheck ng-model="gridData.kGrid.kOptions.filterable.mode" value="'row'" ng-value="'row'"/>
+                    <label for="radio_isFilterable_mode_row" class="inline-label">Theo hàng mới</label>
+                </span>
+                <span class="icheck-inline" style="margin:0;">
+                    <input id="radio_isFilterable_mode_both" type="radio" icheck ng-model="gridData.kGrid.kOptions.filterable.mode" value="'menu, row'" ng-value="'menu, row'"/>
+                    <label for="radio_isFilterable_mode_both" class="inline-label">Cả hai</label>
+                </span>
+            </div>
+            <div class="uk-width-medium-1-1" ng-show="menuOptions.isFilterable">
+                <span class="icheck-inline">
+                    <input id="cb_display_filterAndSort_extra" class="iCheckInput" type="checkbox" icheck ng-model="gridData.kGrid.kOptions.filterable.extra"/>
+                    <label for="cb_display_filterAndSort_extra" class="inline-label">Kết hợp nhiều điều kiện</label>
+                </span>
+            </div>   
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button type="button" class="md-btn md-btn-flat uk-modal-close">Close</button>
+            <button type="button" class="md-btn md-btn-flat md-btn-flat-primary">Action</button>
+        </div>
+    </div>
+</div>
+
+<!-- LƯU CẤU HÌNH HIỆN TẠI -->
+<div class="uk-modal" id="modal_menu_configs_saveCurrent">
+    <div class="uk-modal-dialog">
+        <div class="uk-modal-header">
+            <h3 class="uk-modal-title">Lưu Cấu Hình Hiện Tại</h3>
+        </div>
+        <p>Các thiết lập về bảng dữ liệu có thể được lưu vào danh sách để tiện truy vấn về sau. Hãy lưu lại các cấu hình thường dùng của bạn để tiết kiệm thời gian.</p>
+        <div class="uk-grid">
+            <div class="uk-width-medium-2-3 uk-margin-small-top">
+                <div class="uk-form-row">
+                    <label>Tên cấu hình</label>
+                    <input type="text" class="md-input label-fixed" ng-model="menuOptions.newConfig.ten" md-input />
+                </div>
+            </div>
+            <div class="uk-width-medium-1-3 uk-margin-small-top">
+                <div class="uk-form-row">
+                    <label>Mức ưu tiên</label>
+                    <input type="number" class="md-input label-fixed" ng-model="menuOptions.newConfig.order" md-input />
+                </div>
+            </div> 
+            <div class="uk-width-medium-1-1 uk-margin-medium-top" ng-show="isAdmin">
+                <input type="checkbox" icheck ng-model="menuOptions.newConfig.isPublic"/> Đồng bộ tới tất cả người dùng
+            </div>           
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button type="button" class="md-btn md-btn-flat uk-modal-close">Đóng</button>
+            <button type="button" class="md-btn md-btn-flat md-btn-flat-primary" ng-click="utils.saveKendoGridConfig()">Lưu</button>
+        </div>
+    </div>
+</div>
+
+<!-- QUẢN LÝ CẤU HÌNH ĐÃ LƯU -->
+<div class="uk-modal" id="modal_menu_configs_manage">
+    <div class="uk-modal-dialog">
+        <div class="uk-modal-header">
+            <h3 class="uk-modal-title">Quản Lý Cấu Hình Của Tôi</h3>
+        </div>
+        <p>Các cấu hình mà bạn đã lưu được liệt kê trong danh sách dưới đây. Bạn có thể chỉnh sửa tiêu đề, thay đổi thứ tự ưu tiên hoặc xóa cấu hình đã chọn.</p>
+        <div class="uk-grid">
+            <div class="uk-width-medium-1-1">
+                <table class="uk-table">
+                    <thead>
+                    <tr>
+                        <th class="uk-width-4-10">TIÊU ĐỀ</th>
+                        <th class="uk-width-3-10 uk-text-right">MỨC ƯU TIÊN</th>
+                        <th class="uk-width-3-10 uk-text-right">TÁC VỤ</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in UserConfigSettings">
+                            <td>
+                                <span class="uk-form-row no-animate" ng-hide="utils.manageUserConfig.isOnEditMode&&(utils.manageUserConfig.selectedConfig._id===item._id)" ng-class="{'uk-text-primary': item._id===menuOptions.currentConfig._id}">
+                                    {{item.ten}} 
+                                </span>
+                                <div class="no-animate" ng-show="utils.manageUserConfig.isOnEditMode&&(utils.manageUserConfig.selectedConfig._id===item._id)">
+                                    <input type="text" class="md-input label-fixed" ng-model="utils.manageUserConfig.selectedConfig.ten" md-input />
+                                </div>
+                            </td>
+                            <td class="uk-text-right">
+                                <span class="uk-form-row no-animate" ng-hide="utils.manageUserConfig.isOnEditMode&&(utils.manageUserConfig.selectedConfig._id===item._id)">
+                                    {{item.order}}
+                                </span>
+                                <div class="no-animate" ng-show="utils.manageUserConfig.isOnEditMode&&(utils.manageUserConfig.selectedConfig._id===item._id)">
+                                    <input type="number" class="md-input label-fixed" ng-model="utils.manageUserConfig.selectedConfig.order" md-input />
+                                </div>
+                            </td>
+                            <td class="uk-text-right">
+                                <!-- EDIT -->
+                                <i class="md-icon material-icons no-animate" ng-hide="utils.manageUserConfig.isOnEditMode&&(utils.manageUserConfig.selectedConfig._id===item._id)" ng-click="utils.manageUserConfig.editConfig(item._id)">&#xE254;</i>
+                                <!-- DONE -->
+                                <i class="md-icon material-icons no-animate" ng-show="utils.manageUserConfig.isOnEditMode&&(utils.manageUserConfig.selectedConfig._id===item._id)" ng-click="utils.manageUserConfig.saveConfig(item._id)">&#xE876;</i>
+                                <!-- REMOVE -->
+                                <i class="md-icon material-icons no-animate" ng-hide="utils.manageUserConfig.isOnEditMode" ng-click="utils.manageUserConfig.removeConfig(item._id)">&#xE872;</i>
+                            </td>
+                        </tr> 
+                        <tr ng-if="!UserConfigSettings.length"><td>Chưa có cấu hình để hiển thị</td><td></td><td></td></tr>                      
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button type="button" class="md-btn md-btn-flat uk-modal-close">Đóng</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,122 @@
+<div class="uk-modal" id="modal_thietbis_details">
+    <div class="uk-modal-dialog">
+        <ul class="uk-tab" data-uk-tab="{connect:'#tabs_anim6', animation:'scale'}">
+            <li class="uk-active"><a href="#">Thông tin chung</a></li>
+            <li><a href="#" ng-show="source.ho_so_tb.thong_tin_chung.bao_hanh.thoi_gian_bao_hanh">Bảo hành</a></li>
+            <li><a href="#">Thông số KT</a></li>
+            <li><a href="#" ng-show="source.mo_ta || source.ghi_chu">Ghi chú</a></li>
+        </ul>
+        <ul id="tabs_anim6" class="uk-switcher uk-margin">
+            <li>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-medium-1-1">
+                        <ul class="md-list">
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading">Mã TB</span>
+                                    <span class="uk-text-small uk-text-muted">{{source.ma_tb.ma_tb}} <span ng-show="source.ma_tb.ma_topx">: (TOPX) {{source.ma_tb.ma_topx}}</span>  <span ng-show="source.ma_tb.ma_maximo">: (MAXIMO) {{source.ma_tb.ma_maximo}}</span> <span ng-show="source.ma_tb.ma_topovn">: (TOPO) {{source.ma_tb.ma_topovn}}</span></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading">Phân loại</span>
+                                    <span class="uk-text-small uk-text-muted">{{source.phan_loai.nhom.ten}} > {{source.phan_loai.chung_loai.ten}} > {{source.phan_loai.loai.ten}}</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading">Xuất xứ</span>
+                                    <span class="uk-text-small uk-text-muted no-animate" ng-hide="source.ho_so_tb.thong_tin_chung.model_tb.ten">Hãng sản xuất: {{(source.ho_so_tb.thong_tin_chung.hang_san_xuat.ten)?source.ho_so_tb.thong_tin_chung.hang_san_xuat.ten:'-'}}</span>
+                                    <span class="uk-text-small uk-text-muted no-animate" ng-show="source.ho_so_tb.thong_tin_chung.model_tb.ten">Hãng sản xuất / Model: {{source.ho_so_tb.thong_tin_chung.hang_san_xuat.ten}} / {{source.ho_so_tb.thong_tin_chung.model_tb.ten}}</span>
+                                    <span class="uk-text-small uk-text-muted">Vendor: {{source.ho_so_tb.thong_tin_chung.vendor.ten}}</span>
+                                    <span class="uk-text-small uk-text-muted">Năm sản xuất / sử dụng: {{(source.ho_so_tb.thong_tin_chung.nam_sx)?source.ho_so_tb.thong_tin_chung.nam_sx:'-'}} / {{(source.ho_so_tb.thong_tin_chung.nam_sd)?source.ho_so_tb.thong_tin_chung.nam_sd:'-'}}</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading">Quản lý</span>
+                                    <span class="uk-text-small uk-text-muted">{{source.don_vi_quan_ly.ten}} ({{source.don_vi_quan_ly.ma}})</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading">Sở hữu</span>
+                                    <span class="uk-text-small uk-text-muted">{{source.don_vi_so_huu.ten}} ({{source.don_vi_so_huu.ma}})</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading">Địa bàn hoạt động</span>
+                                    <span class="uk-text-small uk-text-muted">Khu vực: {{source.dia_ban_hoat_dong.ten}} ({{source.dia_ban_hoat_dong.ma}})</span>
+                                    <span class="uk-text-small uk-text-muted">Trạng thái: {{source.status}}</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading">Thông tin đăng ký</span>
+                                    <span class="uk-text-small uk-text-muted">ID: {{source._id}}</span>
+                                    <span class="uk-text-small uk-text-muted" ng-show="(source.ho_so_tb.thong_tin_chung.so_khung || source.ho_so_tb.thong_tin_chung.so_may)">Số khung / Số máy: {{(source.ho_so_tb.thong_tin_chung.so_khung)?source.ho_so_tb.thong_tin_chung.so_khung:'-'}} / {{(source.ho_so_tb.thong_tin_chung.so_may)?source.ho_so_tb.thong_tin_chung.so_may:'-'}}</span>
+                                    <span class="uk-text-small uk-text-muted" ng-show="source.ho_so_tb.thong_tin_chung.so_dang_ky">Số đăng ký: {{source.ho_so_tb.thong_tin_chung.so_dang_ky}}</span>
+                                    <span class="uk-text-small uk-text-muted" ng-show="source.ho_so_tb.thong_tin_chungkyso_dang_kiem">Số đăng kiểm: {{source.ho_so_tb.thong_tin_chung.so_dang_kiem}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-medium-1-1">
+                        <ul class="md-list">
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading">Trạng thái</span>
+                                    <span class="uk-text-small uk-text-muted">{{utils.isTrongThoiGianBaoHanh()?'Trong thời gian bảo hành':'Hết thời hạn bảo hành'}}</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading">Bàn giao</span>
+                                    <span class="uk-text-small uk-text-muted">Ngày bàn giao: {{source.ho_so_tb.thong_tin_chung.bao_hanh.ngay_ban_giao|displayDate:'standard'}}</span>
+                                    <span class="uk-text-small uk-text-muted">Tình trạng: {{source.ho_so_tb.thong_tin_chung.bao_hanh.tinh_trang_ban_giao}}</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading">Thời gian bảo hành</span>
+                                    <span class="uk-text-small uk-text-muted">Thời gian: {{source.ho_so_tb.thong_tin_chung.bao_hanh.thoi_gian_bao_hanh}} tháng</span>
+                                    <span class="uk-text-small uk-text-muted">Từ ngày {{source.ho_so_tb.thong_tin_chung.bao_hanh.thoi_gian_bat_dau|displayDate:'standard'}} đến {{source.ho_so_tb.thong_tin_chung.bao_hanh.thoi_gian_ket_thuc|displayDate:'standard'}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li></li>
+            <li>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-medium-1-1">
+                        <ul class="md-list">
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading" ng-show="source.mo_ta">Mô tả</span>
+                                    <span class="uk-text-small uk-text-muted">{{source.mo_ta}}</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading" ng-show="source.ghi_chu">Ghi chú</span>
+                                    <span class="uk-text-small uk-text-muted">{{source.ghi_chu}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="uk-modal-footer uk-text-right">
+            <button type="button" class="md-btn md-btn-flat uk-text-warning no-animate" ng-click="utils.goToEditPage()" ng-show="utils.isEditable()">Cập nhật</button>
+            <button type="button" class="md-btn md-btn-flat" ng-click="utils.closeModal()">Đóng</button>
+        </div>
+    </div>
+</div>

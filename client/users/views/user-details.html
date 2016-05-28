@@ -1,0 +1,21 @@
+<h3>Hello {{user._id}}!</h3>
+<a ui-sref="manage_users">Back</a>
+<div>
+    ROLE:
+    <div ng-repeat="(group, roles) in availableRoles">
+        {{group}}:
+        <span ng-repeat="role in roles"> 
+        	<button ng-class="{'role_active': utils.isInCurrentUserRoles(role, user.roles[group])}" ng-click="helpers.setUserRole(user._id, user.roles, group, role)">{{role}}</button>
+        </span>
+    </div>
+</div>
+<hr>
+New Password:
+<input type="text" ng-model="resetPassword.newPassword">
+<button ng-click="helpers.resetUserPassword(user._id, resetPassword.newPassword)">Reset Password</button>
+<hr>
+Confirm User ID:
+<input type="text" ng-model="confirmUserIdToRemove">
+<button ng-click="helpers.removeUser(user._id)">Remove User!</button>
+<hr>
+{{user}}

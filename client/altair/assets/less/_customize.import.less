@@ -1,0 +1,1069 @@
+// DEFAULT THEME
+@app_theme_default_primary: #1976D2;
+@app_theme_default_accent: #7CB342;
+@app_default_boder_color: #e6e6e6;
+
+
+.color {
+    &-background {
+        &-default_theme {
+            background-color: @app_theme_default_primary;
+        }
+        &-app_theme_a {
+            background-color: @app_theme_a_color;
+        }
+        &-app_theme_b {
+            background-color: @app_theme_b_color;
+        }
+        &-app_theme_c {
+            background-color: @app_theme_c_color;
+        }
+        &-app_theme_d {
+            background-color: @app_theme_d_color;
+        }
+        &-app_theme_e {
+            background-color: @app_theme_e_color;
+        }
+        &-app_theme_f {
+            background-color: @app_theme_f_color;
+        }
+        &-app_theme_g {
+            background-color: @app_theme_g_color;
+        }
+    }
+    
+}
+
+.md-raised {
+    transition: all 280ms @md_easing;
+    &:hover {
+        .boxShadowHelper(3);
+    }
+}
+
+pre {
+    white-space: pre-wrap;       /* CSS 3 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+.uk-sortable {
+    padding: 0;
+    list-style: none;
+}
+
+.color-fade {
+    color: rgba(0,0,0,.12) !important;
+}
+
+.md-icon-fade {
+    font-size: 24px;
+    line-height: 32px !important;
+    height: 32px !important;
+    color: rgba(0,0,0,.15); //rgba(0,0,0,.12)
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 280ms ease-out,color 280ms ease-out;
+    width: 32px !important;
+    text-align: center;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+        color: @text_primary_color;
+        background: rgba(0,0,0,.08);
+    }
+    &-light {
+        color: @white;
+        &:hover,
+        &:focus,
+        &:active {
+            color: @white;
+            background: rgba(0,0,0,.2);
+        }
+    }
+    &-dark {
+        color: @text_primary_color;
+        &:hover,
+        &:focus,
+        &:active {
+            color: @text_primary_color;
+            background: rgba(255,255,255,.6);
+        }
+    }
+    & + & {
+        margin-left: 4px;
+    }
+    &-btn {
+        display: inline-block;
+        &.active {
+            .md-icon {
+                color: @text_primary_color;
+                background: rgba(0,0,0,.08);
+            }
+        }
+    }
+    button& {
+        background: none;
+        border: none;
+        outline: none;
+    }
+}
+
+.md-icon-inactive {
+    color: rgba(0,0,0,.15) !important;
+}
+
+.md-card-list-wrapper {
+    .md-card-list {
+        .md-card-list-item-modified {
+            &-matb {
+                float: left;
+                padding: 0 8px;
+                width: 120px;
+                line-height: 34px;
+                > span {
+                    .truncate_line();
+                }
+                @media @screen_xlarge_max {
+                    display: none;
+                }
+            }
+            &-loaitb {
+                float: left;
+                padding: 0 8px;
+                width: 140px;
+                line-height: 34px;
+                > span {
+                    .truncate_line();
+                }
+                @media @screen_xlarge_max {
+                    display: none;
+                }
+            }
+            &-dukien {
+                float: left;
+                padding: 0 8px;
+                width: 100px;
+                line-height: 34px;
+                > span {
+                    .truncate_line();
+                }
+                @media @screen_xlarge_max {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.default_theme {
+    .md-icon-active {
+        color: @app_theme_default_primary !important;
+    }
+    .skynet-logo-small {
+        margin: 8px auto;
+        width: 32px;
+        height: 32px;
+        background-image: url("assets/img/main-logo/main_logo_small_theme_default.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .skynet-logo-main {
+        margin: 10px 4px;
+        width: 100px;
+        height: 20px;
+        background-image: url("assets/img/main-logo/skynet_main_logo_theme_default.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .color-primary {
+        color: @app_theme_default_primary !important;
+    }
+    .color-accent {
+        color: @accent_color !important;
+    }
+    .foreground-color-accent {
+        color: @app_theme_default_primary;
+    }
+    .background-color-primary {
+        background-color: @app_theme_default_primary;
+    }
+    .background-color-accent {
+        background-color: @app_theme_default_primary;
+    }
+    .border-color-accent {
+        border-color: @app_theme_default_primary;
+        background: @app_theme_default_primary;
+    }
+    .iradio_md.checked {
+        border-color: @accent_color;
+        &:after {
+            background: @accent_color;
+        }
+    }
+    .icheckbox_md.hover.checked,
+    .icheckbox_md.checked {
+        background:@accent_color !important;
+        border-color: @accent_color !important;
+    }
+    // KENDO WITH CUSTOM THEME
+    // .k-grid-filter.k-state-active {
+    //     background-color: @app_theme_default_accent
+    // }
+    .k-grid-toolbar,
+    .k-grouping-header {
+        background-color: @app_theme_default_primary;
+    }
+    .k-grid .k-header .k-button {
+        background-color: @app_theme_default_primary;
+        border-color: @app_theme_default_primary;
+        &:hover {
+            background-color: lighten(@app_theme_default_primary, 5%);
+            border-color: lighten(@app_theme_default_primary, 5%);
+        }
+    }
+
+    .k-header.k-grid-toolbar {
+        border-color: darken(@app_theme_default_primary, 6%);
+    }
+    .k-grouping-header .k-group-indicator {
+        background-color: darken(@app_theme_default_primary, 12%);
+        border-color: darken(@app_theme_default_primary, 12%);
+    }
+    .k-grid tr.k-state-selected {
+        background-color: @accent_color;
+        > td {
+            border-color: @app_default_boder_color;
+        }
+    }
+    .k-grid tr.k-state-selected:hover td, .k-grid tr:hover .k-state-selected {
+        background-color: lighten(@accent_color, 10%);
+        border-color: lighten(@accent_color, 10%);
+    }
+    .k-pager-numbers .k-state-selected {
+        border-color: @app_theme_default_primary transparent transparent;
+        color: @app_theme_default_primary;
+    }
+    .k-calendar .k-header {
+        background-color: @app_theme_default_primary;
+    }
+    .k-calendar td.k-state-focused.k-state-selected {
+        webkit-box-shadow: none;
+        box-shadow: none;
+    }
+    .k-calendar .k-today.k-state-hover {
+        background-color: lighten(@app_theme_default_primary, 20%);;
+    }
+    .k-calendar td.k-state-selected {
+        &.k-state-hover {
+            background-color: lighten(@app_theme_default_primary, 10%);
+        }
+        background-color: @app_theme_default_primary;
+    }  
+}
+
+// THEME A
+// @app_theme_a_color:         @md-color-indigo-500;
+// @app_theme_a_colorLight:    @md-color-indigo-50;
+// @app_theme_a_colorDark:     @md-color-indigo-700;
+// @app_theme_a_colorAccent:   @md-color-pink-A200;
+
+.app_theme_a {
+    .md-icon-active {
+        color: @app_theme_a_color !important;
+    }
+    .skynet-logo-small {
+        margin: 8px auto;
+        width: 32px;
+        height: 32px;
+        background-image: url("assets/img/main-logo/main_logo_small_theme_a.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .skynet-logo-main {
+        margin: 10px 4px;
+        width: 100px;
+        height: 20px;
+        background-image: url("assets/img/main-logo/skynet_main_logo_theme_a.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .color-primary {
+        color: @app_theme_a_color !important;
+    }
+    .color-accent {
+        color: @app_theme_a_colorAccent !important;
+    }
+    .foreground-color-accent {
+        color: @app_theme_a_colorAccent;
+    }
+    .background-color-primary {
+        background-color: @app_theme_a_color;
+    }
+    .background-color-accent {
+        background-color: @app_theme_a_colorAccent;
+    }
+    .border-color-accent {
+        border-color: @app_theme_a_colorAccent;
+    }
+    .iradio_md.checked {
+        border-color: @app_theme_a_colorAccent;
+        &:after {
+            background: @app_theme_a_colorAccent;
+        }
+    }
+    .icheckbox_md.hover.checked,
+    .icheckbox_md.checked {
+        background: @app_theme_a_colorAccent !important;
+        border-color: @app_theme_a_colorAccent !important;
+    }
+    // KENDO CUSTOM WITH THEME
+    // .k-grid-filter.k-state-active {
+    //     background-color: @app_theme_a_colorAccent
+    // }
+    
+    
+    .k-grid-toolbar,
+    .k-grouping-header {
+        background-color: @app_theme_a_color;
+    }
+    .k-grid .k-header .k-button {
+        background-color: @app_theme_a_color;
+        border-color: @app_theme_a_color;
+        &:hover {
+            background-color: lighten(@app_theme_a_color, 5%);
+            border-color: lighten(@app_theme_a_color, 5%);
+        }
+    }
+    .k-header.k-grid-toolbar {
+        border-color: darken(@app_theme_a_color, 6%);
+    }
+    .k-grouping-header .k-group-indicator {
+        background-color: darken(@app_theme_a_color, 12%);
+        border-color: darken(@app_theme_a_color, 12%);
+    }
+    .k-grid tr.k-state-selected {
+        background-color: @app_theme_a_colorAccent;
+        > td {
+            border-color: @app_default_boder_color;
+        }
+    }
+    .k-grid tr.k-state-selected:hover td, .k-grid tr:hover .k-state-selected {
+        background-color: lighten(@app_theme_a_colorAccent, 10%);
+        border-color: lighten(@app_theme_a_colorAccent, 10%);
+    }
+    .k-pager-numbers .k-state-selected {
+        border-color: @app_theme_a_color transparent transparent;
+        color: @app_theme_a_color;
+    }
+    .k-calendar .k-header {
+        background-color: @app_theme_a_color;
+    }
+    .k-calendar td.k-state-focused.k-state-selected {
+        webkit-box-shadow: none;
+        box-shadow: none;
+    }
+    .k-calendar .k-today.k-state-hover {
+        background-color: lighten(@app_theme_a_color, 20%);;
+    }
+    .k-calendar td.k-state-selected {
+        &.k-state-hover {
+            background-color: lighten(@app_theme_a_color, 10%);
+        }
+        background-color: @app_theme_a_color;
+    } 
+}
+
+// theme B
+// @app_theme_b_color:         @md-color-deep-purple-500;
+// @app_theme_b_colorLight:    @md-color-deep-purple-50;
+// @app_theme_b_colorDark:     @md-color-deep-purple-700;
+// @app_theme_b_colorAccent:   @md-color-cyan-500;
+.app_theme_b {
+    .md-icon-active {
+        color: @app_theme_b_color !important;
+    }
+    .skynet-logo-small {
+        margin: 8px auto;
+        width: 32px;
+        height: 32px;
+        background-image: url("assets/img/main-logo/main_logo_small_theme_b.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .skynet-logo-main {
+        margin: 10px 4px;
+        width: 100px;
+        height: 20px;
+        background-image: url("assets/img/main-logo/skynet_main_logo_theme_b.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .color-primary {
+        color: @app_theme_b_color !important;
+    }
+    .color-accent {
+        color: @app_theme_b_colorAccent !important;
+    }
+    .foreground-color-accent {
+        color: @app_theme_b_colorAccent;
+    }
+    .background-color-primary {
+        background-color: @app_theme_b_color;
+    }
+    .background-color-accent {
+        background-color: @app_theme_b_colorAccent;
+    }
+    .border-color-accent {
+        border-color: @app_theme_b_colorAccent;
+    }
+    .iradio_md.checked {
+        border-color: @app_theme_b_colorAccent;
+        &:after {
+            background: @app_theme_b_colorAccent;
+        }
+    }
+    .icheckbox_md.hover.checked,
+    .icheckbox_md.checked {
+        background: @app_theme_b_colorAccent !important;
+        border-color: @app_theme_b_colorAccent !important;
+    }
+    // KENDO CUSTOM WITH THEME
+    // .k-grid-filter.k-state-active {
+    //     background-color: @app_theme_b_colorAccent
+    // }
+    .k-popup .k-primary {
+        color: @app_theme_b_color !important;
+    }
+    .k-grid-toolbar,
+    .k-grouping-header {
+        background-color: @app_theme_b_color;
+    }
+    .k-grid .k-header .k-button {
+        background-color: @app_theme_b_color;
+        border-color: @app_theme_b_color;
+        &:hover {
+            background-color: lighten(@app_theme_b_color, 10%);
+            border-color: lighten(@app_theme_b_color, 10%);
+        }
+    }
+    .k-header.k-grid-toolbar {
+        border-color: darken(@app_theme_b_color, 6%);
+    }
+    .k-grouping-header .k-group-indicator {
+        background-color: darken(@app_theme_b_color, 12%);
+        border-color: darken(@app_theme_b_color, 12%);
+    }
+    .k-grid tr.k-state-selected {
+        background-color: @app_theme_b_colorAccent;
+        > td {
+            border-color: @app_default_boder_color;
+        }
+    }
+    .k-grid tr.k-state-selected:hover td, .k-grid tr:hover .k-state-selected {
+        background-color: lighten(@app_theme_b_colorAccent, 10%);
+        border-color: lighten(@app_theme_b_colorAccent, 10%);
+    }
+    .k-pager-numbers .k-state-selected {
+        border-color: @app_theme_b_color transparent transparent;
+        color: @app_theme_b_color;
+    }
+    .k-calendar .k-header {
+        background-color: @app_theme_b_color;
+    }
+    .k-calendar td.k-state-focused.k-state-selected {
+        webkit-box-shadow: none;
+        box-shadow: none;
+    }
+    .k-calendar .k-today.k-state-hover {
+        background-color: lighten(@app_theme_b_color, 20%);;
+    }
+    .k-calendar td.k-state-selected {
+        &.k-state-hover {
+            background-color: lighten(@app_theme_b_color, 10%);
+        }
+        background-color: @app_theme_b_color;
+    } 
+}
+
+// theme c
+// @app_theme_c_color: @md-color-brown-700;
+// @app_theme_c_colorLight: @md-color-brown-50;
+// @app_theme_c_colorDark: @md-color-brown-900;
+// @app_theme_c_colorAccent: @md-color-blue-600;
+.app_theme_c {
+    .md-icon-active {
+        color: @app_theme_c_color !important;
+    }
+    .skynet-logo-small {
+        margin: 8px auto;
+        width: 32px;
+        height: 32px;
+        background-image: url("assets/img/main-logo/main_logo_small_theme_c.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .skynet-logo-main {
+        margin: 10px 4px;
+        width: 100px;
+        height: 20px;
+        background-image: url("assets/img/main-logo/skynet_main_logo_theme_c.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .color-primary {
+        color: @app_theme_c_color !important;
+    }
+    .color-accent {
+        color: @app_theme_c_colorAccent !important;
+    }
+    .foreground-color-accent {
+        color: @app_theme_c_colorAccent;
+    }
+    .background-color-primary {
+        background-color: @app_theme_c_color;
+    }
+    .background-color-accent {
+        background-color: @app_theme_c_colorAccent;
+    }
+    .border-color-accent {
+        border-color: @app_theme_c_colorAccent;
+    }
+    .iradio_md.checked {
+        border-color: @app_theme_c_colorAccent;
+        &:after {
+            background: @app_theme_c_colorAccent;
+        }
+    }
+    .icheckbox_md.hover.checked,
+    .icheckbox_md.checked {
+        background: @app_theme_c_colorAccent !important;
+        border-color: @app_theme_c_colorAccent !important;
+    }
+    // KENDO CUSTOM WITH THEME
+    // .k-grid-filter.k-state-active {
+    //     background-color: @app_theme_c_colorAccent
+    // }
+    .k-popup .k-primary {
+        color: @app_theme_c_color !important;
+    }
+    .k-grid-toolbar,
+    .k-grouping-header {
+        background-color: @app_theme_c_color;
+    }
+    .k-grid .k-header .k-button {
+        background-color: @app_theme_c_color;
+        border-color: @app_theme_c_color;
+        &:hover {
+            background-color: lighten(@app_theme_c_color, 10%);
+            border-color: lighten(@app_theme_c_color, 10%);
+        }
+    }
+    .k-header.k-grid-toolbar {
+        border-color: darken(@app_theme_c_color, 6%);
+    }
+    .k-grouping-header .k-group-indicator {
+        background-color: darken(@app_theme_c_color, 8%);
+        border-color: darken(@app_theme_c_color, 8%);
+    }
+    .k-grid tr.k-state-selected {
+        background-color: @app_theme_c_colorAccent;
+        > td {
+            border-color: @app_default_boder_color;
+        }
+    }
+    .k-grid tr.k-state-selected:hover td, .k-grid tr:hover .k-state-selected {
+        background-color: lighten(@app_theme_c_colorAccent, 10%);
+        border-color: lighten(@app_theme_c_colorAccent, 10%);
+    }
+    .k-pager-numbers .k-state-selected {
+        border-color: @app_theme_c_color transparent transparent;
+        color: @app_theme_c_color;
+    }
+    .k-calendar .k-header {
+        background-color: @app_theme_c_color;
+    }
+    .k-calendar td.k-state-focused.k-state-selected {
+        webkit-box-shadow: none;
+        box-shadow: none;
+    }
+    .k-calendar .k-today.k-state-hover {
+        background-color: lighten(@app_theme_c_color, 20%);;
+    }
+    .k-calendar td.k-state-selected {
+        &.k-state-hover {
+            background-color: lighten(@app_theme_c_color, 10%);
+        }
+        background-color: @app_theme_c_color;
+    } 
+}
+
+// THEME D
+// @app_theme_d_color: @md-color-cyan-600;
+// @app_theme_d_colorLight: @md-color-cyan-50;
+// @app_theme_d_colorDark: @md-color-cyan-800;
+// @app_theme_d_colorAccent: @md-color-deep-purple-500;
+.app_theme_d {
+    .md-icon-active {
+        color: @app_theme_d_color !important;
+    }
+    .skynet-logo-small {
+        margin: 8px auto;
+        width: 32px;
+        height: 32px;
+        background-image: url("assets/img/main-logo/main_logo_small_theme_d.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .skynet-logo-main {
+        margin: 10px 4px;
+        width: 100px;
+        height: 20px;
+        background-image: url("assets/img/main-logo/skynet_main_logo_theme_d.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .color-primary {
+        color: @app_theme_d_color !important;
+    }
+    .color-accent {
+        color: @app_theme_d_colorAccent !important;
+    }
+    .foreground-color-accent {
+        color: @app_theme_d_colorAccent;
+    }
+    .background-color-primary {
+        background-color: @app_theme_d_color;
+    }
+    .background-color-accent {
+        background-color: @app_theme_d_colorAccent;
+    }
+    .border-color-accent {
+        border-color: @app_theme_d_colorAccent;
+    }
+    .iradio_md.checked {
+        border-color: @app_theme_d_colorAccent;
+        &:after {
+            background: @app_theme_d_colorAccent;
+        }
+    }
+    .icheckbox_md.hover.checked,
+    .icheckbox_md.checked {
+        background: @app_theme_d_colorAccent !important;
+        border-color: @app_theme_d_colorAccent !important;
+    }
+    // KENDO CUSTOM WITH THEME
+    // .k-grid-filter.k-state-active {
+    //     background-color: @app_theme_d_colorAccent
+    // }
+    .k-popup .k-primary {
+        color: @app_theme_d_color !important;
+    }
+    .k-grid-toolbar,
+    .k-grouping-header {
+        background-color: @app_theme_d_color;
+    }
+    .k-grid .k-header .k-button {
+        background-color: @app_theme_d_color;
+        border-color: @app_theme_d_color;
+        &:hover {
+            background-color: lighten(@app_theme_d_color, 8%);
+            border-color: lighten(@app_theme_d_color, 8%);
+        }
+    }
+    .k-header.k-grid-toolbar {
+        border-color: darken(@app_theme_d_color, 6%);
+    }
+    .k-grouping-header .k-group-indicator {
+        background-color: darken(@app_theme_d_color, 12%);
+        border-color: darken(@app_theme_d_color, 12%);
+    }
+    .k-grid tr.k-state-selected {
+        background-color: @app_theme_d_colorAccent;
+        > td {
+            border-color: @app_default_boder_color;
+        }
+    }
+    .k-grid tr.k-state-selected:hover td, .k-grid tr:hover .k-state-selected {
+        background-color: lighten(@app_theme_d_colorAccent, 10%);
+        border-color: lighten(@app_theme_d_colorAccent, 10%);
+    }
+    .k-pager-numbers .k-state-selected {
+        border-color: @app_theme_d_color transparent transparent;
+        color: @app_theme_d_color;
+    }
+    .k-calendar .k-header {
+        background-color: @app_theme_d_color;
+    }
+    .k-calendar td.k-state-focused.k-state-selected {
+        webkit-box-shadow: none;
+        box-shadow: none;
+    }
+    .k-calendar .k-today.k-state-hover {
+        background-color: lighten(@app_theme_d_color, 20%);;
+    }
+    .k-calendar td.k-state-selected {
+        &.k-state-hover {
+            background-color: lighten(@app_theme_d_color, 10%);
+        }
+        background-color: @app_theme_d_color;
+    } 
+}
+
+// THEME E
+// @app_theme_e_color: @md-color-blue-grey-500;
+// @app_theme_e_colorLight: @md-color-red-50;
+// @app_theme_e_colorDark: @md-color-blue-grey-700;
+// @app_theme_e_colorAccent: @md-color-red-600;
+.app_theme_e {
+    .md-icon-active {
+        color: @app_theme_e_color !important;
+    }
+    .skynet-logo-small {
+        margin: 8px auto;
+        width: 32px;
+        height: 32px;
+        background-image: url("assets/img/main-logo/main_logo_small_theme_e.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .skynet-logo-main {
+        margin: 10px 4px;
+        width: 100px;
+        height: 20px;
+        background-image: url("assets/img/main-logo/skynet_main_logo_theme_e.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .color-primary {
+        color: @app_theme_e_color !important;
+    }
+    .color-accent {
+        color: @app_theme_e_colorAccent !important;
+    }
+    .foreground-color-accent {
+        color: @app_theme_e_colorAccent;
+    }
+    .background-color-primary {
+        background-color: @app_theme_e_color;
+    }
+    .background-color-accent {
+        background-color: @app_theme_e_colorAccent;
+    }
+    .border-color-accent {
+        border-color: @app_theme_e_colorAccent;
+    }
+    .iradio_md.checked {
+        border-color: @app_theme_e_colorAccent;
+        &:after {
+            background: @app_theme_e_colorAccent;
+        }
+    }
+    .icheckbox_md.hover.checked,
+    .icheckbox_md.checked {
+        background: @app_theme_e_colorAccent !important;
+        border-color: @app_theme_e_colorAccent !important;
+    }
+    // KENDO CUSTOM WITH THEME
+    // .k-grid-filter.k-state-active {
+    //     background-color: @app_theme_e_colorAccent
+    // }
+    .k-popup .k-primary {
+        color: @app_theme_e_color !important;
+    }
+    .k-grid-toolbar,
+    .k-grouping-header {
+        background-color: @app_theme_e_color;
+    }
+    .k-grid .k-header .k-button {
+        background-color: @app_theme_e_color;
+        border-color: @app_theme_e_color;
+        &:hover {
+            background-color: lighten(@app_theme_e_color, 10%);
+            border-color: lighten(@app_theme_e_color, 10%);
+        }
+    }
+    .k-header.k-grid-toolbar {
+        border-color: darken(@app_theme_e_color, 6%);
+    }
+    .k-grouping-header .k-group-indicator {
+        background-color: darken(@app_theme_e_color, 12%);
+        border-color: darken(@app_theme_e_color, 12%);
+    }
+    .k-grid tr.k-state-selected {
+        background-color: @app_theme_e_colorAccent;
+        > td {
+            border-color: @app_default_boder_color;
+        }
+    }
+    .k-grid tr.k-state-selected:hover td, .k-grid tr:hover .k-state-selected {
+        background-color: lighten(@app_theme_e_colorAccent, 10%);
+        border-color: lighten(@app_theme_e_colorAccent, 10%);
+    }
+    .k-pager-numbers .k-state-selected {
+        border-color: @app_theme_e_color transparent transparent;
+        color: @app_theme_e_color;
+    }
+    .k-calendar .k-header {
+        background-color: @app_theme_e_color;
+    }
+    .k-calendar td.k-state-focused.k-state-selected {
+        webkit-box-shadow: none;
+        box-shadow: none;
+    }
+    .k-calendar .k-today.k-state-hover {
+        background-color: lighten(@app_theme_e_color, 20%);;
+    }
+    .k-calendar td.k-state-selected {
+        &.k-state-hover {
+            background-color: lighten(@app_theme_e_color, 10%);
+        }
+        background-color: @app_theme_e_color;
+    } 
+}
+
+// THEME F
+// @app_theme_f_color: @md-color-grey-800;
+// @app_theme_f_colorLight: @md-color-light-green-50;
+// @app_theme_f_colorDark: @md-color-grey-900;
+// @app_theme_f_colorAccent: @md-color-light-green-600;
+.app_theme_f {
+    .md-icon-active {
+        color: @app_theme_f_color !important;
+    }
+    .skynet-logo-small {
+        margin: 8px auto;
+        width: 32px;
+        height: 32px;
+        background-image: url("assets/img/main-logo/main_logo_small_theme_f.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .skynet-logo-main {
+        margin: 10px 4px;
+        width: 100px;
+        height: 20px;
+        background-image: url("assets/img/main-logo/skynet_main_logo_theme_f.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .color-primary {
+        color: @app_theme_f_color !important;
+    }
+    .color-accent {
+        color: @app_theme_f_colorAccent !important;
+    }
+    .foreground-color-accent {
+        color: @app_theme_f_colorAccent;
+    }
+    .background-color-primary {
+        background-color: @app_theme_f_color;
+    }
+    .background-color-accent {
+        background-color: @app_theme_f_colorAccent;
+    }
+    .border-color-accent {
+        border-color: @app_theme_f_colorAccent;
+    }
+    .iradio_md.checked {
+        border-color: @app_theme_f_colorAccent;
+        &:after {
+            background: @app_theme_f_colorAccent;
+        }
+    }
+    .icheckbox_md.hover.checked,
+    .icheckbox_md.checked {
+        background: @app_theme_f_colorAccent !important;
+        border-color: @app_theme_f_colorAccent !important;
+    }
+    // KENDO CUSTOM WITH THEME
+    // .k-grid-filter.k-state-active {
+    //     background-color: @app_theme_f_colorAccent
+    // }
+    .k-popup .k-primary {
+        color: @app_theme_f_color !important;
+    }
+    .k-grid-toolbar,
+    .k-grouping-header {
+        background-color: @app_theme_f_color;
+    }
+    .k-grid .k-header .k-button {
+        background-color: @app_theme_f_color;
+        border-color: @app_theme_f_color;
+        &:hover {
+            background-color: lighten(@app_theme_f_color, 10%);
+            border-color: lighten(@app_theme_f_color, 10%);
+        }
+    }
+    .k-header.k-grid-toolbar {
+        border-color: darken(@app_theme_f_color, 6%);
+    }
+    .k-grouping-header .k-group-indicator {
+        background-color: darken(@app_theme_f_color, 12%);
+        border-color: darken(@app_theme_f_color, 12%);
+    }
+    .k-grid tr.k-state-selected {
+        background-color: @app_theme_f_colorAccent;
+        > td {
+            border-color: @app_default_boder_color;
+        }
+    }
+    .k-grid tr.k-state-selected:hover td, .k-grid tr:hover .k-state-selected {
+        background-color: lighten(@app_theme_f_colorAccent, 10%);
+        border-color: lighten(@app_theme_f_colorAccent, 10%);
+    }
+    .k-pager-numbers .k-state-selected {
+        border-color: @app_theme_f_color transparent transparent;
+        color: @app_theme_f_color;
+    }
+    .k-calendar .k-header {
+        background-color: @app_theme_f_color;
+    }
+    .k-calendar td.k-state-focused.k-state-selected {
+        webkit-box-shadow: none;
+        box-shadow: none;
+    }
+    .k-calendar .k-today.k-state-hover {
+        background-color: lighten(@app_theme_f_color, 20%);;
+    }
+    .k-calendar td.k-state-selected {
+        &.k-state-hover {
+            background-color: lighten(@app_theme_f_color, 10%);
+        }
+        background-color: @app_theme_f_color;
+    } 
+}
+
+// THEME G
+// @app_theme_g_color: @md-color-purple-600;
+// @app_theme_g_colorLight: @md-color-purple-50;
+// @app_theme_g_colorDark: @md-color-purple-700;
+// @app_theme_g_colorAccent: @md-color-green-500;
+.app_theme_g {
+    .md-icon-active {
+        color: @app_theme_g_color !important;
+    }
+    .skynet-logo-small {
+        margin: 8px auto;
+        width: 32px;
+        height: 32px;
+        background-image: url("assets/img/main-logo/main_logo_small_theme_g.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .skynet-logo-main {
+        margin: 10px 4px;
+        width: 100px;
+        height: 20px;
+        background-image: url("assets/img/main-logo/skynet_main_logo_theme_g.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .color-primary {
+        color: @app_theme_g_color !important;
+    }
+    .color-accent {
+        color: @app_theme_g_colorAccent !important;
+    }
+    .foreground-color-accent {
+        color: @app_theme_g_colorAccent;
+    }
+    .background-color-primary {
+        background-color: @app_theme_g_color;
+    }
+    .background-color-accent {
+        background-color: @app_theme_g_colorAccent;
+    }
+    .border-color-accent {
+        border-color: @app_theme_g_colorAccent;
+    }
+    .iradio_md.checked {
+        border-color: @app_theme_g_colorAccent;
+        &:after {
+            background: @app_theme_g_colorAccent;
+        }
+    }
+    .icheckbox_md.hover.checked,
+    .icheckbox_md.checked {
+        background: @app_theme_g_colorAccent !important;
+        border-color: @app_theme_g_colorAccent !important;
+    }
+    // KENDO CUSTOM WITH THEME
+    // .k-grid-filter.k-state-active {
+    //     background-color: @app_theme_g_colorAccent
+    // }
+    .k-popup .k-primary {
+        color: @app_theme_g_color !important;
+    }
+    .k-grid-toolbar,
+    .k-grouping-header {
+        background-color: @app_theme_g_color;
+    }
+    .k-grid .k-header .k-button {
+        background-color: @app_theme_g_color;
+        border-color: @app_theme_g_color;
+        &:hover {
+            background-color: lighten(@app_theme_g_color, 8%);
+            border-color: lighten(@app_theme_g_color, 8%);
+        }
+    }
+    .k-header.k-grid-toolbar {
+        border-color: darken(@app_theme_g_color, 6%);
+    }
+    .k-grouping-header .k-group-indicator {
+        background-color: darken(@app_theme_g_color, 12%);
+        border-color: darken(@app_theme_g_color, 12%);
+    }
+    .k-grid tr.k-state-selected {
+        background-color: @app_theme_g_colorAccent;
+        > td {
+            border-color: @app_default_boder_color;
+        }
+    }
+    .k-grid tr.k-state-selected:hover td, .k-grid tr:hover .k-state-selected {
+        background-color: lighten(@app_theme_g_colorAccent, 10%);
+        border-color: lighten(@app_theme_g_colorAccent, 10%);
+    }
+    .k-pager-numbers .k-state-selected {
+        border-color: @app_theme_g_color transparent transparent;
+        color: @app_theme_g_color;
+    }
+    .k-calendar .k-header {
+        background-color: @app_theme_g_color;
+    }
+    .k-calendar td.k-state-focused.k-state-selected {
+        webkit-box-shadow: none;
+        box-shadow: none;
+    }
+    .k-calendar .k-today.k-state-hover {
+        background-color: lighten(@app_theme_g_color, 20%);;
+    }
+    .k-calendar td.k-state-selected {
+        &.k-state-hover {
+            background-color: lighten(@app_theme_g_color, 10%);
+        }
+        background-color: @app_theme_g_color;
+    } 
+}
+
+.skynet-color {
+    .suachua-zone_a {
+        background-color: @md-color-pink-A100!important;
+    }
+    .suachua-zone_b {
+        background-color:  @md-color-blue-A100!important;
+    }
+    .suachua-zone_c {
+        background-color: @md-color-green-A200!important;
+    }
+    .suachua-zone_d {
+        background-color: @md-color-light-green-A100!important;
+    }
+    .suachua-zone_e {
+        background-color: @md-color-orange-A100!important;
+    }
+}

@@ -1,0 +1,14 @@
+<div id="rendered-captcha-container">Đang tải reCAPTCHA...</div>
+
+<script>
+	var onloadCallback = function() { 
+		$( "#rendered-captcha-container" ).empty();
+		reCAPTCHAR_registerId = grecaptcha.render('rendered-captcha-container', {
+	        	sitekey: reCAPTCHA.settings.publickey,
+	            theme: reCAPTCHA.settings.theme,
+	            callback: function () {
+	            return;
+	        }
+	    });
+	};
+</script>

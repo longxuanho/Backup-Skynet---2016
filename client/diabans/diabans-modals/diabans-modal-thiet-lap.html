@@ -1,0 +1,36 @@
+<div class="uk-modal" id="modal_diabans_thiet_lap">
+    <div class="uk-modal-dialog">
+        <ul class="uk-tab" data-uk-tab="{connect:'#tabs_anim6', animation:'slide-bottom'}">
+            <li class="uk-active"><a href="#">Tìm kiếm</a></li>
+            <li><a href="#">Kết quả</a></li>
+        </ul>
+        <ul id="tabs_anim6" class="uk-switcher uk-margin">
+            <li>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-medium-1-3 uk-width-large-1-2">
+                        <div class="uk-margin-bottom uk-margin-left">
+                            <div class="uk-margin-bottom">Tìm kiếm theo:</div>
+                            <select kendo-drop-down-list style="width: 100%;" ng-model="$root.searchBy" k-data-text-field="'name'" k-data-value-field="'value'" k-data-source="_data.ui.searchFields.diabans">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="uk-margin-bottom uk-margin-left">
+                    <p>
+                        <input type="radio" name="radio_demo" id="radio_demo_1" icheck ng-model="$root.orderProperty" value="1"/>
+                        <label for="radio_demo_1" class="inline-label">Tăng dần</label>
+                    </p>
+                    <p>
+                        <input type="radio" name="radio_demo" id="radio_demo_2" icheck ng-model="$root.orderProperty" value="-1"/>
+                        <label for="radio_demo_2" class="inline-label">Giảm dần</label>
+                    </p>
+                </div>
+            </li>
+        </ul>
+        <div class="uk-modal-footer uk-text-right">
+            <button type="button" class="md-btn md-btn-flat uk-modal-close">Đóng</button>
+        </div>
+    </div>
+</div>

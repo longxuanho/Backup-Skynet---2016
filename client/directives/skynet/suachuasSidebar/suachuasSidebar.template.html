@@ -1,0 +1,174 @@
+<!-- secondary sidebar -->
+<aside id="sidebar_secondary" sidebar-secondary class="tabbed_sidebar">
+    <ul class="uk-tab uk-tab-icons uk-tab-grid" data-uk-tab="{connect:'#dashboard_sidebar_tabs', animation:'slide-horizontal'}">
+        <li class="uk-active uk-width-1-3"><a href="#"><i class="material-icons">&#xE89D;</i></a></li><!-- &#xE917; &#xE90B; -->
+        <li class="uk-width-1-3 chat_sidebar_tab"><a href="#"><i class="material-icons">&#xE0B7;</i></a></li>
+        <li class="uk-width-1-3"><a href="#"><i class="material-icons">&#xE8B9;</i></a></li>
+    </ul>
+
+    <div custom-scrollbar>
+        <ul id="dashboard_sidebar_tabs" class="uk-switcher">
+            <li>
+                <div class="timeline timeline_small uk-margin-bottom">
+                    <div class="timeline_item" style="padding: 0;">
+                        <div class="timeline_content" style="padding: 0;">
+                            <div class="uk-width-medium-1-1 uk-clearfix">
+                                <div class="uk-align-medium-right" style="margin: 0;">
+                                    <i class="md-icon material-icons no-animate" ng-class="{'color-fade': !vm.pageOptions.able.decreaseNumOfLuaChons}" ng-click="vm.utils.resetTagSection()">&#xE5D5;</i>
+                                    <i class="md-icon-fade material-icons no-animate" ng-class="{'uk-text-warning': vm.pageOptions.template.flags.isLockSectionTags}" ng-click="vm.utils.toggleLockSectionTags()">{{ (!vm.pageOptions.template.flags.isLockSectionTags) ? '&#xE898;' : '&#xE899;' }}</i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline_item">
+                        <div class="timeline_icon background-color-primary"><i class="material-icons">&#xE85D;</i></div>
+                        <div class="timeline_date">
+                            <span>Giới hạn dữ liệu</span>
+                        </div>
+                        <div class="timeline_content">
+                            Bạn có thể thu hẹp vùng dữ liệu tìm kiếm bằng cách sử dụng các bộ lọc dưới đây.
+                        </div>
+                    </div>
+                    <div class="timeline_item">
+                        <div class="timeline_icon" ng-class="{'background-color-accent': vm.pageReactiveData.searchTags.length}" style="cursor: pointer;" ng-click="vm.utils.clearLimit('#limit_multi_tags')"><i class="material-icons">&#xE41D;</i></div>
+                        <div class="timeline_date">
+                            <span style="cursor: pointer;" ng-click="vm.utils.setLimitFocus('#limit_multi_tags')">Thẻ dấu (Tag)</span>
+                        </div>
+                        <!-- Chú ý stopPropagation để tránh event bubble, ngăn không cho sidebar đóng khi user thay đổi mutilselect -->
+                        <div class="timeline_content" ng-click="$event.stopPropagation();">
+                            <select kendo-multi-select id="limit_multi_tags"
+                                k-data-source="vm.dictionary.tags.dau_keo_chay_ngoai"
+                                k-filter="'contains'"
+                                k-highlight-first="false"
+                                ng-model="vm.pageReactiveData.searchTags"
+                                >
+                            </select>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="timeline_item">
+                        <div class="timeline_icon" ng-class="{'background-color-accent': vm.pageReactiveData.searchLoaitbs.length}" style="cursor: pointer;" ng-click="vm.utils.clearLimit('#limit_multi_nhom_tbs')"><i class="material-icons" >&#xE637;</i></div>
+                        <div class="timeline_date">
+                            <span style="cursor: pointer;" ng-click="vm.utils.setLimitFocus('#limit_multi_nhom_tbs')">Nhóm thiết bị</span>
+                        </div>
+                        <div class="timeline_content" ng-click="$event.stopPropagation();">
+                            <select kendo-multi-select id="limit_multi_nhom_tbs"
+                                k-data-source="vm.dictionary.loai_tbs['thiet_bi_nang']"
+                                k-filter="'contains'"
+                                k-highlight-first="false"
+                                ng-model="vm.pageReactiveData.searchLoaitbs">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="timeline_item">
+                        <div class="timeline_icon" ng-class="{'background-color-accent': vm.pageReactiveData.searchBacthis.length}" style="cursor: pointer;" ng-click="vm.utils.clearLimit('#limit_multi_bac_this')"><i class="material-icons">&#xE01D;</i></div>
+                        <div class="timeline_date">
+                            <span style="cursor: pointer;" ng-click="vm.utils.setLimitFocus('#limit_multi_bac_this')">Bậc thi</span>
+                        </div>
+                        <div class="timeline_content">
+                            <select kendo-multi-select id="limit_multi_bac_this"
+                                k-data-source="vm.dictionary.bac_this"
+                                k-filter="'contains'"
+                                k-highlight-first="true"
+                                ng-model="vm.pageReactiveData.searchBacthis">
+                            </select>
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </li>
+            <li>
+                <ul class="md-list md-list-addon chat_users">
+                    <li ng-repeat="user in usersStatus">
+                        <div class="md-list-addon-element">
+                            <span class="element-status" ng-class="{'element-status-success': user.status.online, 'element-status-warning': (!user.status.online) && (user.status.idle), 'element-status-danger': (!user.status.online) && (!user.status.idle)}"></span>
+                            <img class="md-user-image md-list-addon-avatar" src="assets/img/avatars/avatar_02_tn.png" alt=""/>
+                        </div>
+                        <div class="md-list-content">
+                            <span class="md-list-heading">{{(user.profile.name) ? user.profile.name : user.emails[0].address }}</span>
+                            <span class="uk-text-small uk-text-muted">
+                                <span class="uk-text-small uk-text-muted">
+                                    Lorem ipsumm...
+                                </span>
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h4 class="heading_c uk-margin-small-bottom uk-margin-top">General Settings</h4>
+                <ul class="md-list">
+                    <li>
+                        <div class="md-list-content">
+                            <div class="uk-float-right">
+                                <input type="checkbox" class="switchery switchery-small" ui-switch id="settings_site_online" name="settings_site_online" ng-model="vm.sSidebar.site_online" />
+                            </div>
+                            <span class="md-list-heading">Site Online</span>
+                            <span class="uk-text-muted uk-text-small">Lorem ipsum dolor sit amet&hellip;</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="md-list-content">
+                            <div class="uk-float-right">
+                                <input type="checkbox" class="switchery switchery-small" ui-switch id="settings_seo" name="settings_seo" ng-model="vm.sSidebar.seo" />
+                            </div>
+                            <span class="md-list-heading">Search Engine Friendly URLs</span>
+                            <span class="uk-text-muted uk-text-small">Lorem ipsum dolor sit amet&hellip;</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="md-list-content">
+                            <div class="uk-float-right">
+                                <input type="checkbox" class="switchery switchery-small" ui-switch id="settings_url_rewrite" name="settings_url_rewrite" ng-model="vm.sSidebar.url_rewrite" />
+                            </div>
+                            <span class="md-list-heading">Use URL rewriting</span>
+                            <span class="uk-text-muted uk-text-small">Lorem ipsum dolor sit amet&hellip;</span>
+                        </div>
+                    </li>
+                </ul>
+                <hr class="md-hr">
+                <h4 class="heading_c uk-margin-small-bottom uk-margin-top">Other Settings</h4>
+                <ul class="md-list">
+                    <li>
+                        <div class="md-list-content">
+                            <div class="uk-float-right">
+                                <input type="checkbox" class="switchery switchery-small" ui-switch color="#7cb342" id="settings_top_bar" name="settings_top_bar" ng-model="vm.sSidebar.top_bar" />
+                            </div>
+                            <span class="md-list-heading">Top Bar Enabled</span>
+                            <span class="uk-text-muted uk-text-small">Lorem ipsum dolor sit amet&hellip;</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="md-list-content">
+                            <div class="uk-float-right">
+                                <input type="checkbox" class="switchery switchery-small" ui-switch color="#7cb342" id="settings_api" name="settings_api" ng-model="vm.sSidebar.api" />
+                            </div>
+                            <span class="md-list-heading">Api Enabled</span>
+                            <span class="uk-text-muted uk-text-small">Lorem ipsum dolor sit amet&hellip;</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="md-list-content">
+                            <div class="uk-float-right">
+                                <input type="checkbox" class="switchery switchery-small" ui-switch color="#d32f2f" id="settings_minify_static" name="settings_minify_static" ng-model="vm.sSidebar.minify_assets" />
+                            </div>
+                            <span class="md-list-heading">Minify JS files automatically</span>
+                            <span class="uk-text-muted uk-text-small">Lorem ipsum dolor sit amet&hellip;</span>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <button type="button" class="chat_sidebar_close uk-close"></button>
+    <div class="chat_submit_box">
+        <div class="uk-input-group">
+            <input type="text" class="md-input" name="submit_message" id="submit_message" placeholder="Send message">
+            <span class="uk-input-group-addon">
+                <a href="#"><i class="material-icons md-24">&#xE163;</i></a>
+            </span>
+        </div>
+    </div>
+</aside>
+<!-- secondary sidebar end -->

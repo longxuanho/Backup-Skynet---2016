@@ -1,0 +1,18 @@
+<h3>Tạo mới kế hoạch sửa chữa</h3> Thiết bị:
+<select ng-model="newSuaChua.thiet_bi.keyId">
+    <option ng-repeat="item in thietbis" value="{{item._id}}">{{item.ma_tb.ma_tb}}:{{item.ma_tb.ma_topx}}</option>
+</select>
+Loại sửa chữa:
+<select ng-model="newSuaChua.loai_sua_chua">
+    <option value="sua_chua_cum">Sửa chữa cụm</option>
+    <option value="sua_chua_lon">Sửa chữa lớn</option>
+    <option value="khac">Khác</option>
+</select>
+Ngày bắt đầu:
+<input type="date" ng-model="newSuaChua.thoi_gian.ngay_bat_dau"> Ngày kết thúc:
+<input type="date" ng-model="newSuaChua.thoi_gian.ngay_ket_thuc"> Nội dung:
+<input type="text" ng-model="newSuaChua.noi_dung"> Mô tả:
+<input type="text" ng-model="newSuaChua.mo_ta"> Ghi chú:
+<input type="text" ng-model="newSuaChua.ghi_chu"> Icon:
+<input type="text" ng-model="newSuaChua.icon">
+<button ng-click="createNew()">Create</button>

@@ -1,0 +1,23 @@
+<div document-events ng-click="onClick($event)" ng-keyup="onKeyUp($event)" ng-class="{ 'page_loading': pageLoading, 'page_loaded': pageLoaded, 'app_initialized': appInitialized && (!$state.is('login') && !$state.includes('error'))}">
+    <div class="{{main_theme}}" data-uk-observe ng-class="{
+    'sidebar_main_active': primarySidebarActive && !miniSidebarActive && !topMenuActive && (!$state.is('login') && !$state.includes('error')),
+    'sidebar_main_open': primarySidebarOpen && !miniSidebarActive && !topMenuActive && largeScreen && (!$state.is('login') && !$state.includes('error')),
+    'sidebar_mini': miniSidebarActive && largeScreen && (!$state.is('login') && !$state.includes('error')),
+    'sidebar_main_hiding': primarySidebarHiding,
+    'sidebar_secondary_active': secondarySidebarActive && (!$state.is('login') && !$state.includes('error')),
+    'top_bar_active': toBarActive && (!$state.is('login') && !$state.includes('error')),
+    'page_heading_active': pageHeadingActive && (!$state.is('login') && !$state.includes('error')),
+    'header_double_height': headerDoubleHeightActive && (!$state.is('login') && !$state.includes('error')),
+    'main_search_active': mainSearchActive && (!$state.is('login') && !$state.includes('error')),
+    'header_full': fullHeaderActive && (!$state.is('login') && !$state.includes('error')),
+    'boxed_layout': boxedLayoutActive && (!$state.is('login') && !$state.includes('error')),
+    'login_page': $state.is('login'),
+    'error_page': $state.includes('error'),
+    'uk-height-1-1': page_full_height
+}" content-sidebar>
+        <top-header class="no-animate" ng-hide="$root.hideMainHeader"></top-header>
+        <div ui-view ng-class="{ 'uk-height-1-1': page_full_height }"></div>
+        <main-sidebar class="no-animate" ng-hide="$root.hideMainSidebar"></main-sidebar>
+        <style-switcher></style-switcher>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+.user_online {
+	color: Green;
+}
+
+.user_offline {
+	color: Coral;
+}
+
+.role_active {
+	background-color: LightBlue;
+}

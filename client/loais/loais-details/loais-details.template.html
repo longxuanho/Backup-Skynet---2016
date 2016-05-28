@@ -1,0 +1,76 @@
+<div class="md-card md-card-single main-print" single-card>
+<form class="uk-form-stacked">
+    <div class="md-card-toolbar">
+        <div class="md-card-toolbar-actions">
+            <div class="md-card-dropdown" data-uk-dropdown="{pos:'bottom-right'}">
+                <i class="md-icon material-icons">&#xE5D4;</i>
+                <div class="uk-dropdown uk-dropdown-small">
+                    <ul class="uk-nav">
+                        <li><a href="#" data-uk-modal="{target:'#modal_loais_thiet_lap'}">Thiết lập</a></li>
+                        <li><a href="#" class="foreground-color-accent" data-uk-modal="{target: '#modal_loais_xoa_loai'}">Xóa loại</a></li>
+                        <li><a href="#" ui-sref="loais.blank">Trở về</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="md-card-toolbar-actions" ng-click="save()">
+            <i class="md-icon material-icons">&#xE161;</i>
+        </div>
+        <div class="md-card-toolbar-actions" ng-click="reset()">
+            <i class="md-icon material-icons">&#xE5D5;</i>
+        </div>
+        <input class="md-card-toolbar-input" type="text" ng-model="source.ten" />
+    </div>
+    <div class="md-card-content">
+        <div class="uk-grid" data-uk-grid-margin>
+            <div class="uk-width-medium-1-1">
+                <label class="uk-form-label">Mã quản lý: {{source._id}}</label>
+            </div>
+            <div class="uk-width-medium-1-2">
+                <div>Nhóm:</div>
+                <select kendo-drop-down-list style="width: 100%;" ng-model="source.nhom.keyId" k-data-text-field="'ten'" k-data-value-field="'_id'" k-data-source="nhoms">
+                </select>
+            </div>
+            <div class="uk-width-medium-1-2">
+                <div>Chủng loại:</div>
+                <select kendo-drop-down-list style="width: 100%;" ng-model="source.chung_loai.keyId" k-data-text-field="'ten'" k-data-value-field="'_id'" k-data-source="chungloais" k-rebind="chungloais">
+                </select>
+            </div>
+            <div class="uk-width-medium-1-2">
+                <div class="uk-form-row">
+                    <label>Mã nhóm</label>
+                    <input type="text" class="md-input label-fixed" ng-model="source.ma" md-input />
+                </div>
+            </div>
+            <div class="uk-width-medium-1-2">
+                <div class="uk-form-row">
+                    <label>Icon</label>
+                    <input type="text" class="md-input label-fixed" ng-model="source.icon" md-input />
+                </div>
+            </div>
+            <div class="uk-width-medium-1-1 uk-margin-top">
+                <div class="uk-form-row">
+                    <input type="checkbox" ui-switch ng-model="source.isPublic" color="{{utils.accentColor}}" id="switch_nhom_isPublic" />
+                    <label for="switch_nhom_isPublic" class="inline-label">{{ source.isPublic?'Công khai':'Riêng tư' }}</label>
+                </div>
+            </div>
+        </div>
+        <div class="uk-grid uk-grid-divider grid-block" data-uk-grid-margin>
+            <div class="uk-width-medium-1-1">
+                <div class="uk-form-row">
+                    <label for="message">Mô tả</label>
+                    <input type="text" class="md-input label-fixed" rows="1" md-input ng-model="source.mo_ta"/>
+                </div>
+            </div>
+            <div class="uk-width-medium-1-1">
+                <div class="uk-form-row">
+                    <label for="message">Ghi chú</label>
+                    <textarea id="message" class="md-input" name="message" rows="3" md-input ng-model="source.ghi_chu"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <loais-modal-thiet-lap></loais-modal-thiet-lap>
+    <loais-modal-xoa-loai source="source"></loais-modal-xoa-loai>
+</form>
+</div>

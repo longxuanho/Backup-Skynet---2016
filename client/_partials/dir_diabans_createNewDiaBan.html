@@ -1,0 +1,30 @@
+<h1>Địa Bàn:</h1>
+<form>
+    <p>Geo:</p>
+    <label>Tên địa bàn:</label>
+    <input ng-model="newDiaBan.dia_ban.ten">
+    <label>Mã địa bàn:</label>
+    <input ng-model="newDiaBan.dia_ban.ma">
+    <label>name:</label>
+    <input ng-model="newDiaBan.dia_ban.geo_name">
+    <label>longitude:</label>
+    <input ng-model="newDiaBan.dia_ban.geo_longitude">
+    <label>latitude:</label>
+    <input ng-model="newDiaBan.dia_ban.geo_latitude">
+    <label>Miền:</label>
+    <select ng-model="newDiaBan.mien">
+        <option value="bac">Miền Bắc</option>
+        <option value="trung">Miền Trung</option>
+        <option value="nam">Miền Nam</option>
+    </select>
+    <label>Mô tả:</label>
+    <input ng-model="newDiaBan.mo_ta">
+    <label>Ghi chú:</label>
+    <input ng-model="newDiaBan.ghi_chu">
+    <label>Icon:</label>
+    <input ng-model="newDiaBan.icon">
+    <label>Công khai:</label>
+    <input type="checkbox" ng-model="newDiaBan.isPublic">
+    <button ng-click="createNew()">Add</button>
+    <button ng-click="removeAll()">Remove All</button>
+</form>

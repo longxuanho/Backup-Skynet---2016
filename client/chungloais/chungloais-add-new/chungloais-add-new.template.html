@@ -1,0 +1,53 @@
+<div class="md-card md-card-single main-print" single-card>
+    <form action="" class="uk-form-stacked">
+        <div class="md-card-toolbar">
+            <div class="md-card-toolbar-actions" ng-click="addNewChungLoai()">
+                <i class="md-icon material-icons">&#xE161;</i>
+            </div>
+            <input class="md-card-toolbar-input" type="text" ng-model="newChungLoai.ten" placeholder="Tên chủng loại mới" />
+        </div>
+        <div class="md-card-content">
+            <div class="uk-grid" data-uk-grid-margin>
+                <div class="uk-width-medium-1-1">
+                    <div class="uk-width-medium-1-2">
+                        <div>Nhóm:</div>
+                        <select kendo-drop-down-list style="width: 100%;" ng-model="newChungLoai.nhom.keyId" k-data-text-field="'ten'" k-data-value-field="'_id'" k-data-source="nhoms">
+                        </select>
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-2">
+                    <div class="uk-form-row">
+                        <label>Mã chủng loại</label>
+                        <input type="text" class="md-input label-fixed" ng-model="newChungLoai.ma" md-input />
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-2">
+                    <div class="uk-form-row">
+                        <label>Icon</label>
+                        <input type="text" class="md-input label-fixed" ng-model="newChungLoai.icon" md-input />
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-1 uk-margin-top">
+                    <div class="uk-form-row">
+                        <input type="checkbox" ui-switch ng-model="newChungLoai.isPublic" color="{{utils.accentColor}}" checked id="switch_demo_primary" />
+                        <label for="switch_demo_primary" class="inline-label">{{ newChungLoai.isPublic?'Công khai':'Riêng tư' }}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-grid uk-grid-divider grid-block" data-uk-grid-margin>
+                <div class="uk-width-medium-1-1">
+                    <div class="uk-form-row">
+                        <label for="message">Mô tả</label>
+                        <input type="text" class="md-input label-fixed" rows="1" md-input ng-model="newChungLoai.mo_ta" />
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-1">
+                    <div class="uk-form-row">
+                        <label for="message">Ghi chú</label>
+                        <textarea id="message" class="md-input" name="message" rows="3" md-input ng-model="newChungLoai.ghi_chu"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

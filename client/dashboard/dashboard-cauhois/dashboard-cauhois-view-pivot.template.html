@@ -1,0 +1,136 @@
+<div id="top_bar" top-bar ng-class="{'topbar-double-height': vm.pageOptions.topBarHeight=='x2'}">
+    <div class="md-top-bar">
+        <div class="uk-width-large-8-10 uk-container-center">
+            <div class="md-top-bar-actions-left uk-hidden-small" style="padding-left: 0;">
+                <ul class="top_bar_nav" id="snippets_grid_filter">
+                    <li ng-repeat="item in vm.pageOptions.groupBy.source" ng-class="{'uk-active': item.ma===vm.pageOptions.groupBy.selectedId}" ng-click="vm.utils.setGroupById(item.ma)">
+                        <a href="#">{{ item.ten }}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="md-top-bar-actions-right">
+                <div class="md-top-bar-icons">
+                    <i id="mailbox_list_split" class=" md-icon material-icons" ng-click="vm.utils.splitListView()">&#xE8EE;</i>
+                    <i id="mailbox_list_combined" class="md-icon material-icons" ng-click="vm.utils.combineListView()">&#xE8F2;</i>
+                    <div style="display:inline-block;" data-uk-dropdown="{pos:'bottom-right'}" class="uk-visible-small">
+                        <i id="mailbox_list_combined" class="md-icon material-icons" ng-click="vm.utils.combineListView()">&#xE5D4;</i>
+                        <div class="uk-dropdown uk-dropdown-small">
+                            <ul class="uk-nav uk-nav-dropdown">
+                                <li ng-repeat="item in vm.pageOptions.groupBy.source" ng-class="{'uk-active': item.ma===vm.pageOptions.groupBy.selectedId}" ng-click="vm.utils.setGroupById(item.ma)">
+                                    <a href="#">{{ item.ten }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="md-card-list-wrapper skynet-color" id="mailbox" style="margin-top:-40px;">
+    <div class="uk-width-large-8-10 uk-container-center">
+        <div class="uk-clearfix">
+            <div class="uk-float-right">
+                <h3 class="heading_b">Lượt sửa chữa <span class="sub-heading uk-align-right">{{vm.pageData.statistics['_id'].count}}/15</span></h3>
+            </div>
+        </div>
+       
+       <div class="uk-grid uk-margin-top" ng-show="!vm.pageData.statistics['_id'].count">
+           <div  class="no-animate" style="margin:auto;">
+                <img style="border-radius: 50%;" src="assets/img/skynet/suachuas_empty.png">
+                <div class="heading_list uk-margin-top">Không có sửa chữa được ghi nhận tại thời điểm này.</div>
+            </div>
+       </div>        
+
+        <div class="md-card-list" ng-repeat="group in vm.pageData.suachuasRaw track by $index">
+            
+            <div class="md-card-list-header heading_list" ng-show="group.aggregates['_id'].count">{{group.value}} ({{group.aggregates['_id'].count}} lượt)</div>
+            
+
+            <div class="md-card-list-header md-card-list-header-combined heading_list" ng-if="$first" style="display: none">Tất cả ({{vm.pageData.statistics['_id'].count}} lượt)</div>
+            <ul class="hierarchical_slide" hierarchical-slide>
+                
+                <li ng-repeat="suachua in group.items" on-last-repeat>
+                    <div class="md-card-list-item-menu">
+                        <i class="md-icon material-icons">&#xE5D4;</i>
+                    </div>
+                    <span class="md-card-list-item-date">{{suachua.thoi_gian.bat_dau | displayDate:'fromNow' }}</span>
+                    <div class="md-card-list-item-avatar-wrapper">
+                        <span class="md-card-list-item-avatar suachua-{{suachua.dia_diem.khu_vuc.ma}}">{{suachua.dia_diem.khu_vuc.ma | lastCharacter}}</span>
+                    </div>
+                    <div class="md-card-list-item-modified-dukien">
+                        <span>{{suachua.dia_diem.vi_tri}}: {{suachua.thoi_gian.sua_chua_du_kien}} giờ</span>
+                    </div>
+                    <div class="md-card-list-item-modified-loaitb">
+                        <span>{{suachua.phan_loai.loai_tb.ten}}</span>
+                    </div>
+                    <div class="md-card-list-item-modified-matb">
+                        <span>{{suachua.ma_tb.ma_tb}}</span>
+                    </div>                    
+                    
+                    <div class="md-card-list-item-subject">
+                        <div class="md-card-list-item-sender-small">
+                            <span>{{suachua.ma_tb.ma_tb}}</span>
+                        </div>
+                        <span>{{suachua.noi_dung.noi_dung}}</span>
+                    </div>
+                    <div class="md-card-list-item-content-wrapper">
+                        <div class="md-card-list-item-content">
+                            <div class="uk-grid uk-margin-small-left uk-margin-small-right uk-margin-bottom">
+                                <div class="uk-width-small-1-1">
+                                    <ul class="md-list">
+                                        <li>
+                                            <div class="md-list-content">
+                                                <span class="md-list-heading">Thông tin thiết bị</span>
+                                                <span class="uk-text-small uk-text-muted">{{suachua.ma_tb.ma_tb}} : {{suachua.phan_loai.loai_tb.ten}}</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="md-list-content">
+                                                <span class="md-list-heading">Vị trí sửa chữa</span>
+                                                <span class="uk-text-small uk-text-muted uk-text-truncate">{{suachua.dia_diem.khu_vuc.ten}} : {{suachua.dia_diem.vi_tri}}</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="md-list-content">
+                                                <span class="md-list-heading">Nội dung sửa chữa</span>
+                                                <span class="uk-text-small uk-text-muted">{{suachua.phan_loai.loai_sua_chua.ten}} :  {{suachua.noi_dung.noi_dung}}</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="md-list-content">
+                                                <span class="md-list-heading">Thời gian</span>
+                                                <span class="uk-text-small uk-text-muted">Dự kiến sửa chữa trong {{suachua.thoi_gian.sua_chua_du_kien}} giờ</span>
+                                                <span class="uk-text-small uk-text-muted">Bắt đầu lúc {{suachua.thoi_gian.bat_dau | displayDate: 'HH:mm A'}} ngày {{suachua.thoi_gian.bat_dau | displayDate: 'dddd, DD/MM/YYYY'}}</span>                                                
+                                            </div>
+                                        </li>
+                                        <li ng-if="suachua.thong_ke.tags_field">
+                                            <div class="md-list-content">
+                                                <span class="md-list-heading">Gắn thẻ</span>
+                                                <span class="uk-text-small uk-text-muted">{{suachua.thong_ke.tags_field}}</span>
+                                            </div>
+                                        </li>
+                                        <li ng-if="suachua.mo_ta">
+                                            <div class="md-list-content">
+                                                <span class="md-list-heading">Mô tả</span>
+                                                <span class="uk-text-small uk-text-muted">{{suachua.mo_ta}}</span>
+                                            </div>
+                                        </li>
+                                        <li ng-if="suachua.ghi_chu">
+                                            <div class="md-list-content">
+                                                <span class="md-list-heading">Ghi chú</span>
+                                                <span class="uk-text-small uk-text-muted">{{suachua.ghi_chu}}</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
